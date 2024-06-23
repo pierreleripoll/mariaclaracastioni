@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "dev-tina": "tinacms dev -c \"nuxt dev\"",
+    "build-tina": "tinacms build && nuxt build",
+    "start-tina": "tinacms build && nuxt start"
+  },
+  "dependencies": {
+    "@nuxt/content": "^2.13.0",
+    "@nuxt/image": "^1.7.0",
+    "axios": "^1.7.2",
+    "lodash": "^4.17.21",
+    "nuxt": "^3.12.1",
+    "tinacms": "^1.6.4"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.5.46",
+    "@types/node": "^20.14.8"
+  }
+}
