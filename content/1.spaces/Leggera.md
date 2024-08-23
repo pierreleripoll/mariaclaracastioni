@@ -1,6 +1,6 @@
 ---
 title: Leggera
-year: '2023'
+year: "2023"
 icon: /uploads/Leggera.png
 description: >-
   Leggera is an event scenography practice that focuses on the reuse and
@@ -17,3 +17,4 @@ credits: |-
   PHOTOGRAPHY: ©NOA CHEVALLEY
 ---
 
+Test
