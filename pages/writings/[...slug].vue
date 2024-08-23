@@ -1,7 +1,9 @@
 <script setup lang="ts">
 const { page } = useContent();
 
-console.log("Page content", page.value);
+console.log("Page writings content", page.value);
 </script>
 
-<template></template>
+<template>
+  <ContentRenderer :key="page._id" :value="page" />
+</template>
