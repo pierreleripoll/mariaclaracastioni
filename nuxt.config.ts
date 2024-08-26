@@ -1,13 +1,15 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxt/image"],
+  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/fonts"],
   content: {
     documentDriven: true,
   },
+
   routeRules: {
     "/": { prerender: true },
   },
+
   app: {
     head: {
       title: "Maria Clara Castioni",
@@ -15,7 +17,9 @@ export default defineNuxtConfig({
         lang: "en",
       },
       charset: "utf-8",
-      viewport: "width=device-width, initial-scale=1",
+      viewport: "width=device-width",
     },
   },
+
+  compatibilityDate: "2024-08-26",
 });

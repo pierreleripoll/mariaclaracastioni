@@ -11,7 +11,12 @@
       </NuxtLayout>
       <ClientOnly>
         <div class="icons-container">
-          <IconProject v-for="icon in icons" :key="icon" :icon="icon" />
+          <IconProject
+            v-for="{ icon, path } in projects"
+            :key="path"
+            :path="path"
+            :icon="icon"
+          />
         </div>
       </ClientOnly>
     </div>
@@ -28,8 +33,12 @@ const { data: spacesContent } = await useAsyncData("home", () =>
   queryContent("spaces").find()
 );
 
-const icons = spacesContent.value?.map((d) => d.icon);
-console.log("ICONS", icons);
+const projects = ref(
+  spacesContent.value?.map((d) => ({
+    icon: d.icon,
+    path: d._path as string,
+  }))
+);
 
 useSeoMeta({
   title: "Maria Clara Castioni",
@@ -53,16 +62,35 @@ if (contentHead) {
 }
 </script>
 <style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#__nuxt {
+  height: 100vh;
+}
+
 .app {
   position: relative;
+  height: 100%;
 }
+
 .container {
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   margin-top: -8px;
   padding: 1em 2em;
   text-align: start;
   max-width: 1500px;
   margin: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .header {
@@ -71,6 +99,7 @@ if (contentHead) {
   margin: 0 auto;
   margin-bottom: 10vh;
   gap: 2em;
+  width: 100%;
 }
 
 .header h1 {

@@ -1,9 +1,6 @@
 <template>
   <div class="content">
     <div class="image-container"></div>
-    <div class="description">
-      <p>Description here...</p>
-    </div>
   </div>
 </template>
 

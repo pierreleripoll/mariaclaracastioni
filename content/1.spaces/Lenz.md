@@ -1,11 +1,11 @@
 ---
 title: Lenz
-year: "2023"
+year: '2023'
 icon: /uploads/Lenz.png
 images:
-  - src: /uploads/_MG_8975_(c)-nicolas-brodard.jpg
-    caption: Lenz 2023
   - src: /uploads/_MG_8994_(c)-nicolas-brodard.jpg
+    caption: Lenz 2023
+  - src: /uploads/_MG_8975_(c)-nicolas-brodard.jpg
     caption: Lenz 2023
 description: >-
   Lenz is a play based on the homonymous novel by Georg Büchner. 
@@ -30,4 +30,3 @@ credits: |-
   PHOTOGRAPHY: ©NICOLAS BRODARD
 ---
 
-lenz test

@@ -1,39 +1,59 @@
 <template>
-  <div ref="iconRef" class="project-icon" :style="style">
-    <img v-if="props.icon" :src="props.icon" />
-    <div v-else />
-  </div>
+  <NuxtLink :to="path">
+    <div ref="iconRef" :class="classList" :style="style">
+      <NuxtPicture
+        format="avif,webp,png"
+        v-if="props.icon"
+        :src="props.icon"
+        sizes="200px"
+        :width="width"
+        :height="width"
+        densities="x1"
+      />
+      <div v-else />
+    </div>
+  </NuxtLink>
 </template>
 
 <script setup lang="ts">
 interface Props {
   icon?: string;
-  selected?: boolean;
-  visible?: boolean;
+  path: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   icon: undefined,
-  selected: false,
-  visible: true,
 });
+
+const emit = defineEmits<{
+  (e: "hovered", id: string): void;
+}>();
 
 const iconRef = ref<HTMLElement | null>(null);
 
-const width = 150;
+const route = useRoute();
+const selected = computed(() => route.path === props.path);
+const visible = computed(() => route.path == "/" || selected.value);
+
+const classList = computed(
+  () =>
+    `project-icon ${selected.value ? "selected" : ""} ${
+      !visible.value ? "hide" : ""
+    }`
+);
+
+const width = 200;
 const windowWidth = ref(window?.innerWidth || 0);
 const windowHeight = ref(window?.innerHeight || 0);
-const containerWidth = computed(() => windowWidth.value - width * 2);
-const containerHeight = computed(() => windowHeight.value - width * 2);
+const padding = 0;
+const containerWidth = computed(() => windowWidth.value - (width + padding));
+const containerHeight = computed(() => windowHeight.value - (width + padding));
 
-const x = ref(Math.random() * containerWidth.value + width);
-const y = ref(Math.random() * containerHeight.value + width);
+const x = ref(Math.random() * containerWidth.value + padding);
+const y = ref(Math.random() * containerHeight.value + padding);
 
 const style = computed(
-  () =>
-    `transform:translate(${x.value}px, ${y.value}px); display: ${
-      windowWidth.value ? "visible" : "none"
-    }`
+  () => `transform:translate(${x.value}px, ${y.value}px);`
 );
 
 const getRandomVelocity = () => {
@@ -41,50 +61,77 @@ const getRandomVelocity = () => {
   return Math.random() * 2 - 1;
 };
 
+var animationRequestID: number | null = null;
+
 const moveIcon = () => {
   const iconHTML = iconRef.value;
   if (!iconHTML) return;
 
   let velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
-  const stepSize = 1; // Adjust the step size for smoother movement
+  const stepSize = 10; // Adjust the step size for smoother movement
   let count = 0;
   const updatePosition = () => {
-    // Update position with some random velocity
-    x.value += velocity.x * stepSize;
-    y.value += velocity.y * stepSize;
-    if (count > 1000) {
-      velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
-      count = 0;
+    if (!selected.value) {
+      if (count > 10000) {
+        velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
+        count = 0;
+      }
+      const newX = x.value + velocity.x * stepSize;
+      const newY = y.value + velocity.y * stepSize;
+
+      // Boundary detection to keep the iconHTML within the window
+      if (newX < padding || newX > windowWidth.value - (width + padding))
+        velocity.x *= -1;
+      if (newY < padding || newY > windowHeight.value - (width + padding))
+        velocity.y *= -1;
+
+      // Update position with some random velocity
+      x.value += velocity.x * stepSize;
+      y.value += velocity.y * stepSize;
+
+      count += Math.random() * 10;
     }
 
-    // Boundary detection to keep the iconHTML within the window
-    if (x.value < 0 || x.value > containerWidth.value - width) velocity.x *= -1;
-    if (y.value < 0 || y.value > containerHeight.value - width)
-      velocity.y *= -1;
-    count += Math.random() * 10;
     requestAnimationFrame(updatePosition);
   };
 
   updatePosition();
 };
 
+const resize = () => {
+  const w = window.innerWidth,
+    h = window.innerHeight;
+  windowWidth.value = w;
+  windowHeight.value = h;
+
+  if (x.value > w - (width + padding)) {
+    x.value = Math.max(padding, w - (width + padding + 10));
+    console.log("Resize", x.value);
+  }
+  if (y.value > h - (width + padding)) {
+    y.value = Math.max(padding, h - (width + padding + 10));
+  }
+};
+
 onMounted(() => {
-  windowHeight.value = window.innerHeight;
-  windowWidth.value = window.innerWidth;
+  resize();
   moveIcon();
+  window.addEventListener("resize", resize);
 });
 </script>
-<style scoped>
+<style>
 .project-icon {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   top: 0;
   left: 0;
-  z-index: -100;
   display: flex;
+  transition: transform 0.8s, filter 0.2s;
+  animation-timing-function: ease-in-out;
+  will-change: transform;
 }
-.project-icon > img {
+.project-icon > picture > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -94,5 +141,15 @@ onMounted(() => {
   height: 80px;
   background-color: gray;
   margin: auto;
+}
+
+.project-icon.selected {
+  z-index: 100;
+  transform: translate(0px, calc(100vh - 200px)) !important;
+}
+
+.project-icon.hide {
+  filter: opacity(0);
+  pointer-events: none;
 }
 </style>

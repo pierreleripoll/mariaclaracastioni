@@ -31,7 +31,7 @@ export default defineConfig({
       {
         label: "Spaces",
         name: "space",
-        path: "content/spaces",
+        path: "content/1.spaces",
         format: "md",
         ui: {
           filename: {
@@ -105,7 +105,7 @@ export default defineConfig({
       {
         label: "Writings",
         name: "writing",
-        path: "content/writings",
+        path: "content/2.writings",
         fields: [
           {
             type: "string",
