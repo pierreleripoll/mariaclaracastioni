@@ -68,7 +68,7 @@ const moveIcon = () => {
   if (!iconHTML) return;
 
   let velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
-  const stepSize = 10; // Adjust the step size for smoother movement
+  const stepSize = 3; // Adjust the step size for smoother movement
   let count = 0;
   const updatePosition = () => {
     if (!selected.value) {

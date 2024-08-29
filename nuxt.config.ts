@@ -9,7 +9,9 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
   },
-
+  nitro: {
+    compressPublicAssets: true,
+  },
   app: {
     head: {
       title: "Maria Clara Castioni",
