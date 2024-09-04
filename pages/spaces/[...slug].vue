@@ -55,7 +55,9 @@ const prevVisible = computed(() => {
           :class="['project-image', { 'is-hidden': idxImage !== index }]"
           format="avif,webp"
           :src="image.src"
-          :loading="index === 0 ? 'eager' : 'lazy'"
+          sizes=" md:700px lg:850px  xl:1100px"
+          densities="x1 x2"
+          quality="85"
           :img-attrs="{ class: 'project-image', alt: image.caption }"
         />
       </div>
@@ -152,14 +154,14 @@ const prevVisible = computed(() => {
   background-size: 2.2em;
   background-repeat: no-repeat;
   padding: 2em 3em;
-  background-image: url("/right_arrow.svg");
+  background-image: url("/right_arrow.min.svg");
   display: none;
   z-index: 100;
   cursor: pointer;
 }
 
 #button-prev {
-  left: 25vw;
+  left: calc((25vw + 350px) / 2);
   transform: translate(-55%, -50%) rotate(180deg);
 }
 

@@ -8,7 +8,7 @@
         sizes="200px"
         :width="width"
         :height="width"
-        densities="x1"
+        densities="x1 x2"
       />
       <div v-else />
     </div>

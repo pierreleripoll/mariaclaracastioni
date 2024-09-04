@@ -114,7 +114,42 @@ const writingsUrls = navigation.value?.find(
   font-weight: 400;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .navbar-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-item {
+    width: 100%;
+  }
+
+  .navbar-link {
+    display: block;
+    width: 100%;
+    padding: 0.75em 0;
+  }
+
+  .dropdown-menu {
+    position: static;
+  }
+
+  .dropdown-item {
+    padding: 0.75em 1em;
+  }
+}
+
+@media (max-width: 600px) {
   .navbar {
     flex-direction: column;
     align-items: flex-start;

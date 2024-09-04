@@ -9,16 +9,14 @@
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
-      <ClientOnly>
-        <div class="icons-container">
-          <IconProject
-            v-for="{ icon, path } in projects"
-            :key="path"
-            :path="path"
-            :icon="icon"
-          />
-        </div>
-      </ClientOnly>
+      <div class="icons-container">
+        <IconProject
+          v-for="{ icon, path } in projects"
+          :key="path"
+          :path="path"
+          :icon="icon"
+        />
+      </div>
     </div>
   </div>
 </template>
