@@ -1,13 +1,24 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ["@nuxt/content", "@nuxt/image", "@nuxt/fonts"],
   content: {
     documentDriven: true,
   },
-
+  image:
+    process.env.NODE_ENV === "production"
+      ? {
+          provider: "ipx",
+          ipx: {
+            baseURL: "http://localhost:4000/", // External IPX server for production
+          },
+        }
+      : {},
   routeRules: {
     "/": { prerender: true },
+    "/_ipx/**":
+      process.env.NODE_ENV === "production"
+        ? { proxy: { to: "http://localhost:4000/**" } }
+        : {},
   },
   nitro: {
     compressPublicAssets: true,
