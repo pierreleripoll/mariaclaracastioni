@@ -19,13 +19,15 @@ jobs:
           node-version: "20"
           cache: "npm"
 
-      # Restore IPX cache
-      - name: Restore IPX cache
-        uses: actions/cache@v3
-        id: ipx-cache
-        with:
-          path: ./.ipx-cache
-          key: ipx-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        # Try to download and unzip the IPX cache from the previous deployment
+      - name: Download IPX cache
+        run: |
+          if curl --head --silent --fail https://pierreleripoll.github.io/mariaclaracastioni/ipx_cache.zip; then
+            curl -o ipx_cache.zip https://pierreleripoll.github.io/mariaclaracastioni/ipx_cache.zip
+            unzip -q ipx_cache.zip -d ./.ipx-cache
+            mv ./.ipx-cache/.output/public/_ipx/* ./.ipx-cache/
+            ls -aR .
+          fi
 
       # Install dependencies
       - run: npm install
@@ -34,20 +36,16 @@ jobs:
       - run: |
           NUXT_APP_BASE_URL=/mariaclaracastioni  npx nuxt generate
 
+      # Zip the _ipx folder with minimal compression for better speed
+      - name: Zip IPX cache
+        run: |
+          zip -r -1 ./.output/public/ipx_cache.zip ./.output/public/_ipx
+
       # Upload the built static site to be deployed by the deploy job
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
-
-      # Save IPX cache
-      - name: Save IPX cache
-        uses: actions/cache@v3
-        with:
-          path: ./.ipx-cache
-          key: ipx-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ipx-cache-${{ runner.os }}-
 
   # Deployment job
   deploy:
