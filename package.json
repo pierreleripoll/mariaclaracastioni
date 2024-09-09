@@ -4,7 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "(node ipx.js & echo $! > ipx.pid) && nuxt prepare && nuxt generate && kill $(cat ipx.pid) && rm ipx.pid",
+    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "dev-tina": "tinacms dev -c \"nuxt dev\"",
     "build-tina": "tinacms build && nuxt build",

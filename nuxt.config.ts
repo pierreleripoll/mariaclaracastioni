@@ -4,22 +4,7 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
   },
-  image:
-    process.env.NODE_ENV === "production"
-      ? {
-          provider: "ipx",
-          ipx: {
-            baseURL: "http://localhost:4000/", // External IPX server for production
-          },
-        }
-      : {},
-  routeRules: {
-    "/": { prerender: true },
-    "/_ipx/**":
-      process.env.NODE_ENV === "production"
-        ? { proxy: { to: "http://localhost:4000/**" } }
-        : {},
-  },
+
   nitro: {
     compressPublicAssets: true,
     prerender: {
@@ -27,6 +12,7 @@ export default defineNuxtConfig({
       failOnError: false,
     },
   },
+
   app: {
     head: {
       title: "Maria Clara Castioni",

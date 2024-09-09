@@ -22,11 +22,9 @@ jobs:
       # Install dependencies
       - run: npm install
 
-      # Start the IPX server, generate the static site, then stop the IPX server
+      # Generate the static site
       - run: |
-          (node ipx.js & echo $! > ipx.pid) && \
-          npx nuxt generate && \
-          kill $(cat ipx.pid) && rm ipx.pid
+          NUXT_APP_BASE_URL=/mariaclaracastioni  npx nuxt generate
 
       # Upload the built static site to be deployed by the deploy job
       - name: Upload artifact
