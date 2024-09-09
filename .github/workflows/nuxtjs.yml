@@ -19,6 +19,14 @@ jobs:
           node-version: "20"
           cache: "npm"
 
+      # Restore IPX cache
+      - name: Restore IPX cache
+        uses: actions/cache@v3
+        id: ipx-cache
+        with:
+          path: ./.ipx-cache
+          key: ipx-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+
       # Install dependencies
       - run: npm install
 
@@ -31,6 +39,15 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./.output/public
+
+      # Save IPX cache
+      - name: Save IPX cache
+        uses: actions/cache@v3
+        with:
+          path: ./.ipx-cache
+          key: ipx-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ipx-cache-${{ runner.os }}-
 
   # Deployment job
   deploy:
