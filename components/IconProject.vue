@@ -1,6 +1,12 @@
 <template>
   <NuxtLink :to="path">
-    <div ref="iconRef" :class="classList" :style="style">
+    <div
+      ref="iconRef"
+      :class="classList"
+      :style="style"
+      @mouseover="onMouseEnter"
+      @mouseleave="onMouseLeave"
+    >
       <NuxtPicture
         format="avif,webp,png"
         v-if="props.icon"
@@ -25,9 +31,10 @@ const props = withDefaults(defineProps<Props>(), {
   icon: undefined,
 });
 
-const emit = defineEmits<{
-  (e: "hovered", id: string): void;
-}>();
+const hoveredProject = useState<string | undefined>(
+  "hoveredProject",
+  () => undefined
+);
 
 const iconRef = ref<HTMLElement | null>(null);
 
@@ -39,6 +46,8 @@ const classList = computed(
   () =>
     `project-icon ${selected.value ? "selected" : ""} ${
       !visible.value ? "hide" : ""
+    } ${
+      hoveredProject.value !== props.path && hoveredProject.value ? "dim" : ""
     }`
 );
 
@@ -113,6 +122,16 @@ const resize = () => {
   }
 };
 
+function onMouseEnter() {
+  hoveredProject.value = props.path;
+}
+
+function onMouseLeave() {
+  if (hoveredProject.value === props.path) {
+    hoveredProject.value = undefined;
+  }
+}
+
 onMounted(() => {
   resize();
   moveIcon();
@@ -120,6 +139,11 @@ onMounted(() => {
 });
 </script>
 <style>
+.project-icon.dim {
+  filter: grayscale(100%) blur(1px);
+  z-index: -10;
+}
+
 .project-icon {
   position: absolute;
   width: 200px;
@@ -127,7 +151,7 @@ onMounted(() => {
   top: 0;
   left: 0;
   display: flex;
-  transition: transform 0.8s, filter 0.2s;
+  transition: transform 0.8s, filter 0.15s;
   animation-timing-function: ease-in-out;
   will-change: transform;
 }
