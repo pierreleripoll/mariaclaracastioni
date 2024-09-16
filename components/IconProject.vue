@@ -61,8 +61,12 @@ const containerHeight = computed(() => windowHeight.value - (width + padding));
 const x = ref(Math.random() * containerWidth.value + padding);
 const y = ref(Math.random() * containerHeight.value + padding);
 
+console.log(x.value, y.value);
 const style = computed(
-  () => `transform:translate(${x.value}px, ${y.value}px);`
+  () =>
+    `transform:translate(${x.value - windowWidth.value / 2}px, ${
+      y.value - windowHeight.value / 2
+    }px);`
 );
 
 const getRandomVelocity = () => {
@@ -148,8 +152,8 @@ onMounted(() => {
   position: absolute;
   width: 200px;
   height: 200px;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   display: flex;
   transition: transform 0.8s, filter 0.15s;
   animation-timing-function: ease-in-out;
