@@ -6,6 +6,7 @@
       :style="style"
       @mouseover="onMouseEnter"
       @mouseleave="onMouseLeave"
+      @transitionend="onTransitionEnd"
     >
       <NuxtPicture
         format="avif,webp,png"
@@ -22,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { createNoise2D } from "simplex-noise";
+
 interface Props {
   icon?: string;
   path: string;
@@ -42,6 +45,15 @@ const route = useRoute();
 const selected = computed(() => route.path === props.path);
 const visible = computed(() => route.path == "/" || selected.value);
 
+const needsTransformTransitionEffect = ref(selected.value);
+
+watch(selected, (value) => {
+  console.log("Selected", value);
+  if (value) {
+    needsTransformTransitionEffect.value = true;
+  }
+});
+
 const classList = computed(
   () =>
     `project-icon ${selected.value ? "selected" : ""} ${
@@ -54,59 +66,62 @@ const classList = computed(
 const width = 200;
 const windowWidth = ref(window?.innerWidth || 0);
 const windowHeight = ref(window?.innerHeight || 0);
-const padding = 0;
-const containerWidth = computed(() => windowWidth.value - (width + padding));
-const containerHeight = computed(() => windowHeight.value - (width + padding));
+const padding = 10;
 
-const x = ref(Math.random() * containerWidth.value + padding);
-const y = ref(Math.random() * containerHeight.value + padding);
+const x = ref(0);
+const y = ref(0);
 
-console.log(x.value, y.value);
 const style = computed(
   () =>
-    `transform:translate(${x.value - windowWidth.value / 2}px, ${
+    `transform: translate(${x.value - windowWidth.value / 2}px, ${
       y.value - windowHeight.value / 2
-    }px);`
+    }px);` +
+    (needsTransformTransitionEffect.value
+      ? "transition-property: transform; transition-duration: 1s; transition-timing-function: ease-in-out;"
+      : "")
 );
 
-const getRandomVelocity = () => {
-  // Random velocity between -1 and 1
-  return Math.random() * 2 - 1;
-};
+watch(style, (value) => {
+  if (selected.value) console.log("Style", value);
+});
 
-var animationRequestID: number | null = null;
+const noise = createNoise2D();
+let time = Math.random() * 1000;
 
 const moveIcon = () => {
-  const iconHTML = iconRef.value;
-  if (!iconHTML) return;
+  const speed = 0.0015;
+  const amplitudeX = (windowWidth.value - width) / 2 - padding;
+  const amplitudeY = (windowHeight.value - width) / 2 - padding;
 
-  let velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
-  const stepSize = 3; // Adjust the step size for smoother movement
-  let count = 0;
   const updatePosition = () => {
-    if (!selected.value) {
-      if (count > 10000) {
-        velocity = { x: getRandomVelocity(), y: getRandomVelocity() };
-        count = 0;
-      }
-      const newX = x.value + velocity.x * stepSize;
-      const newY = y.value + velocity.y * stepSize;
+    if (
+      !selected.value &&
+      hoveredProject.value !== props.path &&
+      !needsTransformTransitionEffect.value
+    ) {
+      time += speed;
 
-      // Boundary detection to keep the iconHTML within the window
-      if (newX < padding || newX > windowWidth.value - (width + padding))
-        velocity.x *= -1;
-      if (newY < padding || newY > windowHeight.value - (width + padding))
-        velocity.y *= -1;
+      x.value = windowWidth.value / 2 + amplitudeX * noise(time, randomOffsetX);
+      y.value =
+        windowHeight.value / 2 + amplitudeY * noise(time, randomOffsetY);
 
-      // Update position with some random velocity
-      x.value += velocity.x * stepSize;
-      y.value += velocity.y * stepSize;
-
-      count += Math.random() * 10;
+      // Ensure the icon stays within bounds
+      x.value = Math.max(
+        padding,
+        Math.min(x.value, windowWidth.value - (width + padding))
+      );
+      y.value = Math.max(
+        padding,
+        Math.min(y.value, windowHeight.value - (width + padding))
+      );
     }
 
     requestAnimationFrame(updatePosition);
   };
+
+  // Random offsets to ensure different paths
+  const randomOffsetX = Math.random() * 1000;
+  const randomOffsetY = Math.random() * 1000;
 
   updatePosition();
 };
@@ -136,6 +151,21 @@ function onMouseLeave() {
   }
 }
 
+function onTransitionEnd(event: TransitionEvent) {
+  if (event.propertyName === "transform") {
+    console.log(
+      "Transition end",
+      hoveredProject.value,
+      event.propertyName,
+      "needsTransformTransitionEffect :",
+      needsTransformTransitionEffect.value
+    );
+    if (!selected.value) {
+      needsTransformTransitionEffect.value = false;
+    }
+  }
+}
+
 onMounted(() => {
   resize();
   moveIcon();
@@ -143,22 +173,36 @@ onMounted(() => {
 });
 </script>
 <style>
-.project-icon.dim {
+.project-icon.dim:not(.hide) {
   filter: grayscale(100%) blur(1px);
   z-index: -10;
+  transition-property: filter;
+  transition-duration: 0.5s;
+  /* No transform changes here */
 }
 
 .project-icon {
   position: absolute;
   width: 200px;
   height: 200px;
-  top: 50%;
-  left: 50%;
+  top: calc(50vh - 100px);
+  left: calc(50vw - 100px);
   display: flex;
-  transition: transform 0.8s, filter 0.15s;
-  animation-timing-function: ease-in-out;
-  will-change: transform;
+  opacity: 1;
+  transition: opacity 2s, filter 0.5s;
 }
+
+.project-icon.selected {
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transform: translate(
+    calc(-50vw + 100px),
+    calc(100vh - 50vh - 100px)
+  ) !important;
+  z-index: 100;
+}
+
 .project-icon > picture > img {
   width: 100%;
   height: 100%;
@@ -171,13 +215,8 @@ onMounted(() => {
   margin: auto;
 }
 
-.project-icon.selected {
-  z-index: 100;
-  transform: translate(0px, calc(100vh - 200px)) !important;
-}
-
 .project-icon.hide {
-  filter: opacity(0);
+  opacity: 0;
   pointer-events: none;
 }
 </style>

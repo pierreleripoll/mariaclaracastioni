@@ -14,6 +14,12 @@
                 hoveredProject && hoveredProject !== children._path ? 'dim' : ''
               }`"
               @mouseover="() => (hoveredProject = children._path)"
+              @mouseleave="
+                () =>
+                  hoveredProject == children._path
+                    ? (hoveredProject = undefined)
+                    : null
+              "
             >
               <NuxtLink :to="children._path" class="dropdown-link">
                 {{ children.title }}
