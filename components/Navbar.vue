@@ -1,17 +1,24 @@
 <template>
-  <nav class="navbar" @mouseleave="hideBoth">
+  <nav class="navbar">
     <h2 class="navbar-title">MARIA CLARA CASTIONI</h2>
 
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
-        <li key="/" class="navbar-item">
-          <NuxtLink to="/" class="navbar-link"> MARIA CLARA CASTIONI </NuxtLink>
-          <ul ref="dropdownSpaces" class="dropdown-menu">
+        <li key="/" class="navbar-item navbar-link-home">
+          <NuxtLink to="/" class="navbar-link navbar-link-home">
+            MARIA CLARA CASTIONI
+          </NuxtLink>
+          <ul
+            ref="dropdownSpaces"
+            :class="`dropdown-menu ${classHoveredSpaces}`"
+          >
             <li
               v-for="children of spacesUrls"
               :key="children._path"
               :class="`dropdown-item ${
-                hoveredProject && hoveredProject !== children._path ? 'dim' : ''
+                hoveredProject && hoveredProject == children._path
+                  ? 'hovered'
+                  : ''
               }`"
               @mouseover="() => (hoveredProject = children._path)"
               @mouseleave="
@@ -26,7 +33,10 @@
               </NuxtLink>
             </li>
           </ul>
-          <ul ref="dropdownWritings" class="dropdown-menu">
+          <ul
+            ref="dropdownWritings"
+            :class="`dropdown-menu ${classHoveredWritings}`"
+          >
             <li
               v-for="children of writingsUrls"
               :key="children._path"
@@ -38,10 +48,16 @@
             </li>
           </ul>
         </li>
-        <li ref="spacesNavbarItem" class="navbar-item centeralign">
+        <li
+          ref="spacesNavbarItem"
+          :class="`navbar-item centeralign ${classHoveredSpaces}`"
+        >
           <NuxtLink class="navbar-link"> Spaces </NuxtLink>
         </li>
-        <li ref="writingsNavbarItem" class="navbar-item centeralign">
+        <li
+          ref="writingsNavbarItem"
+          :class="`navbar-item centeralign ${classHoveredWritings}`"
+        >
           <NuxtLink class="navbar-link"> Writings </NuxtLink>
         </li>
         <li class="navbar-item rightalign">
@@ -54,6 +70,7 @@
 
 <script setup lang="ts">
 const { toc } = useContent();
+import { useRoute } from "vue-router";
 const { data: navigation } = await useAsyncData("navigation", () =>
   fetchContentNavigation()
 );
@@ -71,35 +88,39 @@ const dropdownWritings = ref<HTMLElement | null>(null);
 const spacesNavbarItem = ref<HTMLElement | null>(null);
 const writingsNavbarItem = ref<HTMLElement | null>(null);
 
+const hoveredCategory = ref<string | undefined>(undefined);
+
 const hoveredProject = useState<string | undefined>(
   "hoveredProject",
   () => undefined
 );
 
-watch(hoveredProject, (value) => {});
+const classHoveredSpaces = computed(() =>
+  hoveredCategory.value === "spaces" ? "hovered" : ""
+);
 
-const showDropdown = (dropdownRef: globalThis.Ref<HTMLElement | null>) => {
-  dropdownRef.value?.classList.add("hovered");
-};
+const classHoveredWritings = computed(() =>
+  hoveredCategory.value === "writings" ? "hovered" : ""
+);
 
-const hideDropdown = (dropdownRef: globalThis.Ref<HTMLElement | null>) => {
-  dropdownRef.value?.classList.remove("hovered");
-};
-
-function hideBoth() {
-  hideDropdown(dropdownSpaces);
-  hideDropdown(dropdownWritings);
-}
+watch(hoveredProject, (value) => {
+  console.log("Hovered Project", value);
+  if (value?.startsWith("/spaces")) {
+    hoveredCategory.value = "spaces";
+  } else if (value?.startsWith("/writings")) {
+    hoveredCategory.value = "writings";
+  } else {
+    // hoveredCategory.value = undefined;
+  }
+});
 
 onMounted(() => {
   spacesNavbarItem.value?.addEventListener("mouseover", () => {
-    showDropdown(dropdownSpaces);
-    hideDropdown(dropdownWritings);
+    hoveredCategory.value = "spaces";
   });
 
   writingsNavbarItem.value?.addEventListener("mouseover", () => {
-    showDropdown(dropdownWritings);
-    hideDropdown(dropdownSpaces);
+    hoveredCategory.value = "writings";
   });
 });
 </script>
@@ -151,6 +172,9 @@ onMounted(() => {
   padding: 0.5em 0;
   transition: color 0.3s ease;
 }
+.navbar-link-home {
+  text-decoration: none !important;
+}
 
 .dropdown-menu {
   position: absolute;
@@ -163,16 +187,13 @@ onMounted(() => {
   padding: 0.5em 0;
   width: 100vw;
 }
-.dropdown-menu.hovered {
+.dropdown-menu.hovered,
+.dropdown-menu:hover {
   display: block;
 }
 
 .dropdown-item {
   padding: 0.2em 0px;
-}
-
-.dropdown-item.dim {
-  filter: saturate(0.1) brightness(0.2);
 }
 
 .dropdown-link {
@@ -181,6 +202,13 @@ onMounted(() => {
   font-size: 16px;
   width: 100%;
   font-weight: 400;
+}
+
+li.hovered,
+li:hover,
+.router-link-active,
+.router-link-exact-active {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

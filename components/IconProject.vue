@@ -77,13 +77,9 @@ const style = computed(
       y.value - windowHeight.value / 2
     }px);` +
     (needsTransformTransitionEffect.value
-      ? "transition-property: transform; transition-duration: 1s; transition-timing-function: ease-in-out;"
+      ? "transition: opacity 1s, filter 0.2s, transform 1s ease-in-out;"
       : "")
 );
-
-watch(style, (value) => {
-  if (selected.value) console.log("Style", value);
-});
 
 const noise = createNoise2D();
 let time = Math.random() * 1000;
@@ -173,11 +169,9 @@ onMounted(() => {
 });
 </script>
 <style>
-.project-icon.dim:not(.hide) {
+.project-icon.dim:not(.hide):not(.selected) {
   filter: grayscale(100%) blur(1px);
   z-index: -10;
-  transition-property: filter;
-  transition-duration: 0.5s;
   /* No transform changes here */
 }
 
@@ -189,13 +183,11 @@ onMounted(() => {
   left: calc(50vw - 100px);
   display: flex;
   opacity: 1;
-  transition: opacity 2s, filter 0.5s;
+  transition: opacity 2s, filter 0.2s;
 }
 
 .project-icon.selected {
-  transition-property: transform;
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
+  transition: opacity 2s, filter 0.2s, transform 1s ease-in-out;
   transform: translate(
     calc(-50vw + 100px),
     calc(100vh - 50vh - 100px)
