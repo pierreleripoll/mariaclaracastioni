@@ -41,9 +41,10 @@
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
               format="avif,webp"
               :src="image.src"
-              sizes="(max-width: 768px) 100vw, 700px"
+              sizes="(max-width: 768px) 100vw, 800px"
               densities="x1 x2"
               quality="90"
+              loading="lazy"
               :img-attrs="{
                 class: 'project-image',
                 alt: image.caption,
@@ -305,13 +306,13 @@ onBeforeUnmount(() => {
 
   #button-prev {
     left: 20vw;
-    top: 20%;
+    top: 80%;
     transform: translate(-50%, -50%) rotate(270deg);
   }
 
   #button-next {
     left: 20vw;
-    top: 80%;
+    top: 90%;
     transform: translate(-50%, -50%) rotate(90deg);
   }
 

@@ -1,3 +1,14 @@
 <template>
-  <h1>This page is empty</h1>
+  <p>This is empty</p>
 </template>
+
+<style scoped>
+p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  text-transform: uppercase;
+}
+</style>

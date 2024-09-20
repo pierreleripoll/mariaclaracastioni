@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="path">
+  <NuxtLink :to="selected ? '/' : path">
     <div
       ref="iconRef"
       :class="classList"

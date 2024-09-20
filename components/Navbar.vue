@@ -1,52 +1,11 @@
 <template>
   <nav class="navbar">
-    <h2 class="navbar-title">MARIA CLARA CASTIONI</h2>
-
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
-        <li key="/" class="navbar-item navbar-link-home">
-          <NuxtLink to="/" class="navbar-link navbar-link-home">
+        <li key="/" class="navbar-item">
+          <NuxtLink to="/about" class="navbar-link navbar-link-home">
             MARIA CLARA CASTIONI
           </NuxtLink>
-          <ul
-            ref="dropdownSpaces"
-            :class="`dropdown-menu ${classHoveredSpaces}`"
-          >
-            <li
-              v-for="children of spacesUrls"
-              :key="children._path"
-              :class="`dropdown-item ${
-                isProjectHovered(children._path) ? 'hovered' : ''
-              }`"
-              @mouseover="() => (hoveredProject = children._path)"
-              @mouseleave="
-                () =>
-                  hoveredProject == children._path
-                    ? (hoveredProject = undefined)
-                    : null
-              "
-            >
-              <NuxtLink :to="children._path" class="dropdown-link">
-                {{ children.title }}
-              </NuxtLink>
-            </li>
-          </ul>
-          <ul
-            ref="dropdownWritings"
-            :class="`dropdown-menu ${classHoveredWritings}`"
-          >
-            <li
-              v-for="children of writingsUrls"
-              :key="children._path"
-              :class="`dropdown-item ${
-                isProjectHovered(children._path) ? 'hovered' : ''
-              }`"
-            >
-              <NuxtLink :to="children._path" class="dropdown-link">
-                {{ children.title }}
-              </NuxtLink>
-            </li>
-          </ul>
         </li>
         <li
           ref="spacesNavbarItem"
@@ -61,7 +20,43 @@
           <NuxtLink class="navbar-link"> Writings </NuxtLink>
         </li>
         <li class="navbar-item rightalign">
-          <NuxtLink to="/about" class="navbar-link"> About </NuxtLink>
+          <NuxtLink to="/dates" class="navbar-link"> Dates </NuxtLink>
+        </li>
+      </ul>
+      <ul ref="dropdownSpaces" :class="`dropdown-menu ${classHoveredSpaces}`">
+        <li
+          v-for="children of spacesUrls"
+          :key="children._path"
+          :class="`dropdown-item ${
+            isProjectHovered(children._path) ? 'hovered' : ''
+          }`"
+          @mouseover="() => (hoveredProject = children._path)"
+          @mouseleave="
+            () =>
+              hoveredProject == children._path
+                ? (hoveredProject = undefined)
+                : null
+          "
+        >
+          <NuxtLink :to="children._path" class="dropdown-link">
+            {{ children.title }}
+          </NuxtLink>
+        </li>
+      </ul>
+      <ul
+        ref="dropdownWritings"
+        :class="`dropdown-menu ${classHoveredWritings}`"
+      >
+        <li
+          v-for="children of writingsUrls"
+          :key="children._path"
+          :class="`dropdown-item ${
+            isProjectHovered(children._path) ? 'hovered' : ''
+          }`"
+        >
+          <NuxtLink :to="children._path" class="dropdown-link">
+            {{ children.title }}
+          </NuxtLink>
         </li>
       </ul>
     </ContentNavigation>
@@ -194,7 +189,7 @@ onMounted(() => {
   transition: color 0.3s ease;
 }
 .navbar-link-home {
-  text-decoration: none !important;
+  /* text-decoration: none !important; */
 }
 
 .dropdown-menu {
@@ -225,8 +220,8 @@ onMounted(() => {
   font-weight: 400;
 }
 
-li.hovered,
-li:hover,
+li.hovered > a,
+li:hover > a,
 .router-link-active,
 .router-link-exact-active {
   text-decoration: underline;
