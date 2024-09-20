@@ -2,7 +2,9 @@
   <div class="project-container">
     <!-- Navigation Buttons -->
     <div
-      :class="prevVisible ? 'is-activated' : ''"
+      :class="`horizontal-navigation-button ${
+        prevVisible ? 'is-activated' : ''
+      }`"
       id="button-prev"
       @click="handlePrev"
       aria-label="Previous Image"
@@ -11,7 +13,9 @@
       @keypress.enter="handlePrev"
     ></div>
     <div
-      :class="nextVisible ? 'is-activated' : ''"
+      :class="`horizontal-navigation-button ${
+        nextVisible ? 'is-activated' : ''
+      }`"
       id="button-next"
       @click="handleNext"
       aria-label="Next Image"
@@ -23,23 +27,30 @@
     <!-- Content Wrapper -->
     <div class="content-wrapper">
       <!-- Image Carousel -->
-      <div class="carousel-container">
-        <div class="images-carousel">
-          <NuxtPicture
+      <div class="carousel-container" ref="carouselContainer">
+        <div class="images-carousel" ref="imagesCarousel">
+          <div
             v-for="(image, index) in images"
-            :key="index"
-            :class="['project-image', { 'is-hidden': idxImage !== index }]"
-            format="avif,webp"
-            :src="image.src"
-            sizes="(max-width: 768px) 100vw, 700px"
-            densities="x1 x2"
-            quality="90"
-            :img-attrs="{
-              class: 'project-image',
-              alt: image.caption,
-              loading: 'lazy',
-            }"
-          />
+            :key="image.caption"
+            class="image-wrapper"
+            :data-index="index"
+            :path="image.src"
+            ref="imageWrappers"
+          >
+            <NuxtPicture
+              :class="['project-image', { 'is-hidden': idxImage !== index }]"
+              format="avif,webp"
+              :src="image.src"
+              sizes="(max-width: 768px) 100vw, 700px"
+              densities="x1 x2"
+              quality="90"
+              :img-attrs="{
+                class: 'project-image',
+                alt: image.caption,
+                loading: 'lazy',
+              }"
+            />
+          </div>
         </div>
       </div>
 
@@ -87,12 +98,14 @@ const handlePrev = () => {
   if (!images) return;
   idxImage.value =
     idxImage.value === 0 ? images.length - 1 : idxImage.value - 1;
+  scrollToImage(idxImage.value);
 };
 
 const handleNext = () => {
   if (!images) return;
   idxImage.value =
     idxImage.value === images.length - 1 ? 0 : idxImage.value + 1;
+  scrollToImage(idxImage.value);
 };
 
 const nextVisible = computed(() => {
@@ -103,6 +116,59 @@ const nextVisible = computed(() => {
 const prevVisible = computed(() => {
   if (!images || images.length === 1) return false;
   return idxImage.value > 0;
+});
+
+// References
+const imagesCarousel = ref<HTMLElement | null>(null);
+const carouselContainer = ref<HTMLElement | null>(null);
+const imageWrappers = ref<HTMLElement[]>([]);
+
+// Intersection Observer Instance
+const observer = ref<IntersectionObserver | null>(null);
+
+// Function to handle intersection changes
+const onIntersection = (entries: IntersectionObserverEntry[]) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const index = Number(entry.target.getAttribute("data-index"));
+      if (!isNaN(index)) {
+        idxImage.value = index;
+      }
+    }
+  });
+};
+
+// Function to scroll to a specific image
+const scrollToImage = (index: number) => {
+  const target = imageWrappers.value[index];
+
+  if (target && carouselContainer.value) {
+    carouselContainer.value.scrollTo({
+      top: target.offsetTop,
+      behavior: "smooth",
+    });
+  }
+};
+
+onMounted(() => {
+  if (!carouselContainer.value) return;
+
+  // Create Intersection Observer
+  observer.value = new IntersectionObserver(onIntersection, {
+    root: carouselContainer.value,
+    threshold: 0.6, // 60% of the image must be visible
+  });
+
+  // Observe each image wrapper
+  imageWrappers.value.forEach((wrapper) => {
+    observer.value?.observe(wrapper);
+  });
+});
+
+onBeforeUnmount(() => {
+  if (observer) {
+    observer.value?.disconnect();
+  }
 });
 </script>
 
@@ -161,6 +227,7 @@ const prevVisible = computed(() => {
 
 .images-carousel {
   position: relative;
+
   width: calc(25vw + 350px);
   max-width: 800px;
   min-width: 400px;
@@ -203,5 +270,54 @@ const prevVisible = computed(() => {
 
 .is-activated {
   display: block !important;
+}
+
+@media (max-width: 1500px) {
+  .carousel-container {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    overflow-y: auto;
+    gap: 10em;
+    height: 100%;
+    justify-content: start;
+  }
+  .images-carousel {
+    margin-top: max(100px, 20vh);
+    margin-bottom: max(100px, 20vh);
+    display: flex;
+    gap: calc(35vh - 100px);
+    flex-direction: column;
+    height: auto;
+    scroll-behavior: smooth; /* Smooth scrolling */
+    scroll-snap-type: y mandatory; /* Enable scroll snapping */
+  }
+  .image-wrapper {
+    scroll-snap-align: start; /* Snap to the start of each image */
+    height: 60vh; /* Ensure each image takes up the container's height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .project-image.is-hidden {
+    display: block;
+  }
+
+  #button-prev {
+    left: 20vw;
+    top: 20%;
+    transform: translate(-50%, -50%) rotate(270deg);
+  }
+
+  #button-next {
+    left: 20vw;
+    top: 80%;
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+
+  /* 
+  .images-carousel .project-image:first-child {
+    margin-top: 300px;
+  } */
 }
 </style>

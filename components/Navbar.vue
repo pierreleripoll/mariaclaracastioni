@@ -16,9 +16,7 @@
               v-for="children of spacesUrls"
               :key="children._path"
               :class="`dropdown-item ${
-                hoveredProject && hoveredProject == children._path
-                  ? 'hovered'
-                  : ''
+                isProjectHovered(children._path) ? 'hovered' : ''
               }`"
               @mouseover="() => (hoveredProject = children._path)"
               @mouseleave="
@@ -41,9 +39,7 @@
               v-for="children of writingsUrls"
               :key="children._path"
               :class="`dropdown-item ${
-                hoveredProject && hoveredProject == children._path
-                  ? 'hovered'
-                  : ''
+                isProjectHovered(children._path) ? 'hovered' : ''
               }`"
             >
               <NuxtLink :to="children._path" class="dropdown-link">
@@ -96,9 +92,25 @@ const hoveredCategory = ref<string | undefined>(undefined);
 
 const route = useRoute();
 
-watch(route, (value) => {
-  console.log(value);
-});
+watch(
+  route,
+  ({ path }) => {
+    if (path.startsWith("/spaces")) {
+      hoveredCategory.value = "spaces";
+    } else if (path.startsWith("/writings")) {
+      hoveredCategory.value = "writings";
+    } else {
+      hoveredCategory.value = undefined;
+    }
+  },
+  { immediate: true }
+);
+
+function isProjectHovered(path: string) {
+  return (
+    (hoveredProject.value && hoveredProject.value == path) || route.path == path
+  );
+}
 
 const hoveredProject = useState<string | undefined>(
   "hoveredProject",

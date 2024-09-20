@@ -49,7 +49,17 @@ const route = useRoute();
 const selected = computed(() => route.path === props.path);
 const visible = computed(() => route.path == "/" || selected.value);
 
+const shouldMove = ref(true);
+
 const needsTransformTransitionEffect = ref(selected.value);
+
+watch(visible, (value) => {
+  if (!value) {
+    setTimeout(() => {
+      shouldMove.value = false;
+    }, 1500);
+  } else shouldMove.value = true;
+});
 
 watch(selected, (value) => {
   if (value) {
@@ -96,7 +106,8 @@ const moveIcon = () => {
     if (
       !selected.value &&
       hoveredProject.value !== props.path &&
-      !needsTransformTransitionEffect.value
+      !needsTransformTransitionEffect.value &&
+      shouldMove.value
     ) {
       time += speed;
 
