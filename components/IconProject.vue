@@ -14,10 +14,13 @@
         :src="props.icon"
         sizes="200px"
         :width="width"
-        :height="width"
         densities="x1 x2"
       />
-      <div v-else />
+      <div v-else>
+        <span>
+          {{ title }}
+        </span>
+      </div>
     </div>
   </NuxtLink>
 </template>
@@ -28,6 +31,7 @@ import { createNoise2D } from "simplex-noise";
 interface Props {
   icon?: string;
   path: string;
+  title?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -166,10 +170,12 @@ onMounted(() => {
 
 .project-icon {
   position: absolute;
-  width: 200px;
-  height: 200px;
-  top: calc(50vh - 100px);
-  left: calc(50vw - 100px);
+  width: 100px;
+  max-height: 200px;
+  min-height: 100px;
+  height: auto;
+  top: calc(50vh);
+  left: calc(50vw);
   display: flex;
   opacity: 1;
   transition: opacity 2s, filter 0.2s;
@@ -177,23 +183,36 @@ onMounted(() => {
 
 .project-icon.selected {
   transition: opacity 2s, filter 0.2s, transform 1s ease-in-out;
-  transform: translate(
-    calc(-50vw + 100px),
-    calc(100vh - 50vh - 100px)
-  ) !important;
+  transform: translate(calc(-50vw), calc(100vh - 50vh - 100%)) !important;
   z-index: 100;
+}
+
+.project-icon.selected:has(div) {
+  transform: translate(
+    calc(-50vw + 1.2em),
+    calc(100vh - 50vh - 100% - 1.2em)
+  ) !important;
 }
 
 .project-icon > picture > img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .project-icon > div {
-  width: 50px;
-  height: 80px;
-  background-color: gray;
+  width: 100%;
+  height: 141px;
+  border: 1px solid black;
+  background-color: white;
   margin: auto;
+}
+.project-icon > div > span {
+  text-transform: uppercase;
+  color: black;
+  display: block;
+  margin: 1em;
+  width: 50px;
+  word-wrap: break-word;
 }
 
 .project-icon.hide {

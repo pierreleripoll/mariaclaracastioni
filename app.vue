@@ -11,9 +11,10 @@
       </NuxtLayout>
       <div class="icons-container">
         <IconProject
-          v-for="{ icon, path } in projects"
+          v-for="{ icon, path, title } in projects"
           :key="path"
           :path="path"
+          :title="title"
           :icon="icon"
         />
       </div>
@@ -22,20 +23,26 @@
 </template>
 
 <script setup lang="ts">
+import { title } from "process";
 import Navbar from "./components/Navbar.vue";
-
 const { page, layout } = useContent();
 const { contentHead } = useRuntimeConfig().public.content;
 
-const { data: spacesContent } = await useAsyncData("home", () =>
+const { data: writingsContent } = await useAsyncData("writings", () =>
+  queryContent("writings").find()
+);
+const { data: spacesContent } = await useAsyncData("spaces", () =>
   queryContent("spaces").find()
 );
 
-const projects = ref(
-  spacesContent.value?.map((d) => ({
-    icon: d.icon,
-    path: d._path as string,
-  }))
+const projects = computed(() =>
+  [...(spacesContent.value ?? []), ...(writingsContent.value ?? [])].map(
+    (d) => ({
+      icon: d.icon,
+      path: d._path as string,
+      title: d.title,
+    })
+  )
 );
 
 useSeoMeta({

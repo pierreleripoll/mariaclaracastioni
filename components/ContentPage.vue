@@ -1,39 +1,59 @@
 <template>
   <div class="project-container">
+    <!-- Navigation Buttons -->
     <div
       :class="prevVisible ? 'is-activated' : ''"
       id="button-prev"
       @click="handlePrev"
+      aria-label="Previous Image"
+      role="button"
+      tabindex="1"
+      @keypress.enter="handlePrev"
     ></div>
     <div
       :class="nextVisible ? 'is-activated' : ''"
       id="button-next"
       @click="handleNext"
+      aria-label="Next Image"
+      role="button"
+      tabindex="1"
+      @keypress.enter="handleNext"
     ></div>
-    <div class="carousel-container">
-      <div class="images-carousel">
-        <NuxtPicture
-          v-for="(image, index) in images"
-          :key="index"
-          :class="['project-image', { 'is-hidden': idxImage !== index }]"
-          format="avif,webp"
-          :src="image.src"
-          sizes=" md:700px lg:850px xl:1100px"
-          densities="x1 x2"
-          quality="85"
-          :img-attrs="{ class: 'project-image', alt: image.caption }"
-        />
-      </div>
-    </div>
-    <div class="project-content">
-      <p class="project-description">
-        {{ description }}
-      </p>
 
-      <p class="project-credits">
-        <span v-if="year" class="project-year"> {{ year }} </span>
-        <br />{{ credits.toUpperCase() }}
-      </p>
+    <!-- Content Wrapper -->
+    <div class="content-wrapper">
+      <!-- Image Carousel -->
+      <div class="carousel-container">
+        <div class="images-carousel">
+          <NuxtPicture
+            v-for="(image, index) in images"
+            :key="index"
+            :class="['project-image', { 'is-hidden': idxImage !== index }]"
+            format="avif,webp"
+            :src="image.src"
+            sizes="(max-width: 768px) 100vw, 700px"
+            densities="x1 x2"
+            quality="90"
+            :img-attrs="{
+              class: 'project-image',
+              alt: image.caption,
+              loading: 'lazy',
+            }"
+          />
+        </div>
+      </div>
+
+      <!-- Project Content -->
+      <div class="project-content">
+        <p class="project-description">
+          {{ description }}
+        </p>
+
+        <p class="project-credits">
+          <span v-if="year" class="project-year"> {{ year }} </span>
+          <br />{{ credits.toUpperCase() }}
+        </p>
+      </div>
     </div>
   </div>
 </template>

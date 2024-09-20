@@ -40,7 +40,11 @@
             <li
               v-for="children of writingsUrls"
               :key="children._path"
-              class="dropdown-item"
+              :class="`dropdown-item ${
+                hoveredProject && hoveredProject == children._path
+                  ? 'hovered'
+                  : ''
+              }`"
             >
               <NuxtLink :to="children._path" class="dropdown-link">
                 {{ children.title }}
@@ -89,6 +93,12 @@ const spacesNavbarItem = ref<HTMLElement | null>(null);
 const writingsNavbarItem = ref<HTMLElement | null>(null);
 
 const hoveredCategory = ref<string | undefined>(undefined);
+
+const route = useRoute();
+
+watch(route, (value) => {
+  console.log(value);
+});
 
 const hoveredProject = useState<string | undefined>(
   "hoveredProject",
