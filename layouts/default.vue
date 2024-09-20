@@ -2,9 +2,7 @@
   <slot />
 </template>
 
-<script>
-console.log("Default layout");
-</script>
+<script></script>
 
 <style scoped>
 /*  */

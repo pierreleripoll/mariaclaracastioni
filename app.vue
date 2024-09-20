@@ -47,6 +47,22 @@ useSeoMeta({
     "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
 });
 
+useHead({
+  title: "Maria Clara Castioni",
+  titleTemplate: (titleChunk) => {
+    return titleChunk == "Maria Clara Castioni" || !titleChunk
+      ? "Maria Clara Castioni"
+      : `${titleChunk} - Maria Clara Castioni`;
+  },
+  meta: [
+    {
+      name: "description",
+      content:
+        "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
+    },
+  ],
+});
+
 // Page not found, set correct status code on SSR
 if (!(page as any).value && import.meta.server) {
   const event = useRequestEvent();

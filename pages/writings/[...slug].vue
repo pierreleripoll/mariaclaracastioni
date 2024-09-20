@@ -1,9 +1,11 @@
-<script setup lang="ts">
-const { page } = useContent();
-
-console.log("Page writings content", page.value);
-</script>
-
 <template>
-  <ContentRenderer :key="page._id" :value="page" />
+  <ContentPage contentType="writings" />
 </template>
+
+<script setup lang="ts">
+import ContentPage from "~/components/ContentPage.vue";
+definePageMeta({
+  // Optional: Define metadata like title, layout, etc.
+  title: "Writings",
+});
+</script>
