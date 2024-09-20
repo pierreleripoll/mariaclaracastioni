@@ -3,7 +3,7 @@
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
         <li key="/" class="navbar-item">
-          <NuxtLink to="/about" class="navbar-link navbar-link-home">
+          <NuxtLink to="/about" class="navbar-link">
             MARIA CLARA CASTIONI
           </NuxtLink>
         </li>
@@ -11,13 +11,24 @@
           ref="spacesNavbarItem"
           :class="`navbar-item centeralign ${classHoveredSpaces}`"
         >
-          <NuxtLink class="navbar-link"> Spaces </NuxtLink>
+          <NuxtLink
+            :class="`navbar-link ${
+              route.path.startsWith('/spaces') ? 'router-link-active' : ''
+            }`"
+          >
+            Spaces
+          </NuxtLink>
         </li>
         <li
           ref="writingsNavbarItem"
           :class="`navbar-item centeralign ${classHoveredWritings}`"
         >
-          <NuxtLink class="navbar-link"> Writings </NuxtLink>
+          <NuxtLink
+            :class="`navbar-link ${
+              route.path.startsWith('/writings') ? 'router-link-active' : ''
+            }`"
+            >Writings
+          </NuxtLink>
         </li>
         <li class="navbar-item rightalign">
           <NuxtLink to="/dates" class="navbar-link"> Dates </NuxtLink>
@@ -188,9 +199,6 @@ onMounted(() => {
   padding: 0.5em 0;
   transition: color 0.3s ease;
 }
-.navbar-link-home {
-  /* text-decoration: none !important; */
-}
 
 .dropdown-menu {
   position: absolute;
@@ -221,10 +229,15 @@ onMounted(() => {
 }
 
 li.hovered > a,
-li:hover > a,
+li:hover > a {
+  text-decoration: underline wavy 1px;
+  text-underline-offset: 2px;
+}
+
 .router-link-active,
 .router-link-exact-active {
-  text-decoration: underline;
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
 }
 
 @media (max-width: 600px) {
