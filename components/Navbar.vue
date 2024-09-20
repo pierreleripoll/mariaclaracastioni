@@ -104,7 +104,6 @@ const classHoveredWritings = computed(() =>
 );
 
 watch(hoveredProject, (value) => {
-  console.log("Hovered Project", value);
   if (value?.startsWith("/spaces")) {
     hoveredCategory.value = "spaces";
   } else if (value?.startsWith("/writings")) {

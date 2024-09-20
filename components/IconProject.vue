@@ -48,7 +48,6 @@ const visible = computed(() => route.path == "/" || selected.value);
 const needsTransformTransitionEffect = ref(selected.value);
 
 watch(selected, (value) => {
-  console.log("Selected", value);
   if (value) {
     needsTransformTransitionEffect.value = true;
   }
@@ -130,7 +129,6 @@ const resize = () => {
 
   if (x.value > w - (width + padding)) {
     x.value = Math.max(padding, w - (width + padding + 10));
-    console.log("Resize", x.value);
   }
   if (y.value > h - (width + padding)) {
     y.value = Math.max(padding, h - (width + padding + 10));
@@ -148,17 +146,8 @@ function onMouseLeave() {
 }
 
 function onTransitionEnd(event: TransitionEvent) {
-  if (event.propertyName === "transform") {
-    console.log(
-      "Transition end",
-      hoveredProject.value,
-      event.propertyName,
-      "needsTransformTransitionEffect :",
-      needsTransformTransitionEffect.value
-    );
-    if (!selected.value) {
-      needsTransformTransitionEffect.value = false;
-    }
+  if (event.propertyName === "transform" && !selected.value) {
+    needsTransformTransitionEffect.value = false;
   }
 }
 
