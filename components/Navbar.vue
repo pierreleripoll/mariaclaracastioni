@@ -281,11 +281,14 @@ li:hover > a {
 @media screen and (min-width: 600px) {
   .dropdown-menu.hovered,
   .dropdown-menu:hover {
-    display: block;
+    display: block !important;
   }
   .navbar-menu,
   .navbar {
     width: 100%;
+  }
+  .dropdown-menu-title {
+    display: none;
   }
 }
 

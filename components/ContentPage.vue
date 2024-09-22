@@ -349,7 +349,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding-bottom: 150px;
+    padding-bottom: 200px;
   }
 
   .image-wrapper {
@@ -358,8 +358,12 @@ onBeforeUnmount(() => {
 
   .images-carousel {
     gap: 3em;
-    margin: 3em auto;
+    margin: 0px;
     width: 100%;
+  }
+
+  .images-carousel:not(:empty) {
+    padding-top: 3em;
   }
 }
 </style>
