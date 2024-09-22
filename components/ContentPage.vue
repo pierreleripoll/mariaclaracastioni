@@ -349,6 +349,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     align-items: center;
     width: 100%;
+    padding-bottom: 150px;
   }
 
   .image-wrapper {

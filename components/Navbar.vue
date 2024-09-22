@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar">
+  <nav :class="`navbar ${whiteBackground}`">
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
         <li key="/" class="navbar-item">
@@ -129,6 +129,9 @@ const mobileMenuClass = computed<string>(() =>
 watch(mobileMenuClass, (v) => console.log(v));
 const route = useRoute();
 
+const whiteBackground = computed(() =>
+  route.path !== "/" ? "white-background" : ""
+);
 const pageTitle = computed(() => {
   const pages = navigation.value?.map((d) => d.children ?? d).flat();
   return pages?.find((d) => d._path == route.path)?.title;
@@ -339,6 +342,10 @@ li:hover > a {
     /* padding: 1em 2em; */
     /* width: calc(100vw - 4em); */
     font-size: 1.5em !important;
+  }
+
+  .navbar.white-background {
+    background: white;
   }
 
   .navbar-menu {

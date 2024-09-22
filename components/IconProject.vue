@@ -89,7 +89,7 @@ const style = computed(
   () =>
     `transform: translate(${x.value - windowWidth.value / 2}px, ${
       y.value - windowHeight.value / 2
-    }px);` +
+    }px) translate(-50%, -50%); ` +
     (needsTransformTransitionEffect.value
       ? "transition: opacity 1s, filter 0.2s, transform 1s ease-in-out;"
       : "")
@@ -100,8 +100,8 @@ let time = Math.random() * 1000;
 
 const moveIcon = () => {
   const speed = 0.0015;
-  const amplitudeX = (windowWidth.value - width) / 2 - padding;
-  const amplitudeY = (windowHeight.value - height) / 2 - padding;
+  const amplitudeX = windowWidth.value / 2 - padding * 2;
+  const amplitudeY = windowHeight.value / 2 - padding * 2;
 
   const updatePosition = () => {
     if (
@@ -186,8 +186,8 @@ onMounted(() => {
   max-height: 200px;
   min-height: 100px;
   height: auto;
-  top: calc(50vh);
-  left: calc(50vw);
+  top: 50%;
+  left: 50%;
   display: flex;
   opacity: 1;
   transition: opacity 2s, filter 0.2s;
@@ -195,7 +195,7 @@ onMounted(() => {
 
 .project-icon.selected {
   transition: opacity 2s, filter 0.2s, transform 1s ease-in-out;
-  transform: translate(calc(-50vw), calc(100vh - 50vh - 100%)) !important;
+  transform: translate(-50vw, 50vh) translateY(-100%) !important;
   z-index: 100;
 }
 
@@ -230,5 +230,11 @@ onMounted(() => {
 .project-icon.hide {
   opacity: 0;
   pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+  .project-icon.selected {
+    transform: translate(-49vw, 50vh) translateY(-110%) scale(0.8) !important;
+  }
 }
 </style>

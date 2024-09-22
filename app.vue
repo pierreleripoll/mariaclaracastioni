@@ -154,6 +154,10 @@ body {
     /* width: calc(100vw - 1em); */
     margin-bottom: 0px;
   }
+
+  .icons-container {
+    z-index: 100;
+  }
 }
 @media screen and (min-width: 600px) {
   .header {
