@@ -126,7 +126,6 @@ const mobileMenuOpen = ref<boolean>(true);
 const mobileMenuClass = computed<string>(() =>
   mobileMenuOpen.value ? "mobile-menu-open" : ""
 );
-watch(mobileMenuClass, (v) => console.log(v));
 const route = useRoute();
 
 const whiteBackground = computed(() =>
