@@ -238,7 +238,7 @@ onMounted(() => {
     max-height: 130px;
   }
   .project-icon.selected {
-    transform: translate(-49vw, 50vh) translateY(calc(-100% - 20px)) scale(0.9) !important;
+    transform: translate(-49vw, 50dvh) translateY(calc(-100% - 20px)) scale(0.9) !important;
   }
 
   .project-icon > div {
