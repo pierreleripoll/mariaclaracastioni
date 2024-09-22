@@ -76,7 +76,8 @@ const classList = computed(
     }`
 );
 
-const width = 200;
+const width = 100;
+const height = 141;
 const windowWidth = ref(window?.innerWidth || 0);
 const windowHeight = ref(window?.innerHeight || 0);
 const padding = 10;
@@ -100,7 +101,7 @@ let time = Math.random() * 1000;
 const moveIcon = () => {
   const speed = 0.0015;
   const amplitudeX = (windowWidth.value - width) / 2 - padding;
-  const amplitudeY = (windowHeight.value - width) / 2 - padding;
+  const amplitudeY = (windowHeight.value - height) / 2 - padding;
 
   const updatePosition = () => {
     if (
@@ -118,11 +119,11 @@ const moveIcon = () => {
       // Ensure the icon stays within bounds
       x.value = Math.max(
         padding,
-        Math.min(x.value, windowWidth.value - (width + padding))
+        Math.min(x.value, windowWidth.value - padding)
       );
       y.value = Math.max(
         padding,
-        Math.min(y.value, windowHeight.value - (width + padding))
+        Math.min(y.value, windowHeight.value - padding)
       );
     }
 
@@ -146,7 +147,7 @@ const resize = () => {
     x.value = Math.max(padding, w - (width + padding + 10));
   }
   if (y.value > h - (width + padding)) {
-    y.value = Math.max(padding, h - (width + padding + 10));
+    y.value = Math.max(padding, h - (height + padding + 10));
   }
 };
 
