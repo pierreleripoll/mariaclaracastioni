@@ -165,7 +165,7 @@ const prevVisible = computed(() => {
   position: relative;
   width: calc(25vw + 350px);
   max-width: 800px;
-  min-width: 400px;
+  /* min-width: 400px; */
   height: 60vh;
 }
 

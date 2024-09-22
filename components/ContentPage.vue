@@ -2,9 +2,7 @@
   <div class="project-container">
     <!-- Navigation Buttons -->
     <div
-      :class="`horizontal-navigation-button ${
-        prevVisible ? 'is-activated' : ''
-      }`"
+      :class="`navigation-button ${prevVisible ? 'is-activated' : ''}`"
       id="button-prev"
       @click="handlePrev"
       aria-label="Previous Image"
@@ -13,9 +11,7 @@
       @keypress.enter="handlePrev"
     ></div>
     <div
-      :class="`horizontal-navigation-button ${
-        nextVisible ? 'is-activated' : ''
-      }`"
+      :class="`navigation-button ${nextVisible ? 'is-activated' : ''}`"
       id="button-next"
       @click="handleNext"
       aria-label="Next Image"
@@ -26,6 +22,18 @@
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
+      <!-- Project Content -->
+      <div class="project-content">
+        <p class="project-description">
+          {{ description }}
+        </p>
+
+        <p class="project-credits">
+          <span v-if="year" class="project-year"> {{ year }} </span>
+          <br />{{ credits.toUpperCase() }}
+        </p>
+      </div>
+
       <!-- Image Carousel -->
       <div class="carousel-container" ref="carouselContainer">
         <div class="images-carousel" ref="imagesCarousel">
@@ -53,18 +61,6 @@
             />
           </div>
         </div>
-      </div>
-
-      <!-- Project Content -->
-      <div class="project-content">
-        <p class="project-description">
-          {{ description }}
-        </p>
-
-        <p class="project-credits">
-          <span v-if="year" class="project-year"> {{ year }} </span>
-          <br />{{ credits.toUpperCase() }}
-        </p>
       </div>
     </div>
   </div>
@@ -231,7 +227,7 @@ onBeforeUnmount(() => {
 
   width: calc(25vw + 350px);
   max-width: 800px;
-  min-width: 400px;
+  /* min-width: 400px; */
   height: 60vh;
 }
 
@@ -273,7 +269,7 @@ onBeforeUnmount(() => {
   display: block !important;
 }
 
-@media (max-width: 1500px) {
+@media screen and (max-width: 1500px) {
   .carousel-container {
     display: flex;
     flex-direction: column;
@@ -320,5 +316,49 @@ onBeforeUnmount(() => {
   .images-carousel .project-image:first-child {
     margin-top: 300px;
   } */
+}
+
+@media (max-width: 600px) {
+  .navigation-button {
+    display: none !important;
+  }
+
+  .project-container {
+    display: block;
+    box-sizing: border-box;
+    padding: 2.3em;
+    padding-top: 1em;
+  }
+
+  .project-content {
+    position: inherit;
+    padding: 0px;
+    max-height: none;
+    max-width: none;
+    font-size: 1.2em;
+    overflow-y: visible;
+  }
+  .carousel-container {
+    position: inherit;
+    width: 100%;
+    overflow-y: visible;
+  }
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .image-wrapper {
+    height: auto;
+  }
+
+  .images-carousel {
+    gap: 3em;
+    margin: 3em auto;
+    width: 100%;
+  }
 }
 </style>

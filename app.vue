@@ -138,7 +138,24 @@ body {
   flex-shrink: 2;
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (max-width: 600px) {
+  .container {
+    height: 100vh;
+    padding: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  .header {
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    /* background-color: white; */
+    /* width: calc(100vw - 1em); */
+    margin-bottom: 0px;
+  }
+}
+@media screen and (min-width: 600px) {
   .header {
     text-align: center;
     position: sticky;

@@ -8,8 +8,17 @@
           </NuxtLink>
         </li>
         <li
+          key="menu-button"
+          :class="`navbar-item menu-button ${mobileMenuClass}`"
+        >
+          <div
+            class="navbar-link"
+            @click="() => (mobileMenuOpen = !mobileMenuOpen)"
+          ></div>
+        </li>
+        <li
           ref="spacesNavbarItem"
-          :class="`navbar-item centeralign ${classHoveredSpaces}`"
+          :class="`navbar-item navbar-large centeralign ${classHoveredSpaces}`"
         >
           <NuxtLink
             :class="`navbar-link ${
@@ -21,7 +30,7 @@
         </li>
         <li
           ref="writingsNavbarItem"
-          :class="`navbar-item centeralign ${classHoveredWritings}`"
+          :class="`navbar-item navbar-large centeralign ${classHoveredWritings}`"
         >
           <NuxtLink
             :class="`navbar-link ${
@@ -30,11 +39,15 @@
             >Writings
           </NuxtLink>
         </li>
-        <li class="navbar-item rightalign">
+        <li class="navbar-item rightalign navbar-large">
           <NuxtLink to="/dates" class="navbar-link"> Dates </NuxtLink>
         </li>
       </ul>
-      <ul ref="dropdownSpaces" :class="`dropdown-menu ${classHoveredSpaces}`">
+      <ul
+        ref="dropdownSpaces"
+        :class="`dropdown-menu ${mobileMenuClass} ${classHoveredSpaces}`"
+      >
+        <li :class="`dropdown-menu-title ${mobileMenuClass}`">Spaces</li>
         <li
           v-for="children of spacesUrls"
           :key="children._path"
@@ -56,8 +69,9 @@
       </ul>
       <ul
         ref="dropdownWritings"
-        :class="`dropdown-menu ${classHoveredWritings}`"
+        :class="`dropdown-menu ${mobileMenuClass} ${classHoveredWritings}`"
       >
+        <li :class="`dropdown-menu-title ${mobileMenuClass}`">Writings</li>
         <li
           v-for="children of writingsUrls"
           :key="children._path"
@@ -68,6 +82,18 @@
           <NuxtLink :to="children._path" class="dropdown-link">
             {{ children.title }}
           </NuxtLink>
+        </li>
+      </ul>
+      <ul :class="`dropdown-menu ${mobileMenuClass}`">
+        <li :class="`dropdown-item ${mobileMenuClass}`">
+          <NuxtLink to="/dates" class="dropdown-link"> Dates </NuxtLink>
+        </li>
+      </ul>
+      <ul
+        :class="`dropdown-menu page-title ${mobileMenuOpen ? '' : 'visible'}`"
+      >
+        <li :class="`dropdown-item ${mobileMenuOpen ? '' : 'visible'}`">
+          {{ pageTitle }}
         </li>
       </ul>
     </ContentNavigation>
@@ -96,11 +122,22 @@ const writingsNavbarItem = ref<HTMLElement | null>(null);
 
 const hoveredCategory = ref<string | undefined>(undefined);
 
+const mobileMenuOpen = ref<boolean>(true);
+const mobileMenuClass = computed<string>(() =>
+  mobileMenuOpen.value ? "mobile-menu-open" : ""
+);
+watch(mobileMenuClass, (v) => console.log(v));
 const route = useRoute();
+
+const pageTitle = computed(() => {
+  const pages = navigation.value?.map((d) => d.children ?? d).flat();
+  return pages?.find((d) => d._path == route.path)?.title;
+});
 
 watch(
   route,
   ({ path }) => {
+    mobileMenuOpen.value = path == "/"; //open by default if root
     if (path.startsWith("/spaces")) {
       hoveredCategory.value = "spaces";
     } else if (path.startsWith("/writings")) {
@@ -160,6 +197,10 @@ onMounted(() => {
   text-align: right;
 }
 
+.menu-button {
+  display: none;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -169,7 +210,7 @@ onMounted(() => {
   z-index: 1000;
   text-transform: uppercase;
   text-align: left;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .navbar-title {
@@ -182,13 +223,12 @@ onMounted(() => {
   gap: 1.5em;
   margin: 0;
   padding: 0;
-  width: 100%;
+  /* width: 100%; */
   justify-content: space-between;
 }
 
 .navbar-item {
   position: relative;
-  min-width: 150px;
 }
 
 .navbar-link {
@@ -211,10 +251,6 @@ onMounted(() => {
   padding: 0.5em 0;
   width: 100vw;
 }
-.dropdown-menu.hovered,
-.dropdown-menu:hover {
-  display: block;
-}
 
 .dropdown-item {
   padding: 0.2em 0px;
@@ -224,7 +260,7 @@ onMounted(() => {
   color: black;
   text-decoration: none;
   font-size: 16px;
-  width: 100%;
+  /* width: 100%; */
   font-weight: 400;
 }
 
@@ -240,42 +276,25 @@ li:hover > a {
   text-underline-offset: 2px;
 }
 
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .navbar-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .navbar-menu {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .navbar-item {
-    width: 100%;
-  }
-
-  .navbar-link {
+@media screen and (min-width: 600px) {
+  .dropdown-menu.hovered,
+  .dropdown-menu:hover {
     display: block;
+  }
+  .navbar-menu,
+  .navbar {
     width: 100%;
-    padding: 0.75em 0;
-  }
-
-  .dropdown-menu {
-    position: static;
-  }
-
-  .dropdown-item {
-    padding: 0.75em 1em;
   }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
+  .navbar-large {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
   .navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -288,25 +307,91 @@ li:hover > a {
 
   .navbar-menu {
     flex-direction: column;
-    width: 100%;
-  }
-
-  .navbar-item {
-    width: 100%;
   }
 
   .navbar-link {
     display: block;
-    width: 100%;
+    /* width: 100%; */
     padding: 0.75em 0;
   }
 
   .dropdown-menu {
     position: static;
+    width: auto;
+  }
+
+  .dropdown-menu.visible,
+  .dropdown-item.visible {
+    display: block;
   }
 
   .dropdown-item {
     padding: 0.75em 1em;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px 0.5em;
+    /* width: calc(100vw - 1em); */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* padding: 1em 2em; */
+    /* width: calc(100vw - 4em); */
+    font-size: 1.5em !important;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    /* width: 100%; */
+    gap: 3px;
+  }
+
+  .navbar-link {
+    display: block;
+    /* width: 100%; */
+    font-size: 1em;
+  }
+
+  .dropdown-menu {
+    display: none;
+    padding: 0.5em 1em;
+    /* position: ; */
+  }
+  .dropdown-menu-title {
+    font-style: italic;
+    margin-bottom: 0.2em;
+  }
+  .dropdown-item {
+    padding: 0px;
+  }
+  .dropdown-link {
+    font-size: inherit;
+  }
+
+  .mobile-menu-open {
+    display: block !important;
+  }
+
+  .centeralign,
+  .rightalign {
+    text-align: left;
+  }
+
+  .menu-button > div {
+    background-position: center;
+    background-size: 1.8em;
+    background-repeat: no-repeat;
+    background-image: url("/right_arrow.min.svg");
+    z-index: 100;
+    width: 2em;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+  }
+
+  .menu-button.mobile-menu-open > div {
+    /* transform: rotate(-180deg); */
+    transform: scale(-1, 1);
   }
 }
 </style>
