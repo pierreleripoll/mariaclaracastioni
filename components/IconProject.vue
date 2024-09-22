@@ -233,8 +233,28 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 600px) {
+  .project-icon {
+    width: 70px;
+    max-height: 130px;
+  }
   .project-icon.selected {
-    transform: translate(-49vw, 50vh) translateY(-110%) scale(0.8) !important;
+    transform: translate(-49vw, 50vh) translateY(calc(-100% - 20px)) scale(0.9) !important;
+  }
+
+  .project-icon > div {
+    height: 99px;
+    border: 1px solid black;
+    background-color: white;
+    margin: auto;
+  }
+
+  .project-icon > div > span {
+    text-transform: uppercase;
+    color: black;
+    display: block;
+    margin: 0.5em;
+    width: 70px;
+    word-wrap: break-word;
   }
 }
 </style>
