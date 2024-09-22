@@ -67,6 +67,10 @@ useHead({
       content:
         "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
     },
+    {
+      name: "viewport",
+      content: "width=device-width, initial-scale=1",
+    },
   ],
 });
 
