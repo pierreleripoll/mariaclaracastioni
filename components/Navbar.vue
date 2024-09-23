@@ -269,13 +269,16 @@ onMounted(() => {
 li.hovered > a,
 li:hover > a {
   text-decoration: underline wavy 1px;
+  -webkit-text-decoration: underline wavy 1px;
   text-underline-offset: 2px;
 }
 
 .router-link-active,
 .router-link-exact-active {
   text-decoration: underline !important;
+  -webkit-text-decoration: underline !important;
   text-underline-offset: 2px;
+  -webkit-text-underline-offset: underline !important;
 }
 
 @media screen and (min-width: 600px) {

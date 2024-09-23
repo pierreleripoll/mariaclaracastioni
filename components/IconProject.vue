@@ -91,7 +91,7 @@ const style = computed(
       y.value - windowHeight.value / 2
     }px) translate(-50%, -50%); ` +
     (needsTransformTransitionEffect.value
-      ? "transition: opacity 1s, filter 0.2s, transform 1s ease-in-out;"
+      ? "transition: opacity 0.5s, filter 0.2s, transform 1s ease-in-out;"
       : "")
 );
 
@@ -99,7 +99,7 @@ const noise = createNoise2D();
 let time = Math.random() * 1000;
 
 const moveIcon = () => {
-  const speed = 0.0015;
+  const speed = 0.0008;
   const amplitudeX = windowWidth.value / 2 - padding * 2;
   const amplitudeY = windowHeight.value / 2 - padding * 2;
 
@@ -190,11 +190,11 @@ onMounted(() => {
   left: 50%;
   display: flex;
   opacity: 1;
-  transition: opacity 2s, filter 0.2s;
+  transition: opacity 0.5s, filter 0.2s;
 }
 
 .project-icon.selected {
-  transition: opacity 2s, filter 0.2s, transform 1s ease-in-out;
+  transition: opacity 0.5s, filter 0.2s, transform 1s ease-in-out;
   transform: translate(-50vw, 50vh) translateY(-100%) !important;
   z-index: 100;
 }
