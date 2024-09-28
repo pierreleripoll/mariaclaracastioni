@@ -256,12 +256,12 @@ onBeforeUnmount(() => {
 
 #button-prev,
 #button-next {
-  position: absolute;
+  position: relative;
   top: 50%;
   background-position: center;
   background-size: 2.2em;
   background-repeat: no-repeat;
-  padding: 2em 3em;
+  padding: 2em 2em;
   background-image: url("/right_arrow.min.svg");
   display: none;
   z-index: 100;
@@ -319,19 +319,19 @@ onBeforeUnmount(() => {
 #button-next {
   padding: 2em 1em;
   background-size: 1.5em;
-  right: calc(350px + 0.5rem);
+  right: calc(350px);
   left: auto;
   transform-origin: center;
 }
 
 #button-prev {
-  top: calc(100vh - 6em);
-  transform: translate(-50%, -50%) rotate(270deg);
+  top: auto;
+  transform: rotate(270deg);
 }
 
 #button-next {
-  top: calc(100vh - 3em);
-  transform: translate(-50%, -50%) rotate(90deg);
+  top: auto;
+  transform: rotate(90deg);
 }
 
 /*
@@ -339,7 +339,21 @@ onBeforeUnmount(() => {
     margin-top: 300px;
   } */
 
-@media (max-width: 600px) {
+@media screen and (min-width: 1500px) {
+  #button-prev,
+  #button-next {
+    position: absolute;
+    right: calc(350px + 2rem);
+  }
+
+  #button-prev {
+    bottom: 3rem;
+  }
+  #button-next {
+    bottom: 0;
+  }
+}
+@media screen and (max-width: 600px) {
   .navigation-button {
     display: none !important;
   }
