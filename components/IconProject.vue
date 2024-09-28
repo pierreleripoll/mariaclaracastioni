@@ -234,8 +234,8 @@ onMounted(() => {
     z-index: 1;
   }
   .project-icon.selected {
-    transform: translate(calc(-50vw + 0.5rem), 50svh)
-      translateY(calc(-100% - 1rem)) !important;
+    transform: translate(calc(-50vw + 0.5rem), 50dvh)
+      translateY(calc(-100% - 2rem)) !important;
   }
 
   .project-icon > div {
