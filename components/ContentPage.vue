@@ -276,61 +276,59 @@ onBeforeUnmount(() => {
 .page-title {
   display: none;
 }
-@media screen and (max-width: 1500px) {
-  .carousel-container {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    overflow-y: auto;
-    gap: 10em;
-    height: 100%;
-    justify-content: start;
-  }
-  .images-carousel {
-    margin-top: max(100px, 20vh);
-    margin-bottom: max(100px, 20vh);
-    display: flex;
-    gap: calc(35vh - 100px);
-    flex-direction: column;
-    height: auto;
-    scroll-behavior: smooth; /* Smooth scrolling */
-    scroll-snap-type: y mandatory; /* Enable scroll snapping */
-  }
-  .image-wrapper {
-    scroll-snap-align: start; /* Snap to the start of each image */
-    height: 60vh; /* Ensure each image takes up the container's height */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .project-image.is-hidden {
-    display: block;
-  }
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  overflow-y: auto;
+  gap: 10em;
+  height: 100%;
+  justify-content: start;
+}
+.images-carousel {
+  margin-top: max(100px, 20vh);
+  margin-bottom: max(100px, 20vh);
+  display: flex;
+  gap: calc(35vh - 100px);
+  flex-direction: column;
+  height: auto;
+  scroll-behavior: smooth; /* Smooth scrolling */
+  scroll-snap-type: y mandatory; /* Enable scroll snapping */
+}
+.image-wrapper {
+  scroll-snap-align: start; /* Snap to the start of each image */
+  height: 60vh; /* Ensure each image takes up the container's height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.project-image.is-hidden {
+  display: block;
+}
 
-  #button-prev,
-  #button-next {
-    padding: 2em 1em;
-    background-size: 1.5em;
-    right: calc(350px + 0.5rem);
-    left: auto;
-    transform-origin: center;
-  }
+#button-prev,
+#button-next {
+  padding: 2em 1em;
+  background-size: 1.5em;
+  right: calc(350px + 0.5rem);
+  left: auto;
+  transform-origin: center;
+}
 
-  #button-prev {
-    top: calc(100vh - 6em);
-    transform: translate(-50%, -50%) rotate(270deg);
-  }
+#button-prev {
+  top: calc(100vh - 6em);
+  transform: translate(-50%, -50%) rotate(270deg);
+}
 
-  #button-next {
-    top: calc(100vh - 3em);
-    transform: translate(-50%, -50%) rotate(90deg);
-  }
+#button-next {
+  top: calc(100vh - 3em);
+  transform: translate(-50%, -50%) rotate(90deg);
+}
 
-  /* 
+/*
   .images-carousel .project-image:first-child {
     margin-top: 300px;
   } */
-}
 
 @media (max-width: 600px) {
   .navigation-button {
