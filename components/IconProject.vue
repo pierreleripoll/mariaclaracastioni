@@ -45,21 +45,15 @@ const hoveredProject = useState<string | undefined>(
 
 const iconRef = ref<HTMLElement | null>(null);
 
+const category = computed(() => props.path.split("/")[1]);
 const route = useRoute();
 const selected = computed(() => route.path === props.path);
-const visible = computed(() => route.path == "/" || selected.value);
-
-const shouldMove = ref(true);
+const visible = computed(
+  () =>
+    route.path == "/" || route.path == "/" + category.value || selected.value
+);
 
 const needsTransformTransitionEffect = ref(selected.value);
-
-watch(visible, (value) => {
-  if (!value) {
-    setTimeout(() => {
-      shouldMove.value = false;
-    }, 1500);
-  } else shouldMove.value = true;
-});
 
 watch(selected, (value) => {
   if (value) {
@@ -91,7 +85,7 @@ const style = computed(
       y.value - windowHeight.value / 2
     }px) translate(-50%, -50%); ` +
     (needsTransformTransitionEffect.value
-      ? "transition: opacity 0.5s, filter 0.2s, transform 1s ease-in-out;"
+      ? "transition: opacity 0.25s, filter 0.2s, transform 1s ease-in-out;"
       : "")
 );
 
@@ -108,7 +102,7 @@ const moveIcon = () => {
       !selected.value &&
       hoveredProject.value !== props.path &&
       !needsTransformTransitionEffect.value &&
-      shouldMove.value
+      visible.value
     ) {
       time += speed;
 
@@ -152,7 +146,7 @@ const resize = () => {
 };
 
 function onMouseEnter() {
-  hoveredProject.value = props.path;
+  if (visible.value) hoveredProject.value = props.path;
 }
 
 function onMouseLeave() {
@@ -175,7 +169,6 @@ onMounted(() => {
 </script>
 <style>
 .project-icon.dim:not(.hide):not(.selected) {
-  filter: grayscale(100%) blur(1px);
   z-index: -10;
   /* No transform changes here */
 }
@@ -190,11 +183,11 @@ onMounted(() => {
   left: 50%;
   display: flex;
   opacity: 1;
-  transition: opacity 0.5s, filter 0.2s;
+  transition: opacity 0.25s, filter 0.2s;
 }
 
 .project-icon.selected {
-  transition: opacity 0.5s, filter 0.2s, transform 1s ease-in-out;
+  transition: opacity 0.25s, filter 0.2s, transform 1s ease-in-out;
   transform: translate(-50vw, 50vh) translateY(-100%) !important;
   z-index: 100;
 }
@@ -238,7 +231,7 @@ onMounted(() => {
     max-height: 130px;
   }
   .project-icon.selected {
-    transform: translate(-49vw, 50dvh) translateY(calc(-100% - 20px)) scale(0.9) !important;
+    transform: translate(-50vw, 50dvh) translateY(calc(-100% - 20px)) !important;
   }
 
   .project-icon > div {

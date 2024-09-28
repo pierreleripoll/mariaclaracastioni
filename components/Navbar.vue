@@ -3,24 +3,20 @@
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
         <li key="/" class="navbar-item">
-          <NuxtLink to="/about" class="navbar-link">
-            MARIA CLARA CASTIONI
-          </NuxtLink>
+          <NuxtLink to="/" class="navbar-link"> MARIA CLARA CASTIONI </NuxtLink>
         </li>
         <li
           key="menu-button"
           :class="`navbar-item menu-button ${mobileMenuClass}`"
         >
-          <div
-            class="navbar-link"
-            @click="() => (mobileMenuOpen = !mobileMenuOpen)"
-          ></div>
+          <NuxtLink to="/" class="navbar-link"></NuxtLink>
         </li>
         <li
           ref="spacesNavbarItem"
           :class="`navbar-item navbar-large centeralign ${classHoveredSpaces}`"
         >
           <NuxtLink
+            to="/spaces"
             :class="`navbar-link ${
               route.path.startsWith('/spaces') ? 'router-link-active' : ''
             }`"
@@ -33,6 +29,7 @@
           :class="`navbar-item navbar-large centeralign ${classHoveredWritings}`"
         >
           <NuxtLink
+            to="/writings"
             :class="`navbar-link ${
               route.path.startsWith('/writings') ? 'router-link-active' : ''
             }`"
@@ -40,7 +37,7 @@
           </NuxtLink>
         </li>
         <li class="navbar-item rightalign navbar-large">
-          <NuxtLink to="/dates" class="navbar-link"> Dates </NuxtLink>
+          <NuxtLink to="/about" class="navbar-link"> About </NuxtLink>
         </li>
       </ul>
       <ul
@@ -89,13 +86,6 @@
           <NuxtLink to="/dates" class="dropdown-link"> Dates </NuxtLink>
         </li>
       </ul>
-      <ul
-        :class="`dropdown-menu page-title ${mobileMenuOpen ? '' : 'visible'}`"
-      >
-        <li :class="`dropdown-item ${mobileMenuOpen ? '' : 'visible'}`">
-          {{ pageTitle }}
-        </li>
-      </ul>
     </ContentNavigation>
   </nav>
 </template>
@@ -122,7 +112,7 @@ const writingsNavbarItem = ref<HTMLElement | null>(null);
 
 const hoveredCategory = ref<string | undefined>(undefined);
 
-const mobileMenuOpen = ref<boolean>(true);
+const mobileMenuOpen = computed(() => route.path == "/");
 const mobileMenuClass = computed<string>(() =>
   mobileMenuOpen.value ? "mobile-menu-open" : ""
 );
@@ -139,7 +129,6 @@ const pageTitle = computed(() => {
 watch(
   route,
   ({ path }) => {
-    mobileMenuOpen.value = path == "/"; //open by default if root
     if (path.startsWith("/spaces")) {
       hoveredCategory.value = "spaces";
     } else if (path.startsWith("/writings")) {
@@ -163,7 +152,7 @@ const hoveredProject = useState<string | undefined>(
 );
 
 const classHoveredSpaces = computed(() =>
-  hoveredCategory.value === "spaces" ? "hovered" : ""
+  route.path.startsWith("/spaces") ? "hovered" : ""
 );
 
 const classHoveredWritings = computed(() =>
@@ -171,21 +160,27 @@ const classHoveredWritings = computed(() =>
 );
 
 watch(hoveredProject, (value) => {
+  console.log("hoveredProject", value);
+
   if (value?.startsWith("/spaces")) {
     hoveredCategory.value = "spaces";
   } else if (value?.startsWith("/writings")) {
     hoveredCategory.value = "writings";
-  } else {
-    // hoveredCategory.value = undefined;
+  } else if (value === undefined) {
+    hoveredCategory.value = undefined;
   }
 });
 
+watch(hoveredCategory, (value) => {
+  console.log("hoveredCategory", value);
+});
+
 onMounted(() => {
-  spacesNavbarItem.value?.addEventListener("mouseover", () => {
+  spacesNavbarItem.value?.addEventListener("click", () => {
     hoveredCategory.value = "spaces";
   });
 
-  writingsNavbarItem.value?.addEventListener("mouseover", () => {
+  writingsNavbarItem.value?.addEventListener("click", () => {
     hoveredCategory.value = "writings";
   });
 });
@@ -222,7 +217,7 @@ onMounted(() => {
 .navbar-menu {
   list-style: none;
   display: flex;
-  gap: 1.5em;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   /* width: 100%; */
@@ -235,10 +230,12 @@ onMounted(() => {
 
 .navbar-link {
   color: black;
+  cursor: pointer;
+
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
-  padding: 0.5em 0;
+  padding: 0.5rem 0;
   transition: color 0.3s ease;
 }
 
@@ -250,12 +247,12 @@ onMounted(() => {
   display: none;
   list-style: none;
   margin: 0;
-  padding: 0.5em 0;
+  padding: 0.5rem 0;
   width: 100vw;
 }
 
 .dropdown-item {
-  padding: 0.2em 0px;
+  padding: 0.2rem 0px;
 }
 
 .dropdown-link {
@@ -268,13 +265,16 @@ onMounted(() => {
 
 li.hovered > a,
 li:hover > a {
-  text-decoration: underline wavy 1px;
-  -webkit-text-decoration: underline wavy 1px;
+  font-style: italic;
+  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
   text-underline-offset: 2px;
+  -webkit-text-underline-offset: underline dotted;
 }
 
 .router-link-active,
 .router-link-exact-active {
+  font-style: normal !important;
   text-decoration: underline !important;
   -webkit-text-decoration: underline !important;
   text-underline-offset: 2px;
@@ -308,7 +308,7 @@ li:hover > a {
     align-items: flex-start;
   }
   .navbar-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin: 0;
   }
@@ -320,7 +320,7 @@ li:hover > a {
   .navbar-link {
     display: block;
     /* width: 100%; */
-    padding: 0.75em 0;
+    padding: 0.75rem 0;
   }
 
   .dropdown-menu {
@@ -334,19 +334,19 @@ li:hover > a {
   }
 
   .dropdown-item {
-    padding: 0.75em 1em;
+    padding: 0.75rem 1rem;
   }
   .navbar {
     flex-direction: column;
     align-items: flex-start;
-    padding: 0px 0.5em;
+    padding: 0px 0.5rem;
     /* width: calc(100vw - 1em); */
     /* position: absolute; */
     /* top: 0; */
     /* left: 0; */
     /* padding: 1em 2em; */
     /* width: calc(100vw - 4em); */
-    font-size: 1.5em !important;
+    font-size: 1.2rem !important;
   }
 
   .navbar.white-background {
@@ -367,12 +367,12 @@ li:hover > a {
 
   .dropdown-menu {
     display: none;
-    padding: 0.5em 1em;
+    padding: 0.5rem 1rem;
     /* position: ; */
   }
   .dropdown-menu-title {
     font-style: italic;
-    margin-bottom: 0.2em;
+    margin-bottom: 0.2rem;
   }
   .dropdown-item {
     padding: 0px;
@@ -390,20 +390,21 @@ li:hover > a {
     text-align: left;
   }
 
-  .menu-button > div {
+  .menu-button > a {
     background-position: center;
-    background-size: 1.8em;
     background-repeat: no-repeat;
     background-image: url("/right_arrow.min.svg");
+    transform: scale(-1, 1);
     z-index: 100;
-    width: 2em;
+    width: 1.5rem;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
   }
 
-  .menu-button.mobile-menu-open > div {
+  .menu-button.mobile-menu-open > a {
+    display: none;
     /* transform: rotate(-180deg); */
-    transform: scale(-1, 1);
+    /* transform: scale(-1, 1); */
   }
 }
 </style>

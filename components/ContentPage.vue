@@ -1,5 +1,8 @@
 <template>
   <div class="project-container">
+    <div class="dropdown-link page-title">
+      {{ pageTitle }}
+    </div>
     <!-- Navigation Buttons -->
     <div
       :class="`navigation-button ${prevVisible ? 'is-activated' : ''}`"
@@ -90,6 +93,7 @@ const images: Image[] | undefined = page.value?.images;
 const year = page.value?.year;
 const description = page.value?.description;
 const credits = page.value?.credits;
+const pageTitle = page.value?.title ?? "No title";
 
 const handlePrev = () => {
   if (!images) return;
@@ -323,11 +327,17 @@ onBeforeUnmount(() => {
     display: none !important;
   }
 
+  .page-title {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+  }
+
   .project-container {
     display: block;
     box-sizing: border-box;
-    padding: 2.3em;
-    padding-top: 1em;
+    padding: 2rem;
+    padding-top: 0px;
   }
 
   .project-content {
@@ -335,9 +345,16 @@ onBeforeUnmount(() => {
     padding: 0px;
     max-height: none;
     max-width: none;
-    font-size: 1.2em;
+    font-size: 1.1rem;
     overflow-y: visible;
+    margin: 0px;
   }
+
+  .project-credits,
+  .project-description {
+    margin: 0px;
+  }
+
   .carousel-container {
     position: inherit;
     width: 100%;
@@ -357,13 +374,13 @@ onBeforeUnmount(() => {
   }
 
   .images-carousel {
-    gap: 3em;
+    gap: 1rem;
     margin: 0px;
     width: 100%;
   }
 
   .images-carousel:not(:empty) {
-    padding-top: 3em;
+    padding-top: 1rem;
   }
 }
 </style>

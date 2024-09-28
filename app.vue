@@ -36,13 +36,13 @@ const { data: spacesContent } = await useAsyncData("spaces", () =>
 );
 
 const projects = computed(() =>
-  [...(spacesContent.value ?? []), ...(writingsContent.value ?? [])].map(
-    (d) => ({
+  [...(spacesContent.value ?? []), ...(writingsContent.value ?? [])]
+    .map((d) => ({
       icon: d.icon,
       path: d._path as string,
       title: d.title,
-    })
-  )
+    }))
+    .filter((d) => d.title)
 );
 
 useSeoMeta({
