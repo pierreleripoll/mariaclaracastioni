@@ -273,6 +273,9 @@ onBeforeUnmount(() => {
   display: block !important;
 }
 
+.page-title {
+  display: none;
+}
 @media screen and (max-width: 1500px) {
   .carousel-container {
     display: flex;

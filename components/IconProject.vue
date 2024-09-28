@@ -146,6 +146,7 @@ const resize = () => {
 };
 
 function onMouseEnter() {
+  console.log("onMouseEnter", props.path);
   if (visible.value) hoveredProject.value = props.path;
 }
 

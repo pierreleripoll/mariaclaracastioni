@@ -28,7 +28,7 @@
         </li>
         <li
           ref="writingsNavbarItem"
-          :class="`navbar-item navbar-large centeralign ${classHoveredWritings}`"
+          :class="`navbar-item navbar-large centeralign ${classHoveredWords}`"
         >
           <NuxtLink
             to="/words"
@@ -68,7 +68,7 @@
       </ul>
       <ul
         ref="dropdownWritings"
-        :class="`dropdown-menu ${mobileMenuClass} ${classHoveredWritings}`"
+        :class="`dropdown-menu ${mobileMenuClass} ${classHoveredWords}`"
       >
         <li :class="`dropdown-menu-title ${mobileMenuClass}`">Words</li>
         <li
@@ -123,10 +123,6 @@ const route = useRoute();
 const whiteBackground = computed(() =>
   route.path !== "/" ? "white-background" : ""
 );
-const pageTitle = computed(() => {
-  const pages = navigation.value?.map((d) => d.children ?? d).flat();
-  return pages?.find((d) => d._path == route.path)?.title;
-});
 
 watch(
   route,
@@ -154,11 +150,15 @@ const hoveredProject = useState<string | undefined>(
 );
 
 const classHoveredSpaces = computed(() =>
-  route.path.startsWith("/spaces") ? "hovered" : ""
+  hoveredCategory.value === "spaces" || route.path.startsWith("/spaces")
+    ? "hovered"
+    : ""
 );
 
-const classHoveredWritings = computed(() =>
-  hoveredCategory.value === "words" ? "hovered" : ""
+const classHoveredWords = computed(() =>
+  hoveredCategory.value === "words" || route.path.startsWith("/words")
+    ? "hovered"
+    : ""
 );
 
 watch(hoveredProject, (value) => {
@@ -310,11 +310,6 @@ li:hover > a {
     flex-direction: column;
     align-items: flex-start;
   }
-  .navbar-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-  }
 
   .navbar-menu {
     flex-direction: column;
@@ -365,12 +360,12 @@ li:hover > a {
   .navbar-link {
     display: block;
     /* width: 100%; */
-    font-size: 1em;
+    font-size: 1.2rem;
   }
 
   .dropdown-menu {
     display: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.5rem;
     /* position: ; */
   }
   .dropdown-menu-title {
