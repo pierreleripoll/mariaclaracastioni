@@ -307,15 +307,22 @@ onBeforeUnmount(() => {
     display: block;
   }
 
+  #button-prev,
+  #button-next {
+    padding: 2em 1em;
+    background-size: 1.5em;
+    right: calc(350px + 0.5rem);
+    left: auto;
+    transform-origin: center;
+  }
+
   #button-prev {
-    left: 20vw;
-    top: 80%;
+    top: calc(100vh - 6em);
     transform: translate(-50%, -50%) rotate(270deg);
   }
 
   #button-next {
-    left: 20vw;
-    top: 90%;
+    top: calc(100vh - 3em);
     transform: translate(-50%, -50%) rotate(90deg);
   }
 
