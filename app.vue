@@ -122,7 +122,6 @@ body {
   justify-content: space-between;
   text-align: start;
   margin: 0 auto;
-  margin-bottom: 10vh;
   gap: 2em;
   width: 100%;
   z-index: 100;
@@ -142,6 +141,21 @@ body {
   flex-shrink: 2;
 }
 
+a {
+  color: var(--color-text);
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  font-style: italic;
+  text-decoration: underline dotted;
+  -webkit-text-decoration: underline dotted;
+  text-underline-offset: 2px;
+  -webkit-text-underline-offset: underline dotted;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     height: 100vh;
@@ -154,6 +168,8 @@ body {
     position: sticky;
     left: 0px;
     top: 0px;
+    z-index: 102;
+
     /* background-color: white; */
     /* width: calc(100vw - 1em); */
     margin-bottom: 0px;
@@ -166,8 +182,7 @@ body {
 @media screen and (min-width: 600px) {
   .header {
     text-align: center;
-    position: sticky;
-    top: 8px;
+    padding-top: 8px;
     display: flex;
     flex-direction: row;
   }

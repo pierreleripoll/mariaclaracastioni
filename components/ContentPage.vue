@@ -27,14 +27,15 @@
     <div class="content-wrapper">
       <!-- Project Content -->
       <div class="project-content">
-        <p class="project-description">
+        <div class="project-description">
           {{ description }}
-        </p>
+        </div>
+        <Contact v-if="pageTitle == 'About'" class="project-credits about" />
 
-        <p class="project-credits">
+        <div class="project-credits">
           <span v-if="year" class="project-year"> {{ year }} </span>
-          <br />{{ credits.toUpperCase() }}
-        </p>
+          <br v-if="year" /><MDC :value="credits.toUpperCase()" />
+        </div>
       </div>
 
       <!-- Image Carousel -->
@@ -95,6 +96,7 @@ const description = page.value?.description;
 const credits = page.value?.credits;
 const pageTitle = page.value?.title ?? "No title";
 
+console.log(credits);
 const handlePrev = () => {
   if (!images) return;
   idxImage.value =
@@ -241,6 +243,14 @@ onBeforeUnmount(() => {
   object-fit: contain;
 }
 
+:deep(p) {
+  margin: 0;
+}
+
+.about {
+  display: none;
+}
+
 .project-image.is-hidden {
   display: none;
 }
@@ -361,6 +371,10 @@ onBeforeUnmount(() => {
   .project-credits,
   .project-description {
     margin: 0px;
+  }
+
+  .project-credits.about {
+    display: flex;
   }
 
   .carousel-container {

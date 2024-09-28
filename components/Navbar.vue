@@ -206,7 +206,6 @@ onMounted(() => {
   align-items: center;
   position: sticky;
   top: 0;
-  z-index: 1000;
   text-transform: uppercase;
   text-align: left;
   /* width: 100%; */
@@ -251,6 +250,7 @@ onMounted(() => {
 
 .dropdown-item {
   padding: 0.2rem 0px;
+  width: fit-content;
 }
 
 .dropdown-link {
@@ -393,7 +393,6 @@ li:hover > a {
     background-repeat: no-repeat;
     background-image: url("/right_arrow.min.svg");
     transform: scale(-1, 1);
-    z-index: 100;
     width: 1.5rem;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;

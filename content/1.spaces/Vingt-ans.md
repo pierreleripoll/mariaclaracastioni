@@ -1,5 +1,5 @@
 ---
-title: Vingt ans et le monde
+title: Vingt ans
 year: "2023"
 icon: /uploads/Vingt ans.png
 images:

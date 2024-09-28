@@ -1,10 +1,20 @@
 <template>
-  <span> mclara@bluewin.ch </span>
-  <a href="https://www.instagram.com/manola_casimira/"> @manola_casimira </a>
+  <Contact class="about" />
   <ContentPage contentType="spaces" />
 </template>
 
-<script setup lang="ts">
-import ContentPage from "~/components/ContentPage.vue";
-const { navigation, page, surround, globals } = useContent();
-</script>
+<style scoped>
+.about {
+  display: none;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.5rem 0px;
+  z-index: 100;
+}
+
+@media screen and (min-width: 600px) {
+  .about {
+    display: flex;
+  }
+}
+</style>
