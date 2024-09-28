@@ -190,7 +190,7 @@ onMounted(() => {
 
 .project-icon.selected {
   transition: opacity 0.25s, filter 0.2s, transform 1s ease-in-out;
-  transform: translate(-50vw, 50vh) translateY(-100%) !important;
+  transform: translate(calc(-50vw + 30px), 50vh) translateY(-100%) !important;
   z-index: 100;
 }
 
