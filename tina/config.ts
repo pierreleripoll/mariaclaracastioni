@@ -103,9 +103,9 @@ export default defineConfig({
         ],
       },
       {
-        label: "Writings",
-        name: "writing",
-        path: "content/2.writings",
+        label: "Words",
+        name: "word",
+        path: "content/2.words",
         fields: [
           {
             type: "string",
