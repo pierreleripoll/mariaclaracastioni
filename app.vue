@@ -28,15 +28,15 @@ import Navbar from "./components/Navbar.vue";
 const { page, layout } = useContent();
 const { contentHead } = useRuntimeConfig().public.content;
 
-const { data: writingsContent } = await useAsyncData("writings", () =>
-  queryContent("writings").find()
+const { data: wordsContent } = await useAsyncData("words", () =>
+  queryContent("words").find()
 );
 const { data: spacesContent } = await useAsyncData("spaces", () =>
   queryContent("spaces").find()
 );
 
 const projects = computed(() =>
-  [...(spacesContent.value ?? []), ...(writingsContent.value ?? [])]
+  [...(spacesContent.value ?? []), ...(wordsContent.value ?? [])]
     .map((d) => ({
       icon: d.icon,
       path: d._path as string,
@@ -49,9 +49,9 @@ useSeoMeta({
   title: "Maria Clara Castioni",
   ogTitle: "Maria Clara Castioni",
   description:
-    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
+    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
   ogDescription:
-    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
+    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
 });
 
 useHead({
@@ -65,7 +65,7 @@ useHead({
     {
       name: "description",
       content:
-        "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and writings.",
+        "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
     },
     {
       name: "viewport",

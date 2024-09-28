@@ -3,7 +3,9 @@
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
         <li key="/" class="navbar-item">
-          <NuxtLink to="/" class="navbar-link"> MARIA CLARA CASTIONI </NuxtLink>
+          <NuxtLink to="/" class="navbar-link navbar-title">
+            MARIA CLARA CASTIONI
+          </NuxtLink>
         </li>
         <li
           key="menu-button"
@@ -29,11 +31,11 @@
           :class="`navbar-item navbar-large centeralign ${classHoveredWritings}`"
         >
           <NuxtLink
-            to="/writings"
+            to="/words"
             :class="`navbar-link ${
-              route.path.startsWith('/writings') ? 'router-link-active' : ''
+              route.path.startsWith('/words') ? 'router-link-active' : ''
             }`"
-            >Writings
+            >Words
           </NuxtLink>
         </li>
         <li class="navbar-item rightalign navbar-large">
@@ -68,7 +70,7 @@
         ref="dropdownWritings"
         :class="`dropdown-menu ${mobileMenuClass} ${classHoveredWritings}`"
       >
-        <li :class="`dropdown-menu-title ${mobileMenuClass}`">Writings</li>
+        <li :class="`dropdown-menu-title ${mobileMenuClass}`">Words</li>
         <li
           v-for="children of writingsUrls"
           :key="children._path"
@@ -83,7 +85,7 @@
       </ul>
       <ul :class="`dropdown-menu ${mobileMenuClass}`">
         <li :class="`dropdown-item ${mobileMenuClass}`">
-          <NuxtLink to="/dates" class="dropdown-link"> Dates </NuxtLink>
+          <NuxtLink to="/about" class="dropdown-link"> About </NuxtLink>
         </li>
       </ul>
     </ContentNavigation>
@@ -102,7 +104,7 @@ const spacesUrls = navigation.value?.find(
 )?.children;
 
 const writingsUrls = navigation.value?.find(
-  (item) => item._path === "/writings"
+  (item) => item._path === "/words"
 )?.children;
 
 const dropdownSpaces = ref<HTMLElement | null>(null);
@@ -131,8 +133,8 @@ watch(
   ({ path }) => {
     if (path.startsWith("/spaces")) {
       hoveredCategory.value = "spaces";
-    } else if (path.startsWith("/writings")) {
-      hoveredCategory.value = "writings";
+    } else if (path.startsWith("/words")) {
+      hoveredCategory.value = "words";
     } else {
       hoveredCategory.value = undefined;
     }
@@ -156,7 +158,7 @@ const classHoveredSpaces = computed(() =>
 );
 
 const classHoveredWritings = computed(() =>
-  hoveredCategory.value === "writings" ? "hovered" : ""
+  hoveredCategory.value === "words" ? "hovered" : ""
 );
 
 watch(hoveredProject, (value) => {
@@ -164,8 +166,8 @@ watch(hoveredProject, (value) => {
 
   if (value?.startsWith("/spaces")) {
     hoveredCategory.value = "spaces";
-  } else if (value?.startsWith("/writings")) {
-    hoveredCategory.value = "writings";
+  } else if (value?.startsWith("/words")) {
+    hoveredCategory.value = "words";
   } else if (value === undefined) {
     hoveredCategory.value = undefined;
   }
@@ -181,7 +183,7 @@ onMounted(() => {
   });
 
   writingsNavbarItem.value?.addEventListener("click", () => {
-    hoveredCategory.value = "writings";
+    hoveredCategory.value = "words";
   });
 });
 </script>
@@ -208,10 +210,6 @@ onMounted(() => {
   text-transform: uppercase;
   text-align: left;
   /* width: 100%; */
-}
-
-.navbar-title {
-  display: none;
 }
 
 .navbar-menu {
@@ -279,6 +277,11 @@ li:hover > a {
   -webkit-text-decoration: underline !important;
   text-underline-offset: 2px;
   -webkit-text-underline-offset: underline !important;
+}
+
+.navbar-title.router-link-active,
+.navbar-title.router-link-exact-active {
+  text-decoration: none !important;
 }
 
 @media screen and (min-width: 600px) {
