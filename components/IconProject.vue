@@ -177,7 +177,7 @@ onMounted(() => {
 .project-icon {
   position: absolute;
   width: 100px;
-  max-height: 200px;
+  max-height: 145px;
   min-height: 100px;
   height: auto;
   top: 50%;
@@ -185,6 +185,7 @@ onMounted(() => {
   display: flex;
   opacity: 1;
   transition: opacity 0.25s, filter 0.2s;
+  z-index: 100;
 }
 
 .project-icon.selected {
