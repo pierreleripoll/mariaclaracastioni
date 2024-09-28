@@ -244,7 +244,7 @@ onMounted(() => {
 
 .dropdown-item {
   padding: 0.2rem 0px;
-  width: fit-content;
+  max-width: fit-content;
 }
 
 .dropdown-link {
@@ -327,6 +327,7 @@ li:hover > a {
 
   .dropdown-item {
     padding: 0.75rem 1rem;
+    width: 100%;
   }
   .navbar {
     flex-direction: column;
