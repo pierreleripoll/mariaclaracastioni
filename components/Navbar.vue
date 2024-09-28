@@ -162,8 +162,6 @@ const classHoveredWords = computed(() =>
 );
 
 watch(hoveredProject, (value) => {
-  console.log("hoveredProject", value);
-
   if (value?.startsWith("/spaces")) {
     hoveredCategory.value = "spaces";
   } else if (value?.startsWith("/words")) {
@@ -171,10 +169,6 @@ watch(hoveredProject, (value) => {
   } else if (value === undefined) {
     hoveredCategory.value = undefined;
   }
-});
-
-watch(hoveredCategory, (value) => {
-  console.log("hoveredCategory", value);
 });
 
 onMounted(() => {

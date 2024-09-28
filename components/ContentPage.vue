@@ -96,7 +96,6 @@ const description = page.value?.description;
 const credits = page.value?.credits;
 const pageTitle = page.value?.title ?? "No title";
 
-console.log(credits);
 const handlePrev = () => {
   if (!images) return;
   idxImage.value =
