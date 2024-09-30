@@ -12,9 +12,9 @@
         format="avif,webp,png"
         v-if="props.icon"
         :src="props.icon"
-        sizes="200px"
+        sizes="70px sm:100px"
         :width="width"
-        densities="x1 x2"
+        densities="x1 x2 x3"
       />
       <div v-else>
         <span>

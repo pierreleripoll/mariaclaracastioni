@@ -34,7 +34,7 @@
 
         <div class="project-credits">
           <span v-if="year" class="project-year"> {{ year }} </span>
-          <br v-if="year" /><MDC :value="credits.toUpperCase()" />
+          <br v-if="year && creditsUpper" /><MDC :value="creditsUpper" />
         </div>
       </div>
 
@@ -53,9 +53,9 @@
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
               format="avif,webp"
               :src="image.src"
-              sizes="(max-width: 768px) 100vw, 800px"
-              densities="x1 x2"
-              quality="90"
+              sizes="400px md:650px xl:800px"
+              densities="x1 x2 x3"
+              quality="85"
               loading="lazy"
               :img-attrs="{
                 class: 'project-image',
@@ -94,6 +94,7 @@ const images: Image[] | undefined = page.value?.images;
 const year = page.value?.year;
 const description = page.value?.description;
 const credits = page.value?.credits;
+const creditsUpper: string = credits?.toUpperCase() ?? undefined;
 const pageTitle = page.value?.title ?? "No title";
 
 const handlePrev = () => {
