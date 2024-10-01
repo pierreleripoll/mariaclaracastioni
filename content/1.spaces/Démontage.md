@@ -1,6 +1,6 @@
 ---
 title: Démontage
-year: "2022"
+year: "2023"
 icon: /uploads/Démontage.png
 images:
   - src: /uploads/demontage/01_Projet-Astroland©AlinePaley-7055.jpg
@@ -15,12 +15,11 @@ images:
     caption: Démontage 2022
   - src: /uploads/demontage/06_Capture d’écran 2022-07-31 à 16.18.44.png
     caption: Démontage 2022
-description: >-
-  Démontage is a play about the closure of an amusement park. The performers
-  have stolen one of the leftovers from the park: an old hot dog stand. They
-  take it to their hangar and try to put the last pieces back together. The past
-  of the fiction and the present of the action resonate in the bare space of the
-  theatre.
+description: "Démontage is a play about the closure of an amusement park. The
+  performers have stolen one of the leftovers from the park: an old hot dog
+  stand. They take it to their hangar and try to put the last pieces back
+  together. The past of the fiction and the present of the action resonate in
+  the bare space of the theatre."
 credits: |-
   SCENOGRAPHY, COREOGRAPHY, DRAMATURGY
   CO-CREATED WITH ELÉONORE BONAH
