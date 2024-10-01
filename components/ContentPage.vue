@@ -1,5 +1,6 @@
 <template>
-  <div class="project-container">
+  <DocumentDrivenNotFound v-if="notFound" />
+  <div v-else class="project-container">
     <div class="dropdown-link page-title">
       {{ pageTitle }}
     </div>
@@ -54,7 +55,7 @@
               format="avif,webp"
               :src="image.src"
               sizes="400px md:650px xl:800px"
-              densities="x1 x2 x3"
+              densities="x1 x2"
               quality="85"
               loading="lazy"
               :img-attrs="{
@@ -87,6 +88,15 @@ const props = defineProps({
 });
 
 const { navigation, page, surround, globals } = useContent();
+
+const notFound = computed(() => !page.value);
+
+if (!(page as any).value && import.meta.server) {
+  const event = useRequestEvent();
+  if (event) {
+    event.node.res.statusCode = 404;
+  }
+}
 
 // Image carousel logic
 const idxImage = ref(0);

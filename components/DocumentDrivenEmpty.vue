@@ -1,5 +1,5 @@
 <template>
-  <p>This is empty</p>
+  <p>Empty</p>
 </template>
 
 <style scoped>

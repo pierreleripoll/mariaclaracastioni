@@ -75,12 +75,12 @@ useHead({
 });
 
 // Page not found, set correct status code on SSR
-if (!(page as any).value && import.meta.server) {
-  const event = useRequestEvent();
-  if (event) {
-    event.node.res.statusCode = 404;
-  }
-}
+// if (!(page as any).value && import.meta.server) {
+//   const event = useRequestEvent();
+//   if (event) {
+//     event.node.res.statusCode = 404;
+//   }
+// }
 
 if (contentHead) {
   useContentHead(page);

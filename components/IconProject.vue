@@ -14,7 +14,7 @@
         :src="props.icon"
         sizes="70px sm:100px"
         :width="width"
-        densities="x1 x2 x3"
+        densities="x1 x2"
       />
       <div v-else>
         <span>
@@ -85,7 +85,7 @@ const style = computed(
       y.value - windowHeight.value / 2
     }px) translate(-50%, -50%); ` +
     (needsTransformTransitionEffect.value
-      ? "transition: opacity 0.25s, filter 0.2s, transform 1s ease-in-out;"
+      ? "transition: filter 0.2s, transform 1s ease-in-out;"
       : "")
 );
 
@@ -183,12 +183,12 @@ onMounted(() => {
   left: 50%;
   display: flex;
   opacity: 1;
-  transition: opacity 0.25s, filter 0.2s;
+  transition: filter 0.2s;
   z-index: 100;
 }
 
 .project-icon.selected {
-  transition: opacity 0.25s, filter 0.2s, transform 1s ease-in-out;
+  transition: filter 0.2s, transform 1s ease-in-out;
   transform: translate(calc(-50vw + 30px), 50vh) translateY(-100%) !important;
   z-index: 100;
 }
