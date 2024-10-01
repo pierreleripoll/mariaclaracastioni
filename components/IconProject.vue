@@ -73,30 +73,37 @@ const classList = computed(
 
 const width = 100;
 const height = 141;
-const windowWidth = ref(window?.innerWidth || 0);
-const windowHeight = ref(window?.innerHeight || 0);
+const windowWidth = ref(0);
+const windowHeight = ref(0);
 const padding = 10;
 
 const x = ref(0);
 const y = ref(0);
 
-const style = computed(
-  () =>
-    `transform: translate(${x.value - windowWidth.value / 2}px, ${
-      y.value - windowHeight.value / 2
-    }px) translate(-50%, -50%); ` +
-    (needsTransformTransitionEffect.value
-      ? "transition: filter 0.2s, transform 1s ease-in-out;"
-      : "")
-);
-
-const noise = createNoise2D();
-let time = Math.random() * 1000;
+const style = computed(() => {
+  if (windowWidth.value === 0 || windowHeight.value === 0) {
+    return "opacity: 0;"; // or some default style
+  } else
+    return (
+      `transform: translate(${x.value - windowWidth.value / 2}px, ${
+        y.value - windowHeight.value / 2
+      }px) translate(-50%, -50%); ` +
+      (needsTransformTransitionEffect.value
+        ? "transition: filter 0.2s, transform 1s ease-in-out;"
+        : "")
+    );
+});
 
 const moveIcon = () => {
+  const noise = createNoise2D();
+  let time = Math.random() * 1000;
   const speed = 0.0008;
   const amplitudeX = windowWidth.value / 2 - padding * 2;
   const amplitudeY = windowHeight.value / 2 - padding * 2;
+
+  // Random offsets to ensure different paths
+  const randomOffsetX = Math.random() * 1000;
+  const randomOffsetY = Math.random() * 1000;
 
   const updatePosition = () => {
     if (
@@ -124,10 +131,6 @@ const moveIcon = () => {
 
     requestAnimationFrame(updatePosition);
   };
-
-  // Random offsets to ensure different paths
-  const randomOffsetX = Math.random() * 1000;
-  const randomOffsetY = Math.random() * 1000;
 
   updatePosition();
 };
@@ -163,6 +166,8 @@ function onTransitionEnd(event: TransitionEvent) {
 }
 
 onMounted(() => {
+  windowWidth.value = window.innerWidth;
+  windowHeight.value = window.innerHeight;
   resize();
   moveIcon();
   window.addEventListener("resize", resize);

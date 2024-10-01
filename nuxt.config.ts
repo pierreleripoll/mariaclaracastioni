@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
   },
-
+  sourcemap: true,
   nitro: {
     compressPublicAssets: true,
     prerender: {
