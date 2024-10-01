@@ -85,6 +85,29 @@ useHead({
 if (contentHead) {
   useContentHead(page);
 }
+
+useHead({
+  script: [
+    { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" },
+  ],
+});
+
+onMounted(() => {
+  interface Window {
+    netlifyIdentity?: {
+      on: (event: string, callback: (user?: any) => void) => void;
+    };
+  }
+  if (window && window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity?.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+});
 </script>
 <style>
 body {

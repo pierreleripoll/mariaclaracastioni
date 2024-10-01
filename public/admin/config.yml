@@ -1,0 +1,61 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: "space"
+    label: "Spaces"
+    folder: "content/1.spaces"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Year", name: "year", widget: "string" }
+      - label: "Icon"
+        name: "icon"
+        widget: "image"
+        hint: "Upload a PNG icon for the project. Please ensure the file is in PNG format."
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "src", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string" }
+      - label: "Art Description"
+        name: "description"
+        widget: "text"
+      - label: "Credits"
+        name: "credits"
+        widget: "text"
+
+  - name: "word"
+    label: "Words"
+    folder: "content/2.words"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "string" }
+      - label: "Icon"
+        name: "icon"
+        widget: "image"
+        hint: "Upload a PNG icon for the project. Please ensure the file is in PNG format."
+      - label: "Images"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "src", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string" }
+      - label: "Text"
+        name: "text"
+        widget: "text"
+      - label: "Credits"
+        name: "credits"
+        widget: "text"
