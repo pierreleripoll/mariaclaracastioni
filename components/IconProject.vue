@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="selected ? '/' : path">
+  <NuxtLink :to="selected ? '/' : path" :aria-label="title">
     <div
       ref="iconRef"
       :class="classList"
@@ -15,6 +15,7 @@
         sizes="70px sm:100px"
         :width="width"
         densities="x1 x2"
+        :alt="`${title} Icon`"
       />
       <div v-else>
         <span>

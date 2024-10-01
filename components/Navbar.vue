@@ -11,7 +11,7 @@
           key="menu-button"
           :class="`navbar-item menu-button ${mobileMenuClass}`"
         >
-          <NuxtLink to="/" class="navbar-link"></NuxtLink>
+          <NuxtLink to="/" class="navbar-link">Home</NuxtLink>
         </li>
         <li
           ref="spacesNavbarItem"
@@ -19,6 +19,7 @@
         >
           <NuxtLink
             to="/spaces"
+            title="Spaces"
             :class="`navbar-link ${
               route.path.startsWith('/spaces') ? 'router-link-active' : ''
             }`"
@@ -32,6 +33,7 @@
         >
           <NuxtLink
             to="/words"
+            title="Words"
             :class="`navbar-link ${
               route.path.startsWith('/words') ? 'router-link-active' : ''
             }`"
@@ -39,7 +41,9 @@
           </NuxtLink>
         </li>
         <li class="navbar-item rightalign navbar-large">
-          <NuxtLink to="/about" class="navbar-link"> About </NuxtLink>
+          <NuxtLink to="/about" title="About" class="navbar-link">
+            About
+          </NuxtLink>
         </li>
       </ul>
       <ul
@@ -61,7 +65,11 @@
                 : null
           "
         >
-          <NuxtLink :to="children._path" class="dropdown-link">
+          <NuxtLink
+            :to="children._path"
+            :title="children.title"
+            class="dropdown-link"
+          >
             {{ children.title }}
           </NuxtLink>
         </li>
@@ -78,14 +86,20 @@
             isProjectHovered(children._path) ? 'hovered' : ''
           }`"
         >
-          <NuxtLink :to="children._path" class="dropdown-link">
+          <NuxtLink
+            :to="children._path"
+            :title="children.title"
+            class="dropdown-link"
+          >
             {{ children.title }}
           </NuxtLink>
         </li>
       </ul>
       <ul :class="`dropdown-menu ${mobileMenuClass}`">
         <li :class="`dropdown-item ${mobileMenuClass}`">
-          <NuxtLink to="/about" class="dropdown-link"> About </NuxtLink>
+          <NuxtLink to="/about" title="About" class="dropdown-link">
+            About
+          </NuxtLink>
         </li>
       </ul>
     </ContentNavigation>

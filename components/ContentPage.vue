@@ -15,7 +15,7 @@
           @click="handlePrev"
           aria-label="Previous Image"
           role="button"
-          tabindex="1"
+          tabindex="0"
           @keypress.enter="handlePrev"
         ></div>
         <div
@@ -24,7 +24,7 @@
           @click="handleNext"
           aria-label="Next Image"
           role="button"
-          tabindex="1"
+          tabindex="0"
           @keypress.enter="handleNext"
         ></div>
       </div>
