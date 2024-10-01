@@ -4,28 +4,31 @@
     <div class="dropdown-link page-title">
       {{ pageTitle }}
     </div>
-    <!-- Navigation Buttons -->
-    <div
-      :class="`navigation-button ${prevVisible ? 'is-activated' : ''}`"
-      id="button-prev"
-      @click="handlePrev"
-      aria-label="Previous Image"
-      role="button"
-      tabindex="1"
-      @keypress.enter="handlePrev"
-    ></div>
-    <div
-      :class="`navigation-button ${nextVisible ? 'is-activated' : ''}`"
-      id="button-next"
-      @click="handleNext"
-      aria-label="Next Image"
-      role="button"
-      tabindex="1"
-      @keypress.enter="handleNext"
-    ></div>
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
+      <!-- Navigation Buttons -->
+      <div class="navigation-arrows-container">
+        <div
+          :class="`navigation-button ${prevVisible ? 'is-activated' : ''}`"
+          id="button-prev"
+          @click="handlePrev"
+          aria-label="Previous Image"
+          role="button"
+          tabindex="1"
+          @keypress.enter="handlePrev"
+        ></div>
+        <div
+          :class="`navigation-button ${nextVisible ? 'is-activated' : ''}`"
+          id="button-next"
+          @click="handleNext"
+          aria-label="Next Image"
+          role="button"
+          tabindex="1"
+          @keypress.enter="handleNext"
+        ></div>
+      </div>
+
       <!-- Project Content -->
       <div class="project-content">
         <div class="project-description">
@@ -205,13 +208,17 @@ onBeforeUnmount(() => {
 }
 
 .project-content {
-  position: absolute;
+  position: relative;
   right: 0;
   bottom: 0;
   max-height: 100vh;
   padding-right: 1em;
   padding-bottom: 1em;
   white-space: pre-wrap;
+  /* text-align: justify; */
+  /* Allows automatic hyphenation based on the language */
+  /* hyphens: auto;  */
+  word-break: break-word; /* Prevents words from being too long and breaking the layout */
 }
 
 .project-content .project-credits {
@@ -265,30 +272,6 @@ onBeforeUnmount(() => {
   display: none;
 }
 
-#button-prev,
-#button-next {
-  position: relative;
-  top: 50%;
-  background-position: center;
-  background-size: 2.2em;
-  background-repeat: no-repeat;
-  padding: 2em 2em;
-  background-image: url("/right_arrow.min.svg");
-  display: none;
-  z-index: 100;
-  cursor: pointer;
-}
-
-#button-prev {
-  left: calc((25vw + 350px) / 2);
-  transform: translate(-55%, -50%) rotate(180deg);
-}
-
-#button-next {
-  right: 25vw;
-  transform: translate(55%, -50%);
-}
-
 .is-activated {
   display: block !important;
 }
@@ -326,44 +309,39 @@ onBeforeUnmount(() => {
   display: block;
 }
 
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.navigation-arrows-container {
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+  flex-direction: column;
+}
 #button-prev,
 #button-next {
-  padding: 2em 1em;
+  position: relative;
+  background-position: center;
   background-size: 1.5em;
-  right: calc(350px);
-  left: auto;
+  background-repeat: no-repeat;
+  padding: 2em 1em;
+  background-image: url("/right_arrow.min.svg");
+  display: none;
+  z-index: 100;
+  cursor: pointer;
   transform-origin: center;
 }
 
 #button-prev {
-  top: auto;
   transform: rotate(270deg);
 }
 
 #button-next {
-  top: auto;
   transform: rotate(90deg);
 }
 
-/*
-  .images-carousel .project-image:first-child {
-    margin-top: 300px;
-  } */
-
-@media screen and (min-width: 1500px) {
-  #button-prev,
-  #button-next {
-    position: absolute;
-    right: calc(350px + 2rem);
-  }
-
-  #button-prev {
-    bottom: 3rem;
-  }
-  #button-next {
-    bottom: 0;
-  }
-}
 @media screen and (max-width: 600px) {
   .navigation-button {
     display: none !important;
