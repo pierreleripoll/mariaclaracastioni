@@ -11,7 +11,7 @@
           key="menu-button"
           :class="`navbar-item menu-button ${mobileMenuClass}`"
         >
-          <NuxtLink to="/" class="navbar-link">Home</NuxtLink>
+          <NuxtLink to="/" arial-label="Home" class="navbar-link"></NuxtLink>
         </li>
         <li
           ref="spacesNavbarItem"
