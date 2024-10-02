@@ -55,6 +55,13 @@ useSeoMeta({
 });
 
 useHead({
+  script: [
+    {
+      src: "https://cloud.umami.is/script.js",
+      defer: true,
+      "data-website-id": "b8436e6a-506a-41ec-921f-d24f377f3620",
+    },
+  ],
   title: "Maria Clara Castioni",
   titleTemplate: (titleChunk) => {
     return titleChunk == "Maria Clara Castioni" || !titleChunk
