@@ -59,3 +59,18 @@ collections:
       - label: "Credits"
         name: "credits"
         widget: "text"
+  - name: "about"
+    label: "About"
+    files:
+      - file: "content/about.md"
+        label: "About"
+        name: "about"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "text" }
+          - {
+              label: "Credits",
+              name: "credits",
+              widget: "markdown",
+              hint: "Provide credits or relevant links.",
+            }

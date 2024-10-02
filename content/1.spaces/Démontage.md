@@ -15,8 +15,6 @@ images:
     caption: Démontage 2022
   - src: /uploads/demontage/06_Capture d’écran 2022-07-31 à 16.18.44.png
     caption: Démontage 2022
-  - src: /uploads/localhost_3000_spaces_lenz-3-.png
-    caption: Test
 description: "Démontage is a play about the closure of an amusement park. The
   performers have stolen one of the leftovers from the park: an old hot dog
   stand. They take it to their hangar and try to put the last pieces back
