@@ -86,12 +86,6 @@ if (contentHead) {
   useContentHead(page);
 }
 
-// useHead({
-//   script: [
-//     { src: "https://identity.netlify.com/v1/netlify-identity-widget.js" },
-//   ],
-// });
-
 onMounted(() => {
   interface Window {
     netlifyIdentity?: {
