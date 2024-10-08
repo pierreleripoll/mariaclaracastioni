@@ -48,6 +48,7 @@ const projects = computed(() =>
 useSeoMeta({
   title: "Maria Clara Castioni",
   ogTitle: "Maria Clara Castioni",
+  ogImage: "/android-chrome-192x192.png",
   description:
     "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
   ogDescription:
@@ -64,6 +65,7 @@ useHead({
   ],
   title: "Maria Clara Castioni",
   titleTemplate: (titleChunk) => {
+    console.log(titleChunk);
     return titleChunk == "Maria Clara Castioni" || !titleChunk
       ? "Maria Clara Castioni"
       : `${titleChunk} - Maria Clara Castioni`;
@@ -77,6 +79,16 @@ useHead({
     {
       name: "viewport",
       content: "width=device-width, initial-scale=1",
+    },
+  ],
+  link: [
+    {
+      rel: "icon",
+      href: "/favicon.ico",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: "/apple-touch-icon.png",
     },
   ],
 });
