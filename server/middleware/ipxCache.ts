@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
   // Check if the file exists in the cache
   if (existsSync(cacheFilePath)) {
     // If the file exists in cache, send it directly
-    console.log(`Serving from cache: ${cacheFilePath}`);
+    if (import.meta.dev) console.log(`Serving from cache: ${cacheFilePath}`);
     return sendStream(event, createReadStream(cacheFilePath));
   }
 
@@ -78,7 +78,7 @@ export default defineEventHandler(async (event) => {
     mkdirSync(path.dirname(cacheFilePath), { recursive: true });
     fs.writeFile(cacheFilePath, captureStream.getBuffer())
       .then(() => {
-        console.log(`Cached image: ${cacheFilePath}`);
+        if (import.meta.dev) console.log(`Cached image: ${cacheFilePath}`);
       })
       .catch((err) => {
         console.error(`Error caching image: ${err}`);
