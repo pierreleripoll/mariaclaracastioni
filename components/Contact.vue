@@ -1,8 +1,8 @@
 <template>
   <div class="about">
     <a href="mailto:mclara@bluewin.ch" target="_blank"> mclara@bluewin.ch </a>
-    <a href="https://www.instagram.com/manola_casimira/" target="_blank">
-      @manola_casimira
+    <a href="https://www.instagram.com/maria_clara_castioni/" target="_blank">
+      @maria_clara_castioni
     </a>
   </div>
 </template>
