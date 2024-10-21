@@ -28,10 +28,10 @@ collections:
           - { label: "Caption", name: "caption", widget: "string" }
       - label: "Art Description"
         name: "description"
-        widget: "text"
+        widget: "markdown"
       - label: "Credits"
         name: "credits"
-        widget: "text"
+        widget: "markdown"
 
   - name: "word"
     label: "Words"
@@ -55,22 +55,38 @@ collections:
           - { label: "Caption", name: "caption", widget: "string" }
       - label: "Text"
         name: "description"
-        widget: "text"
+        widget: "markdown"
       - label: "Credits"
         name: "credits"
-        widget: "text"
+        widget: "markdown"
   - name: "about"
     label: "About"
     files:
-      - file: "content/about.md"
-        label: "About"
-        name: "about"
+      - file: "content/3.about/bio.md"
+        label: "Bio"
+        name: "bio"
+        folder: "content/3.about/"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "text" }
-          - {
-              label: "Credits",
-              name: "credits",
-              widget: "markdown",
-              hint: "Provide credits or relevant links.",
-            }
+          - { label: "Description", name: "description", widget: "markdown" }
+      - file: "content/3.about/calendar.md"
+        label: "Calendar"
+        name: "calendar"
+        folder: "content/3.about/"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "markdown" }
+      - file: "content/3.about/press.md"
+        label: "Press"
+        name: "press"
+        folder: "content/3.about/"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "markdown" }
+      - file: "content/3.about/contact.md"
+        label: "Contact"
+        name: "contact"
+        folder: "content/3.about/"
+        fields:
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Description", name: "description", widget: "markdown" }

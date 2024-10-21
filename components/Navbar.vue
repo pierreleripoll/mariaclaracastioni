@@ -29,7 +29,7 @@
         </li>
         <li
           ref="writingsNavbarItem"
-          :class="`navbar-item navbar-large centeralign ${classHoveredWords}`"
+          :class="`navbar-item navbar-large rightalign ${classHoveredWords}`"
         >
           <NuxtLink
             to="/words"
@@ -40,9 +40,17 @@
             >Words
           </NuxtLink>
         </li>
-        <li class="navbar-item rightalign navbar-large">
-          <NuxtLink to="/about" title="About" class="navbar-link">
-            About
+        <li
+          ref="aboutNavbarItem"
+          :class="`navbar-item navbar-large centeralign ${classHoveredAbout}`"
+        >
+          <NuxtLink
+            to="/about/bio"
+            title="About"
+            :class="`navbar-link ${
+              route.path.startsWith('/about') ? 'router-link-active' : ''
+            }`"
+            >About
           </NuxtLink>
         </li>
       </ul>
@@ -95,10 +103,24 @@
           </NuxtLink>
         </li>
       </ul>
-      <ul :class="`dropdown-menu ${mobileMenuClass}`">
-        <li :class="`dropdown-item ${mobileMenuClass}`">
-          <NuxtLink to="/about" title="About" class="dropdown-link">
-            About
+      <ul
+        ref="dropdownAbout"
+        :class="`dropdown-menu ${mobileMenuClass} ${classHoveredAbout}`"
+      >
+        <li :class="`dropdown-menu-title ${mobileMenuClass}`">About</li>
+        <li
+          v-for="children of aboutUrls"
+          :key="children._path"
+          :class="`dropdown-item ${
+            isProjectHovered(children._path) ? 'hovered' : ''
+          }`"
+        >
+          <NuxtLink
+            :to="children._path"
+            :title="children.title"
+            class="dropdown-link"
+          >
+            {{ children.title }}
           </NuxtLink>
         </li>
       </ul>
@@ -121,10 +143,15 @@ const writingsUrls = navigation.value?.find(
   (item) => item._path === "/words"
 )?.children;
 
+const aboutUrls = navigation.value?.find(
+  (item) => item._path === "/about"
+)?.children;
+
 const dropdownSpaces = ref<HTMLElement | null>(null);
 const dropdownWritings = ref<HTMLElement | null>(null);
 const spacesNavbarItem = ref<HTMLElement | null>(null);
 const writingsNavbarItem = ref<HTMLElement | null>(null);
+const aboutNavbarItem = ref<HTMLElement | null>(null);
 
 const hoveredCategory = ref<string | undefined>(undefined);
 
@@ -145,6 +172,8 @@ watch(
       hoveredCategory.value = "spaces";
     } else if (path.startsWith("/words")) {
       hoveredCategory.value = "words";
+    } else if (path.startsWith("/about")) {
+      hoveredCategory.value = "about";
     } else {
       hoveredCategory.value = undefined;
     }
@@ -175,11 +204,19 @@ const classHoveredWords = computed(() =>
     : ""
 );
 
+const classHoveredAbout = computed(() =>
+  hoveredCategory.value === "about" || route.path.startsWith("/about")
+    ? "hovered"
+    : ""
+);
+
 watch(hoveredProject, (value) => {
   if (value?.startsWith("/spaces")) {
     hoveredCategory.value = "spaces";
   } else if (value?.startsWith("/words")) {
     hoveredCategory.value = "words";
+  } else if (value?.startsWith("/about")) {
+    hoveredCategory.value = "about";
   } else if (value === undefined) {
     hoveredCategory.value = undefined;
   }
@@ -192,6 +229,10 @@ onMounted(() => {
 
   writingsNavbarItem.value?.addEventListener("click", () => {
     hoveredCategory.value = "words";
+  });
+
+  aboutNavbarItem.value?.addEventListener("click", () => {
+    hoveredCategory.value = "about";
   });
 });
 </script>

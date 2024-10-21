@@ -32,7 +32,7 @@
       <!-- Project Content -->
       <div class="project-content">
         <div class="project-description">
-          {{ description }}
+          <MDC :value="description" />
         </div>
         <Contact v-if="pageTitle == 'About'" class="project-credits about" />
 
