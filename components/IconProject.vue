@@ -196,7 +196,7 @@ onMounted(() => {
 
 .project-icon.selected {
   transition: filter 0.2s, transform 1s ease-in-out;
-  transform: translate(max(-750px, calc(-50vw + 30px)), 50vh) translateY(-100%) !important;
+  transform: translate(-50vw, calc(50vh - 8px)) translateY(-100%) !important;
   z-index: 100;
 }
 
