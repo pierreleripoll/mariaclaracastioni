@@ -388,9 +388,10 @@ li:hover > a {
   }
 
   .dropdown-item {
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 0;
     width: fit-content;
   }
+
   .navbar {
     flex-direction: column;
     align-items: flex-start;
@@ -422,7 +423,8 @@ li:hover > a {
 
   .dropdown-menu {
     display: none;
-    padding: 0.5rem 1.5rem;
+    margin: 0.5rem 1.5rem;
+    padding: 0px;
     /* position: ; */
   }
   .dropdown-menu-title {
