@@ -1,27 +1,27 @@
 <template>
-  <NuxtLink :to="selected ? '/' : path" :aria-label="title">
-    <div
-      ref="iconRef"
-      :class="classList"
-      :style="style"
-      @mouseover="onMouseEnter"
-      @mouseleave="onMouseLeave"
-      @transitionend="onTransitionEnd"
-    >
-      <NuxtPicture
-        format="avif,webp,png"
-        v-if="props.icon"
-        :src="props.icon"
-        sizes="70px sm:100px"
-        :width="width"
-        densities="x1 x2"
-        :alt="`${title} Icon`"
-      />
-      <div v-else>
-        <span>
-          {{ title }}
-        </span>
-      </div>
+  <NuxtLink
+    :to="selected ? '/' : path"
+    :aria-label="title"
+    ref="iconRef"
+    :class="classList"
+    :style="style"
+    @mouseover="onMouseEnter"
+    @mouseleave="onMouseLeave"
+    @transitionend="onTransitionEnd"
+  >
+    <NuxtPicture
+      format="avif,webp,png"
+      v-if="props.icon"
+      :src="props.icon"
+      sizes="70px sm:100px"
+      :width="width"
+      densities="x1 x2"
+      :alt="`${title} Icon`"
+    />
+    <div v-else>
+      <span>
+        {{ title }}
+      </span>
     </div>
   </NuxtLink>
 </template>
@@ -190,7 +190,6 @@ onMounted(() => {
   display: flex;
   opacity: 1;
   transition: filter 0.2s;
-  z-index: 100;
 }
 
 .project-icon.selected {
@@ -236,7 +235,6 @@ onMounted(() => {
   .project-icon {
     width: 70px;
     max-height: 130px;
-    z-index: 1;
   }
   .project-icon.selected {
     transform: translate(calc(-50vw + 0.5rem), 50dvh)

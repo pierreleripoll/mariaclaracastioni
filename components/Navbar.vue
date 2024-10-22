@@ -2,6 +2,7 @@
   <nav :class="`navbar ${whiteBackground}`">
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
+        <slot name="icons"></slot>
         <li key="/" class="navbar-item">
           <NuxtLink to="/" class="navbar-link navbar-title">
             MARIA CLARA CASTIONI
@@ -297,6 +298,10 @@ onMounted(() => {
   width: 100vw;
 }
 
+.dropdown-menu-title {
+  width: fit-content;
+}
+
 .dropdown-item {
   padding: 0.2rem 0px;
   max-width: fit-content;
@@ -372,7 +377,9 @@ li:hover > a {
 
   .dropdown-menu {
     position: static;
-    width: auto;
+    width: fit-content;
+    z-index: 10;
+    pointer-events: auto;
   }
 
   .dropdown-menu.visible,
@@ -382,7 +389,7 @@ li:hover > a {
 
   .dropdown-item {
     padding: 0.75rem 1rem;
-    width: 100%;
+    width: fit-content;
   }
   .navbar {
     flex-direction: column;

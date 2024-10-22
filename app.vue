@@ -4,20 +4,22 @@
 
     <div class="container">
       <div class="header section">
-        <Navbar />
+        <Navbar>
+          <template v-slot:icons>
+            <div class="icons-container">
+              <IconProject
+                v-for="{ icon, path, title } in projects"
+                :key="path"
+                :path="path"
+                :title="title"
+                :icon="icon"
+              /></div
+          ></template>
+        </Navbar>
       </div>
       <NuxtLayout>
         <NuxtPage />
       </NuxtLayout>
-      <div class="icons-container">
-        <IconProject
-          v-for="{ icon, path, title } in projects"
-          :key="path"
-          :path="path"
-          :title="title"
-          :icon="icon"
-        />
-      </div>
     </div>
   </div>
 </template>
@@ -191,6 +193,14 @@ a:hover {
   -webkit-text-underline-offset: underline dotted;
 }
 
+.icons-container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     height: 100vh;
@@ -208,10 +218,6 @@ a:hover {
     /* background-color: white; */
     /* width: calc(100vw - 1em); */
     margin-bottom: 0px;
-  }
-
-  .icons-container {
-    z-index: 100;
   }
 }
 @media screen and (min-width: 600px) {
