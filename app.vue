@@ -161,7 +161,7 @@ body {
   margin: 0 auto;
   gap: 2em;
   width: 100%;
-  z-index: 100;
+  z-index: 10;
 }
 
 .header h1 {
@@ -194,11 +194,9 @@ a:hover {
 }
 
 .icons-container {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
+  top: 50%;
   left: 0;
+  z-index: 0;
 }
 
 @media screen and (max-width: 600px) {

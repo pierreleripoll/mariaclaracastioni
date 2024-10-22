@@ -1,8 +1,8 @@
 <template>
   <nav :class="`navbar ${whiteBackground}`">
+    <slot name="icons"></slot>
     <ContentNavigation v-slot="{ navigation }">
       <ul class="navbar-menu">
-        <slot name="icons"></slot>
         <li key="/" class="navbar-item">
           <NuxtLink to="/" class="navbar-link navbar-title">
             MARIA CLARA CASTIONI
@@ -295,7 +295,7 @@ onMounted(() => {
   list-style: none;
   margin: 0;
   padding: 0.5rem 0;
-  width: 100vw;
+  width: 100%;
 }
 
 .dropdown-menu-title {

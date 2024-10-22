@@ -200,7 +200,6 @@ onBeforeUnmount(() => {
 }
 
 .project-content {
-  z-index: 10;
   max-width: 350px;
   overflow-y: auto;
   /* font-size: 0.95em; */
@@ -241,7 +240,6 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1;
 }
 
 .images-carousel {

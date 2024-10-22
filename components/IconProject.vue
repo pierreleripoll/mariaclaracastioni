@@ -76,6 +76,9 @@ const height = 141;
 const windowWidth = ref(0);
 const windowHeight = ref(0);
 const padding = 10;
+const amplitudeX = computed(() => windowWidth.value / 2 - padding * 2);
+const amplitudeY = computed(() => windowHeight.value / 2 - padding * 2);
+//amplitude as computed so udaptes when window size changes
 
 const x = ref(0);
 const y = ref(0);
@@ -98,8 +101,6 @@ const moveIcon = () => {
   const noise = createNoise2D();
   let time = Math.random() * 1000;
   const speed = 0.0008;
-  const amplitudeX = windowWidth.value / 2 - padding * 2;
-  const amplitudeY = windowHeight.value / 2 - padding * 2;
 
   // Random offsets to ensure different paths
   const randomOffsetX = Math.random() * 1000;
@@ -114,9 +115,10 @@ const moveIcon = () => {
     ) {
       time += speed;
 
-      x.value = windowWidth.value / 2 + amplitudeX * noise(time, randomOffsetX);
+      x.value =
+        windowWidth.value / 2 + amplitudeX.value * noise(time, randomOffsetX);
       y.value =
-        windowHeight.value / 2 + amplitudeY * noise(time, randomOffsetY);
+        windowHeight.value / 2 + amplitudeY.value * noise(time, randomOffsetY);
 
       // Ensure the icon stays within bounds
       x.value = Math.max(
@@ -185,8 +187,8 @@ onMounted(() => {
   max-height: 145px;
   min-height: 100px;
   height: auto;
-  top: 50%;
-  left: 50%;
+  top: 50vh;
+  left: 50vw;
   display: flex;
   opacity: 1;
   transition: filter 0.2s;
