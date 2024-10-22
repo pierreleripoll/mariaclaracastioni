@@ -269,10 +269,6 @@ onBeforeUnmount(() => {
   display: none;
 }
 
-.is-activated {
-  display: block !important;
-}
-
 .page-title {
   display: none;
 }
@@ -325,7 +321,7 @@ onBeforeUnmount(() => {
   background-repeat: no-repeat;
   padding: 2em 1em;
   background-image: url("/right_arrow.min.svg");
-  display: none;
+  visibility: hidden;
   z-index: 100;
   cursor: pointer;
   transform-origin: center;
@@ -337,6 +333,10 @@ onBeforeUnmount(() => {
 
 #button-next {
   transform: rotate(90deg);
+}
+
+.is-activated {
+  visibility: visible !important;
 }
 
 @media screen and (max-width: 600px) {
