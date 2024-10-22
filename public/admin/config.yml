@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
@@ -16,6 +18,16 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Year", name: "year", widget: "string" }
+      - label: "Navigation"
+        name: "navigation"
+        widget: "object"
+        fields:
+          - label: "Order"
+            name: "order"
+            widget: "number"
+            min: 0
+            default: 0
+            value_type: "int"
       - label: "Icon"
         name: "icon"
         widget: "image"
@@ -43,6 +55,16 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "string" }
+      - label: "Navigation"
+        name: "navigation"
+        widget: "object"
+        fields:
+          - label: "Order"
+            name: "order"
+            widget: "number"
+            min: 0
+            default: 0
+            value_type: "int"
       - label: "Icon"
         name: "icon"
         widget: "image"
@@ -59,34 +81,72 @@ collections:
       - label: "Credits"
         name: "credits"
         widget: "markdown"
+
   - name: "about"
     label: "About"
     files:
       - file: "content/3.about/bio.md"
         label: "Bio"
         name: "bio"
-        folder: "content/3.about/"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "markdown" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - label: "Order"
+                name: "order"
+                widget: "number"
+                default: 0
+                min: 0
+                value_type: "int"
+
       - file: "content/3.about/calendar.md"
         label: "Calendar"
         name: "calendar"
-        folder: "content/3.about/"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "markdown" }
+          - { label: "Description", name: "credits", widget: "markdown" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - label: "Order"
+                name: "order"
+                widget: "number"
+                default: 0
+                min: 0
+                value_type: "int"
       - file: "content/3.about/press.md"
         label: "Press"
         name: "press"
-        folder: "content/3.about/"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "markdown" }
+          - { label: "Description", name: "credits", widget: "markdown" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - label: "Order"
+                name: "order"
+                widget: "number"
+                default: 0
+                min: 0
+                value_type: "int"
       - file: "content/3.about/contact.md"
         label: "Contact"
         name: "contact"
-        folder: "content/3.about/"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
-          - { label: "Description", name: "description", widget: "markdown" }
+          - { label: "Description", name: "credits", widget: "markdown" }
+          - label: "Navigation"
+            name: "navigation"
+            widget: "object"
+            fields:
+              - label: "Order"
+                name: "order"
+                widget: "number"
+                default: 0
+                min: 0
+                value_type: "int"

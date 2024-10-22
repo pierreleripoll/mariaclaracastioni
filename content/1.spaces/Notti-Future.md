@@ -1,6 +1,8 @@
 ---
 title: NOTTI FUTURE
 year: "2024"
+navigation:
+  order: 1
 icon: /uploads/notti-future.png
 images:
   - src: /uploads/01.jpg

@@ -1,5 +1,7 @@
 ---
 title: Vingt ans
+navigation:
+  order: 0
 year: "2023"
 icon: /uploads/Vingt ans.png
 images:

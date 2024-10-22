@@ -1,5 +1,7 @@
 ---
 title: Press
-description: >-
+navigation:
+  order: 3
+credits: >-
   Nothing yet.
 ---

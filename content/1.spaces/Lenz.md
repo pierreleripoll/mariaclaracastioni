@@ -1,5 +1,7 @@
 ---
 title: Lenz
+navigation:
+  order: 0
 year: "2023"
 icon: /uploads/Lenz.png
 images:

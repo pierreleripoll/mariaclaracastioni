@@ -1,5 +1,7 @@
 ---
 title: Genius loci
+navigation:
+  order: 0
 year: "2022"
 icon: /uploads/Genius loci.png
 images:

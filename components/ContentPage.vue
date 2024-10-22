@@ -31,14 +31,13 @@
 
       <!-- Project Content -->
       <div class="project-content">
-        <div class="project-description">
+        <div v-if="description" class="project-description">
           <MDC :value="description" />
         </div>
-        <Contact v-if="pageTitle == 'About'" class="project-credits about" />
-
-        <div class="project-credits">
+        <div v-if="creditsUpper" class="project-credits">
           <span v-if="year" class="project-year"> {{ year }} </span>
-          <br v-if="year && creditsUpper" /><MDC :value="creditsUpper" />
+          <br v-if="year && creditsUpper" />
+          <MDC :value="creditsUpper" />
         </div>
       </div>
 
@@ -105,7 +104,7 @@ if (!(page as any).value && import.meta.server) {
 const idxImage = ref(0);
 const images: Image[] | undefined = page.value?.images;
 const year = page.value?.year;
-const description = page.value?.description;
+const description = page.value?.description || null;
 const credits = page.value?.credits;
 const creditsUpper: string = credits?.toUpperCase() ?? undefined;
 const pageTitle = page.value?.title ?? "No title";

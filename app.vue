@@ -65,7 +65,6 @@ useHead({
   ],
   title: "Maria Clara Castioni",
   titleTemplate: (titleChunk) => {
-    console.log(titleChunk);
     return titleChunk == "Maria Clara Castioni" || !titleChunk
       ? "Maria Clara Castioni"
       : `${titleChunk} - Maria Clara Castioni`;

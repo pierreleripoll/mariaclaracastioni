@@ -135,17 +135,17 @@ const { data: navigation } = await useAsyncData("navigation", () =>
   fetchContentNavigation()
 );
 
-const spacesUrls = navigation.value?.find(
-  (item) => item._path === "/spaces"
-)?.children;
+const spacesUrls = navigation.value
+  ?.find((item) => item._path === "/spaces")
+  ?.children?.sort((a, b) => a?.order - b?.order);
 
-const writingsUrls = navigation.value?.find(
-  (item) => item._path === "/words"
-)?.children;
+const writingsUrls = navigation.value
+  ?.find((item) => item._path === "/words")
+  ?.children?.sort((a, b) => a?.order - b?.order);
 
-const aboutUrls = navigation.value?.find(
-  (item) => item._path === "/about"
-)?.children;
+const aboutUrls = navigation.value
+  ?.find((item) => item._path === "/about")
+  ?.children?.sort((a, b) => a?.order - b?.order);
 
 const dropdownSpaces = ref<HTMLElement | null>(null);
 const dropdownWritings = ref<HTMLElement | null>(null);
