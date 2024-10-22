@@ -295,16 +295,14 @@ onMounted(() => {
   list-style: none;
   margin: 0;
   padding: 0.5rem 0;
-  width: 100%;
-}
-
-.dropdown-menu-title {
-  width: fit-content;
+  /* width: fit-content; */
+  pointer-events: none;
 }
 
 .dropdown-item {
   padding: 0.2rem 0px;
-  max-width: fit-content;
+  width: auto;
+  pointer-events: auto;
 }
 
 .dropdown-link {
@@ -377,9 +375,8 @@ li:hover > a {
 
   .dropdown-menu {
     position: static;
-    width: fit-content;
     z-index: 10;
-    pointer-events: auto;
+    max-width: 100%;
   }
 
   .dropdown-menu.visible,
@@ -389,7 +386,6 @@ li:hover > a {
 
   .dropdown-item {
     padding: 0.75rem 0;
-    width: fit-content;
   }
 
   .navbar {
