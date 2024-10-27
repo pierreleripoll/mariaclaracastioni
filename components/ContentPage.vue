@@ -213,6 +213,7 @@ onBeforeUnmount(() => {
   padding-right: 1em;
   padding-bottom: 1em;
   white-space: pre-wrap;
+  z-index: 10;
   /* text-align: justify; */
   /* Allows automatic hyphenation based on the language */
   /* hyphens: auto;  */
@@ -222,6 +223,7 @@ onBeforeUnmount(() => {
 .project-content .project-credits {
   padding-top: 0.5em;
   font-size: smaller;
+
   line-height: 1.2em;
 }
 
