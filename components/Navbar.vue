@@ -130,23 +130,21 @@
 </template>
 
 <script setup lang="ts">
-const { toc } = useContent();
+import type { NavItem } from "@nuxt/content";
 import { useRoute } from "vue-router";
-const { data: navigation } = await useAsyncData("navigation", () =>
-  fetchContentNavigation()
-);
+const { navigation } = useContent();
 
 const spacesUrls = navigation.value
   ?.find((item) => item._path === "/spaces")
-  ?.children?.sort((a, b) => a?.order - b?.order);
+  ?.children?.sort((a: NavItem, b: NavItem) => a?.order - b?.order);
 
 const writingsUrls = navigation.value
   ?.find((item) => item._path === "/words")
-  ?.children?.sort((a, b) => a?.order - b?.order);
+  ?.children?.sort((a: NavItem, b: NavItem) => a?.order - b?.order);
 
 const aboutUrls = navigation.value
   ?.find((item) => item._path === "/about")
-  ?.children?.sort((a, b) => a?.order - b?.order);
+  ?.children?.sort((a: NavItem, b: NavItem) => a?.order - b?.order);
 
 const dropdownSpaces = ref<HTMLElement | null>(null);
 const dropdownWritings = ref<HTMLElement | null>(null);

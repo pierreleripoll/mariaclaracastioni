@@ -89,7 +89,7 @@ const props = defineProps({
   },
 });
 
-const { navigation, page, surround, globals } = useContent();
+const { page } = useContent();
 
 const notFound = computed(() => !page.value);
 
