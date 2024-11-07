@@ -1,6 +1,3 @@
 User-agent: *
 Disallow: /api/_content
 Disallow: /_nuxt
-Disallow: /words
-Disallow: /spaces
-Disallow: /about
