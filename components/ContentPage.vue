@@ -34,10 +34,10 @@
         <div v-if="description" class="project-description">
           <MDC :value="description" />
         </div>
-        <div v-if="creditsUpper" class="project-credits">
+        <div v-if="credits" class="project-credits">
           <span v-if="year" class="project-year"> {{ year }} </span>
-          <br v-if="year && creditsUpper" />
-          <MDC :value="creditsUpper" />
+          <br v-if="year && credits" />
+          <MDC :value="credits" />
         </div>
       </div>
 
@@ -56,8 +56,8 @@
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
               format="avif,webp"
               :src="image.src"
-              sizes="400px md:650px xl:800px"
-              densities="x1 x2"
+              sizes="400px md:600px xl:800px"
+              densities="x1 x2 x3"
               quality="85"
               loading="lazy"
               :img-attrs="{
@@ -106,7 +106,6 @@ const images: Image[] | undefined = page.value?.images;
 const year = page.value?.year;
 const description = page.value?.description || null;
 const credits = page.value?.credits;
-const creditsUpper: string = credits?.toUpperCase() ?? undefined;
 const pageTitle = page.value?.title ?? "No title";
 
 const handlePrev = () => {
@@ -200,7 +199,7 @@ onBeforeUnmount(() => {
 }
 
 .project-content {
-  max-width: 350px;
+  width: 350px;
   overflow-y: auto;
   /* font-size: 0.95em; */
 }
@@ -230,6 +229,10 @@ onBeforeUnmount(() => {
 .project-content .project-description {
   font-family: Georgia Light, serif;
   line-height: 1.2em;
+}
+
+.project-credits {
+  text-transform: uppercase;
 }
 
 .carousel-container {
@@ -339,6 +342,10 @@ onBeforeUnmount(() => {
 
 .is-activated {
   visibility: visible !important;
+}
+
+.project-description :deep(br) {
+  content: " ";
 }
 
 @media screen and (max-width: 600px) {
