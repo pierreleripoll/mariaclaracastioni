@@ -2,7 +2,7 @@
 title: Leggera
 year: "2023"
 navigation:
-  order: 0
+  order: 18
 icon: /uploads/Leggera.png
 images:
   - src: /uploads/leggera/01_68AAB991-36EC-4B2C-A131-A2AA46840B32.JPG
