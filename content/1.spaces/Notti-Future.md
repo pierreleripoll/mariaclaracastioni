@@ -2,8 +2,8 @@
 title: NOTTI FUTURE
 year: "2024"
 navigation:
-  order: 1
-icon: /uploads/notti-future-2.png
+  order: 15
+icon: /uploads/notti-futuree.png
 images:
   - src: /uploads/01.jpg
     caption: ©NoaChevalley
