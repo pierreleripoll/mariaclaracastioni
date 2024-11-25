@@ -1,8 +1,8 @@
 ---
 title: Vingt ans
-navigation:
-  order: 0
 year: "2023"
+navigation:
+  order: 17
 icon: /uploads/Vingt ans.png
 images:
   - src: /uploads/vingtans/01_IMG_6983.JPG
@@ -17,13 +17,10 @@ images:
     caption: Vingt ans 2023
   - src: /uploads/vingtans/06_IMG_7027.JPG
     caption: Vingt ans 2023
-  - src: /uploads/vingtans/07_IMG_7292.JPG
-    caption: Vingt ans 2023
   - src: /uploads/vingtans/08_IMG_8136.JPG
     caption: Vingt ans 2023
-description: >-
-  Vingt ans et le monde is a performance by Mathilde Monnier based on “Le
-  poids du monde” by Peter Handke. It's a piece that adapts to the
+description: Vingt ans et le monde is a performance by Mathilde Monnier based on
+  “Le poids du monde” by Peter Handke. It's a piece that adapts to the
   particularities of non-theatrical spaces, where the audience can wander
   throughout the show.
 credits: |-
