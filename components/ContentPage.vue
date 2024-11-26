@@ -371,6 +371,7 @@ onBeforeUnmount(() => {
     padding: 0px;
     max-height: none;
     max-width: none;
+    width: auto;
     font-size: 1.1rem;
     overflow-y: visible;
     margin: 0px;
