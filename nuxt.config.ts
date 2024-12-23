@@ -20,15 +20,11 @@ export default defineNuxtConfig({
     url: "https://mariaclaracastioni.ch/",
     name: "Maria Clara Castioni",
     description:
-      "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
-    defaultLocale: "en", // not needed if you have @nuxtjs/i18n installed
+      "Maria Clara is a scenographer and artist based between Geneva and Lugano. This is a website showcasing her work, including her scenographic projects, exhibitions, and words.",
   },
   app: {
     head: {
       title: "Maria Clara Castioni",
-      htmlAttrs: {
-        lang: "en",
-      },
       charset: "utf-8",
       viewport: "width=device-width",
     },
