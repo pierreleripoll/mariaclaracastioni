@@ -1,6 +1,6 @@
 <template>
   <NuxtLink
-    :to="selected ? '/' : path"
+    :to="path"
     :aria-label="title"
     ref="iconRef"
     :class="classList"
