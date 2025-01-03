@@ -56,9 +56,9 @@
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
               format="avif,webp"
               :src="image.src"
-              sizes="400px md:600px xl:800px"
-              densities="x1 x2 x3"
-              quality="85"
+              sizes="450px md:600px xl:900px"
+              densities="x1 x2"
+              quality="90"
               loading="lazy"
               :img-attrs="{
                 class: 'project-image',

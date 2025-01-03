@@ -52,9 +52,9 @@ useSeoMeta({
   ogTitle: "Maria Clara Castioni",
   ogImage: "/android-chrome-192x192.png",
   description:
-    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
+    "Maria Clara Castioni's personal website showcasing her work, including her scenographic projects, exhibitions, and words.",
   ogDescription:
-    "Maria Clara Castioni's work presentation, including her scenographic projects, exhibitions, and words.",
+    "Maria Clara Castioni's personal website showcasing her work, including her scenographic projects, exhibitions, and words.",
 });
 
 useHead({
