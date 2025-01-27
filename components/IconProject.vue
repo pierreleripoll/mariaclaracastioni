@@ -138,8 +138,8 @@ const moveIcon = () => {
 };
 
 const resize = () => {
-  const w = window.innerWidth,
-    h = window.innerHeight;
+  const w = document.documentElement.clientWidth || 0;
+  const h = document.documentElement.clientHeight || 0;
   windowWidth.value = w;
   windowHeight.value = h;
 
@@ -196,13 +196,15 @@ onMounted(() => {
 
 .project-icon.selected {
   transition: filter 0.2s, transform 1s ease-in-out;
-  transform: translate(-50vw, calc(50vh - 8px)) translateY(-100%) !important;
+  /* main container is limited to 1500px and there's a 30px horizontal padding */
+  transform: translate(calc(max(-750px, -50vw + 30px)), calc(50vh - 8px))
+    translateY(-100%) !important;
   z-index: 100;
 }
 
 .project-icon.selected:has(div) {
   transform: translate(
-    calc(-50vw + 1.2em),
+    calc(max(-750px, -50vw) + 30px + 1.2rem),
     calc(100vh - 50vh - 100% - 1.2em)
   ) !important;
 }

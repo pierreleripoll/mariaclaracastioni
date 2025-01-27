@@ -2,7 +2,7 @@
   <div class="app">
     <NuxtRouteAnnouncer />
 
-    <div class="container">
+    <div id="container" class="container">
       <div class="header section">
         <Navbar>
           <template v-slot:icons>
@@ -146,6 +146,7 @@ body {
   margin-top: -8px;
   padding: 1em 2em;
   text-align: start;
+  /* be carefull if changing the max width needs to change the translate value for the selected icon */
   max-width: 1500px;
   margin: auto;
   height: 100%;
@@ -194,8 +195,9 @@ a:hover {
 }
 
 .icons-container {
-  top: 50%;
-  left: 0;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   z-index: 0;
 }
 

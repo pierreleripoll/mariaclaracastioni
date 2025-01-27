@@ -38,7 +38,8 @@
             :class="`navbar-link ${
               route.path.startsWith('/words') ? 'router-link-active' : ''
             }`"
-            >Words
+          >
+            Words
           </NuxtLink>
         </li>
         <li
@@ -51,7 +52,8 @@
             :class="`navbar-link ${
               route.path.startsWith('/about') ? 'router-link-active' : ''
             }`"
-            >About
+          >
+            About
           </NuxtLink>
         </li>
       </ul>
@@ -246,6 +248,14 @@ onMounted(() => {
 
 .menu-button {
   display: none;
+}
+
+.navbar:deep(h1),
+.navbar:deep(h2) {
+  margin: 0;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 .navbar {
