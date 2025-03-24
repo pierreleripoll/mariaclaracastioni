@@ -15,10 +15,12 @@ images:
   - src: /uploads/quelquepartenrevoiretdire/03_Capture d’écran 2023-05-25 à
       18.54.55.png
     caption: quelque part entre voir et dire 2023
-description: "*quelque part entre voir et dire* is an essay about the link
-  between language and space. This memoir examines those accidental micro-events
-  that manifest themselves in everyday places, awakening hauntings and
-  triggering new narrative forms. The project is accompanied by a series of
-  videos documenting the transposition of these micro-events on a white wall."
+description: "*[quelque part entre voir et
+  dire](https://www.manufacture.ch/download/docs/jpbydhh2.pdf/Journal%20de%20la\
+  %20recherche%20n°5.pdf)* is an essay about the link between language and
+  space. This memoir examines those accidental micro-events that manifest
+  themselves in everyday places, awakening hauntings and triggering new
+  narrative forms. The project is accompanied by a series of videos documenting
+  the transposition of these micro-events on a white wall."
 credits: RESEARCH PROJECT
 ---
