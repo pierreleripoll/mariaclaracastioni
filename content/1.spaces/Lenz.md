@@ -28,8 +28,8 @@ description: Lenz is a play based on the homonymous novel by Georg Büchner. Len
   with the existing space, reproducing certain elements of the auditorium and
   blurring the line between the real and the fake.
 credits: |-
-  SCENOGRAPHY, ADAPTATION AND DRAMATURGY
-  CO-CREATED WITH ELÉONORE BONAH (DIRECTION)
+  SCENOGRAPHY, ADAPTATION, DRAMATURGY: MARIA CLARA CASTIONI
+  DIRECTION, ADAPTATION, DRAMATURGY: ELÉONORE BONAH
   ACTING: LUNA DESMEULES + ANNE TISMER
   LIGHT DESIGN: ÉDOUARD HÜGLI
   CREATED AT LA MANUFACTURE, LAUSANNE
