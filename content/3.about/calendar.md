@@ -1,21 +1,19 @@
 ---
 title: Calendar
 credits: >-
-  Next :
-  \
+  Next : \
 
-  [LENZ, Centre Dramatique National Orléans, 18.03 - 19.03 2024](http://www.cdn-orleans.com/decouvrir/saison-2425/lenz-eleonore-bonah-maria-clara-castioni)
-  \
-
-  [LENZ, Théâtre de Vidy, 01.04 -10.04 2024](https://vidy.ch/fr/saison/)
-  \
+  [LENZ, Théâtre de Vidy, 01.04 -10.04 2024](https://vidy.ch/fr/saison/) \
 
   \
 
-  Past :
-  \
+  Past : \
 
-  [LENZ, Comédie de Genève, 06.11 - 17.11 2024](https://www.comedie.ch/fr/lenz-productions)
+  [LENZ, Centre Dramatique National Orléans, 18.03 - 19.03 2024](<>) \
+
+  [LENZ, Comédie de Genève, 06.11 - 17.11 2024](https://www.comedie.ch/fr/lenz-productions)\
+
+  NOTTI FUTURE, Biennale Svizzera del Territorio, 05.10.2024[](https://www.biennale.i2a.ch/it/programma)
 navigation:
   order: 1
 ---
