@@ -1,8 +1,10 @@
 ---
 title: Press
 credits: >-
-  [RSI - Turné,
-  11.24](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)\
+  [RTS - Vertigo,
+  04.25](https://www.rts.ch/audio-podcast/2025/audio/de-lenz-a-cyrano-le-theatre-classique-revisite-par-des-femmes-28841105.html)\
+
+  [](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)[RSI - Turné, 11.24](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)\
 
   [Le Temps, 11.24](https://www.letemps.ch/culture/a-la-comedie-de-geneve-les-jeunes-eleonore-bonah-et-maria-clara-castioni-plongent-dans-la-cour-des-grands)\
 
