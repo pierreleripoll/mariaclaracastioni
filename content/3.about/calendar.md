@@ -13,7 +13,7 @@ credits: >-
 
   [LENZ, Comédie de Genève, 06.11 - 17.11 2024](https://www.comedie.ch/fr/lenz-productions)[](https://www.biennale.i2a.ch/it/programma)\
 
-  [NOTTI FUTURE, Biennale Svizzera del territorio, Lugano, 05.10.2024](<>)
+  [NOTTI FUTURE, Biennale Svizzera del territorio, Lugano, 05.10.2024](https://www.biennale.i2a.ch/it/programma)[](https://www.biennale.i2a.ch/it/programma)
 navigation:
   order: 1
 ---
