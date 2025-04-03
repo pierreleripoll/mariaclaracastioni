@@ -24,11 +24,11 @@ description: Vingt ans et le monde is a performance by Mathilde Monnier based on
   particularities of non-theatrical spaces, where the audience can wander
   throughout the show.
 credits: |-
-  SCENOGRAPHY
-  DIRECTION & CHOREOGRAPHY: MATHILDE MONNIER
+  SCENOGRAPHY, COSTUMES: MARIA CLARA CASTIONI
+  DIRECTION, CHOREOGRAPHY: MATHILDE MONNIER
   ASSISTANT: MARTIN REINARTZ
   WITH: JESSICA ALLEMANN, ALINA ARSHI, YANN HERMENJAT
-  TEXT AND DRAMATURGY: STÉPHANE BOUQUET
+  TEXT, DRAMATURGY: STÉPHANE BOUQUET
   CREATED AT LA MANUFACTURE, LAUSANNE
   Ph ©AlinePaley
 ---
