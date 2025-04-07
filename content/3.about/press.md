@@ -1,18 +1,22 @@
 ---
 title: Press
 credits: >-
-  [RTS - Vertigo,
-  04.25](https://www.rts.ch/audio-podcast/2025/audio/de-lenz-a-cyrano-le-theatre-classique-revisite-par-des-femmes-28841105.html)\
+  [Cult.news,
+  04.2025](https://cult.news/scenes/theatre/lenz-le-texte-physique-dune-folie-tendre-a-vidy/)\
 
-  [](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)[RSI - Turné, 11.24](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)\
+  [Le Courrier, 04.2025](https://vidy.ch/wp-content/uploads/2025/04/legarement-en-partage-le-courrier-lecourrierch.pdf)\
 
-  [Le Temps, 11.24](https://www.letemps.ch/culture/a-la-comedie-de-geneve-les-jeunes-eleonore-bonah-et-maria-clara-castioni-plongent-dans-la-cour-des-grands)\
+  [RTS - Vertigo, 04.2025](https://www.rts.ch/audio-podcast/2025/audio/de-lenz-a-cyrano-le-theatre-classique-revisite-par-des-femmes-28841105.html)\
 
-  [RSI - Cultura, 10.24](https://www.rsi.ch/cultura/arte/Arti-performative-in-città-per-abitare-meglio-lo-spazio-comune--2314749.html)\
+  [](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)[RSI - Turné, 11.2024](https://www.rsi.ch/play/tv/redirect/detail/2307489?startTime=1544)\
 
-  [RSI - Charlot, 10.24](https://www.rsi.ch/rete-due/programmi/cultura/charlot/Corpo-performance-e-spazio-urbano--2264651.html)\
+  [Le Temps, 11.2024](https://vidy.ch/wp-content/uploads/2025/03/lenz-le-temps.pdf)\
 
-  [Swiss-Architects, 10.24](https://www.swiss-architects.com/en/architecture-news/gefunden/die-zukunft-wieder-in-die-hand-nehmen)
+  [RSI - Cultura, 10.2024](https://www.rsi.ch/cultura/arte/Arti-performative-in-città-per-abitare-meglio-lo-spazio-comune--2314749.html)\
+
+  [RSI - Charlot, 10.2024](https://www.rsi.ch/rete-due/programmi/cultura/charlot/Corpo-performance-e-spazio-urbano--2264651.html)\
+
+  [Swiss-Architects, 10.2024](https://www.swiss-architects.com/en/architecture-news/gefunden/die-zukunft-wieder-in-die-hand-nehmen)[](https://www.swiss-architects.com/en/architecture-news/gefunden/die-zukunft-wieder-in-die-hand-nehmen)
 navigation:
   order: 2
 ---
