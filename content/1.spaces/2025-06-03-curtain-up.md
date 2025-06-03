@@ -32,7 +32,7 @@ description: "*Curtain up!* is a urban scenography workshop that interrogates
   by a final performative action open to the public."
 credits: |-
   \
-  DOWNLOAD PDF\
   WHERE: LUGANO\
-  WHEN: 05-11.09.2025
+  WHEN: 05-11.09.2025\
+  DOWNLOAD PDF
 ---
