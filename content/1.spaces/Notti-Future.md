@@ -44,9 +44,7 @@ description: >-
 
   During Biennale Svizzera del Territorio 2024, Notti Future took the public through several car parks, revealed by the performative interventions of a lot of characters, blurring the line between reality and fiction.
 credits: >-
-  \
-
-  *[Watch the movie here](https://www.youtube.com/watch?v=OmK6kZOL_Fk)*\
+  *[Watch the movie here](https://www.youtube.com/watch?v=OmK6kZOL_Fk)*
 
   CONCEPT, DIRECTION, DRAMATURGY: MARIA CLARA CASTIONI
 
@@ -56,7 +54,7 @@ credits: >-
 
   IN COLLABORATION WITH ROBERTO ZANCAN, THE DEPARTMENT OF INTERIOR ARCHITECTURE HEAD - GENÈVE (HES-SO) AND THE STUDENTS: ALINE BLANC, STÉPHANIE HEMIDI, TOYINE HUMAIR, CAROLINA RODRIGUES AND NINA WALLIMANN
 
-  AND WITH: GIONA CANEVASCINI, MINNA COMPOINT, RAJEN GUPTA, ANDREA PRELLI 
+  AND WITH: GIONA CANEVASCINI, MINNA COMPOINT, RAJEN GUPTA, ANDREA PRELLI
 
   SPECIAL THANKS TO: ISTITUTO INTERNAZIONALE DI ARCHITETTURA, ELÉONORE BONAH, TIZIANO SCHÜRCH, ENEA ZUCCHETTI
 
