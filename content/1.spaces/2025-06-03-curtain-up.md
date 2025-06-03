@@ -31,7 +31,7 @@ description: "*Curtain up!* is a urban scenography workshop that interrogates
   to that of public space. The construction of the curtain will be accompanied
   by a final performative action open to the public."
 credits: |-
-  /
+  
   WHERE: LUGANO
   WHEN: 05-11.09.2025
   DOWNLOAD PDF
