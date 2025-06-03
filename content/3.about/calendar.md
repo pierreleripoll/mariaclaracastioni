@@ -3,11 +3,13 @@ title: Calendar
 credits: >-
   Next : \
 
-  [LENZ, Théâtre de Vidy, 01.04 -10.04 2024](https://vidy.ch/fr/saison/) \
+  CURTAIN UP!, Lugano, 05.09 - 11.09.2025\
 
   \
 
   Past : \
+
+  [LENZ, Théâtre de Vidy, 01.04 - 10.04 2024](<>) \
 
   [LENZ, Centre Dramatique National Orléans, 18.03 - 19.03 2024](<>) \
 
