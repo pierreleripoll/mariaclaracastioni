@@ -2,7 +2,7 @@
 title: Curtain up!
 year: "2025"
 navigation:
-  order: 0
+  order: 14
 icon: /uploads/curtain-up.png
 images:
   - src: /uploads/curtain-up_apply-now.jpg
