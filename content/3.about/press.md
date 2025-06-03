@@ -1,8 +1,11 @@
 ---
 title: Press
 credits: >-
-  [Cult.news,
-  04.2025](https://cult.news/scenes/theatre/lenz-le-texte-physique-dune-folie-tendre-a-vidy/)\
+  L'Œil
+  d'Olivier[](https://www.loeildolivier.fr/2025/04/une-journee-au-feminin-au-vidy-lausanne/),
+  04.2025\
+
+  [Cult.news, 04.2025](https://cult.news/scenes/theatre/lenz-le-texte-physique-dune-folie-tendre-a-vidy/)\
 
   [Le Courrier, 04.2025](https://vidy.ch/wp-content/uploads/2025/04/legarement-en-partage-le-courrier-lecourrierch.pdf)\
 
