@@ -7,7 +7,7 @@ icon: /uploads/D'une dérive.png
 images:
   - src: /uploads/article.jpg
     caption: D'une dérive 2024
-  - src: /uploads/couvv.jpg
+  - src: /uploads/couvv-grande.jpeg
     caption: D'une dérive 2024
 description: D’une dérive is a contribution for the PAV living room magazine, «
   Imaginaires en situations ». PAV living room is a research project that
