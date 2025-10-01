@@ -5,21 +5,21 @@ navigation:
   order: 20
 icon: /uploads/Genius loci.png
 images:
-  - src: /uploads/geniusloci/01_DSCF5138-12-12-1.jpg
+  - src: /uploads/01_dscf5138-12-12-1-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/02_DSCF5139-13-13-1.jpg
+  - src: /uploads/02_dscf5139-13-13-1-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/03_DSCF5098-4-4-3.jpg
+  - src: /uploads/03_dscf5098-4-4-3-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/04_DSCF5180-28-28.jpg
+  - src: /uploads/04_dscf5180-28-28-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/05_DSCF5078-1-1.jpg
+  - src: /uploads/05_dscf5078-1-1-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/06_DSCF5129-9-9.jpg
+  - src: /uploads/06_dscf5129-9-9-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/07_DSCF5148-14-14.jpg
+  - src: /uploads/07_dscf5148-14-14-grande.jpeg
     caption: Genius loci 2022
-  - src: /uploads/geniusloci/08_DSCF5168-20-20.jpg
+  - src: /uploads/08_dscf5168-20-20-grande.jpeg
     caption: Genius loci 2022
 description: Genius loci is a personal project created for the collective
   exhibition Le génie du lieu, in a former pharmacy that has been transformed
