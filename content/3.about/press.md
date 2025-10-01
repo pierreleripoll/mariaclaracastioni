@@ -1,8 +1,10 @@
 ---
 title: Press
 credits: >-
-  [L'Oeil d'Olivier,
-  04.2025](https://www.loeildolivier.fr/2025/04/une-journee-au-feminin-au-vidy-lausanne/)\
+  [RSI - Cultura,
+  09.2025](https://www.rsi.ch/cultura/arte/Curtain-Up--3106811.html) \
+
+  [L'Oeil d'Olivier, 04.2025](https://www.loeildolivier.fr/2025/04/une-journee-au-feminin-au-vidy-lausanne/)\
 
   [Cult.news, 04.2025](https://cult.news/scenes/theatre/lenz-le-texte-physique-dune-folie-tendre-a-vidy/)\
 
