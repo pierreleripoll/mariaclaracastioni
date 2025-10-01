@@ -5,25 +5,25 @@ navigation:
   order: 18
 icon: /uploads/Leggera.png
 images:
-  - src: /uploads/leggera/01_68AAB991-36EC-4B2C-A131-A2AA46840B32.JPG
+  - src: /uploads/01_68aab991-36ec-4b2c-a131-a2aa46840b32.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/02_5B31C-7FE7-4AF0-ABB0-790FEE2603F9.JPG
+  - src: /uploads/02_5b31c-7fe7-4af0-abb0-790fee2603f9.jpeg
     caption: Leggera 2023
-  - src: /uploads/img_7128.jpg
+  - src: /uploads/img_7128.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/03_manufacture26.jpg
+  - src: /uploads/03_manufacture26.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/04_manufacture33.jpg
+  - src: /uploads/04_manufacture33-grande.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/05_manufacture8.jpg
+  - src: /uploads/05_manufacture8.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/06_manufacture40.jpg
+  - src: /uploads/06_manufacture40.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/07_C19FF5C-0816-433E-94B9-B3EEA457687E.jpeg
+  - src: /uploads/07_c19ff5c-0816-433e-94b9-b3eea457687e.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/08_3CFECB35-14C7-4268-B0B2-49C07EB24995.jpeg
+  - src: /uploads/08_3cfecb35-14c7-4268-b0b2-49c07eb24995.jpeg
     caption: Leggera 2023
-  - src: /uploads/leggera/09_3A784DB-0C9A-4112-984E-66E0A39EE001.JPG
+  - src: /uploads/09_3a784db-0c9a-4112-984e-66e0a39ee001.jpeg
     caption: Leggera 2023
 description: Leggera is an event scenography practice based on the reuse and
   revaluation of textiles. Ephemeral and sustainable, it proposes informal and
