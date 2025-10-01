@@ -3,36 +3,57 @@ title: Curtain up!
 year: "2025"
 navigation:
   order: 14
-icon: /uploads/curtain-up.png
+icon: /uploads/curtainup-.png
 images:
-  - src: /uploads/curtain-up_apply-now.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now2.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now3.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now4.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now5.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now6.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now7.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now8.jpg
-    caption: Curtain-up!_apply-now
-  - src: /uploads/curtain-up_apply-now9.jpg
-    caption: Curtain-up!_apply-now
-description: "*Curtain up!* is a urban scenography workshop that interrogates
-  the scenic potential of certain urban spaces, activating the gaze and
-  proposing a different perspective through the device of the theatre curtain.
-  During the week, the curtain will be explored in its physical and symbolic
-  dimensions, in order to project it from the traditional context of the stage
-  to that of public space. The construction of the curtain will be accompanied
-  by a final performative action open to the public."
-credits: |-
-  
-  WHERE: LUGANO
-  WHEN: 05-11.09.2025
-  DOWNLOAD PDF
+  - src: /uploads/01.jpeg
+    caption: Alice Moor
+  - caption: Maria Clara Castioni
+    src: /uploads/02.jpeg
+  - src: /uploads/04.jpeg
+    caption: Alice Moor
+  - src: /uploads/08.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/03.jpeg
+    caption: Alice Moor
+  - src: /uploads/05.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/06.jpeg
+    caption: Alice Moor
+  - src: /uploads/07.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/11.jpeg
+    caption: Alice Moor
+  - src: /uploads/10.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/13.jpeg
+    caption: Alice Moor
+  - src: /uploads/09.jpeg
+    caption: Lisa Virgillito
+  - src: /uploads/15.jpeg
+    caption: Alice Moor
+  - src: /uploads/14.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/16.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/12.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/17.jpeg
+    caption: Maria Clara Castioni
+description: >-
+  *Curtain up!* is an urban scenography workshop that explores some of the
+  underused public spaces in the city of Lugano.
+
+  In a social context that struggles for the creation of spaces dedicated to independent culture, the workshop uses the scenographic device of the curtain and poetic text as tools for observation, critique, and action.\
+
+  From September 5 to 10, 2025, participants explored and mapped a variety of urban spaces, some of which were later crossed and animated by a specially made curtain.
+credits: >-
+  ORGANIZED AND CURATED BY MARIA CLARA CASTIONI\
+
+  WITH ALINE BLANC, MARIA CLARA CASTIONI, ELIA FIDANZA, CRUZ FRANCO NAZAR, LISA VIRGILLITO\
+
+  GUESTS : [ASSOCIAZIONE IDRA](https://associazioneidra.ch), [RICCARDO BLUMER](https://www.riccardo-blumer.com), [MARGHERITA PALLI](https://www.margheritapalli.it), [PAV LIVINGROOM](https://pavlivingroom.ch), [TIZIANO SCHÜRCH](https://www.studio-ts.ch)\
+
+  WITH THE SUPPORT OF CITTÀ DI LUGANO, INFOGIOVANI\
+
+  PH ©ALICEMOOR / ©MARIACLARACASTIONI
 ---
