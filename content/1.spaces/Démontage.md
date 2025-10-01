@@ -5,17 +5,15 @@ navigation:
   order: 19
 icon: /uploads/Démontage.png
 images:
-  - src: /uploads/demontage/01_Projet-Astroland©AlinePaley-7055.jpg
+  - src: /uploads/01_projet-astroland©alinepaley-7055.jpeg
     caption: Démontage 2022
-  - src: /uploads/demontage/02_Projet-Astroland©AlinePaley-7053.jpg
+  - src: /uploads/02_projet-astroland©alinepaley-7053.jpeg
     caption: Démontage 2022
-  - src: /uploads/demontage/03_Projet-Astroland©AlinePaley-7108.jpg
+  - src: /uploads/03_projet-astroland©alinepaley-7108.jpeg
     caption: Démontage 2022
-  - src: /uploads/demontage/04_Projet-Astroland©AlinePaley-7126 copie.jpg
+  - src: /uploads/04_projet-astroland©alinepaley-7126-copie.jpeg
     caption: Démontage 2022
-  - src: /uploads/demontage/05_Projet-Astroland©AlinePaley-7125.jpg
-    caption: Démontage 2022
-  - src: /uploads/demontage/06_Capture d’écran 2022-07-31 à 16.18.44.png
+  - src: /uploads/06_capture-d’écran-2022-07-31-à-16.18.44.jpg
     caption: Démontage 2022
 description: "Démontage is a play about the closure of an amusement park. The
   performers have stolen one of the leftovers from the park: an old hot dog
