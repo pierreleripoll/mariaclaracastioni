@@ -5,20 +5,22 @@ navigation:
   order: 16
 icon: /uploads/Lenz.png
 images:
-  - src: /uploads/lenz/01_MG_8986_(c)-nicolas-brodard.jpg
+  - src: /uploads/01_mg_8986_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/02_MG_8994_(c)-nicolas-brodard.jpg
+  - src: /uploads/02_mg_8994_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/03_R7A0323_(c)-nicolas-brodard.jpg
+  - src: /uploads/03_r7a0323_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/04_MG_9035_(c)-nicolas-brodard.jpg
+  - src: /uploads/04_mg_9035_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/05_MG_9043_(c)-nicolas-brodard.jpg
+  - src: /uploads/20241105_lenz_ge_comedie©dougados_magal_mg_0004.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/06_MG_9057_(c)-nicolas-brodard.jpg
+  - src: /uploads/05_mg_9043_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
-  - src: /uploads/lenz/07_MG_8975_(c)-nicolas-brodard.jpg
+  - src: /uploads/06_mg_9057_-c-nicolas-brodard.jpeg
     caption: Lenz 2023
+  - src: /uploads/dsc_0012-2.jpeg
+    caption: Maria Clara Castioni
 description: Lenz is a play based on the homonymous novel by Georg Büchner. Lenz
   is a fugitive. He walks to flee a torn world, at once too big and too small.
   His lucidity turns to madness, and this madness into disenchantment. In this
@@ -33,5 +35,5 @@ credits: |-
   ACTING: LUNA DESMEULES + ANNE TISMER
   LIGHT DESIGN: ÉDOUARD HÜGLI
   CREATED AT LA MANUFACTURE, LAUSANNE
-  Ph ©NicolasBrodard
+  Ph ©NicolasBrodard / ©MagaliDougados
 ---
