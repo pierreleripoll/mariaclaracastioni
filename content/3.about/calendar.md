@@ -1,13 +1,13 @@
 ---
 title: Calendar
 credits: >-
-  Next: \
-
-  CURTAIN UP!, Lugano, 05.09 - 11.09.2025\
+  Next:
 
   \
 
-  Past: \
+  Past:
+
+  CURTAIN UP!, Lugano, 05.09 - 11.09.2025 \
 
   [LENZ, Théâtre de Vidy, 01.04 - 10.04 2024](<>) \
 
