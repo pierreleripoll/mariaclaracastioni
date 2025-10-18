@@ -20,13 +20,12 @@ description: "Démontage is a play about the closure of an amusement park. The
   stand. They take it to their hangar and try to put the last pieces back
   together. The past of the fiction and the present of the action resonate in
   the bare space of the theatre."
-credits: |-
-  SCENOGRAPHY, COREOGRAPHY, DRAMATURGY: MARIA CLARA CASTIONI
-  DIRECTION, COREOGRAPHY, DRAMATURGY:  ELÉONORE BONAH\
-  TUTORING: CHRISTIAN GEFFROY SCHLITTLER
-  TEXT: ARTHUR BRÜGGER
-  PERFORMING: RAPHAËL GILLIOZ + LAURE LEHMANN + ELISA MATTHEY
-  LIGHT DESIGN: ÉDOUARD HÜGLI
-  CREATED AT THEATRE LES HALLES, SIERRE
-  Ph ©AlinePaley
+credits: |
+  A PROJECT BY ELÉONORE BONAH AND MARIA CLARA CASTIONI 
+  TUTORING: CHRISTIAN GEFFROY SCHLITTLER 
+  TEXT: ARTHUR BRÜGGER 
+  WITH: RAPHAËL GILLIOZ + LAURE LEHMANN + ELISA MATTHEY 
+  LIGHT DESIGN: ÉDOUARD HÜGLI 
+  THEATRE LES HALLES, SIERRE 
+  PH ©ALINEPALEY
 ---
