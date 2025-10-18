@@ -15,16 +15,16 @@ images:
     caption: Vingt ans 2023
   - src: /uploads/08_img_8136-grande.jpeg
     caption: Vingt ans 2023
-description: Vingt ans et le monde is a performance by Mathilde Monnier based on
-  “Le poids du monde” by Peter Handke. It's a piece that adapts to the
-  particularities of non-theatrical spaces, where the audience can wander
-  throughout the show.
-credits: |-
-  DIRECTION, CHOREOGRAPHY: MATHILDE MONNIER
-  ASSISTANT: MARTIN REINARTZ
-  WITH: JESSICA ALLEMANN, ALINA ARSHI, YANN HERMENJAT
-  SCENOGRAPHY, COSTUMES: MARIA CLARA CASTIONI
-  TEXT, DRAMATURGY: STÉPHANE BOUQUET
-  CREATED AT LA MANUFACTURE, LAUSANNE
-  Ph ©AlinePaley
+description: Scenography and costumes for the performance Vingt ans et le monde
+  by Mathilde Monnier. The display adapts to the particularities of
+  non-theatrical spaces, where the audience can wander throughout the show.
+credits: |
+  DIRECTION, CHOREOGRAPHY: MATHILDE MONNIER 
+  ASSISTANT: MARTIN REINARTZ 
+  WITH: JESSICA ALLEMANN, ALINA ARSHI, YANN HERMENJAT 
+  SCENOGRAPHY, COSTUMES: MARIA CLARA CASTIONI 
+  TEXT : LE POIDS DU MONDE, PETER HANDKE 
+  DRAMATURGY: STÉPHANE BOUQUET 
+  LA MANUFACTURE, LAUSANNE 
+  PH ©ALINEPALEY
 ---
