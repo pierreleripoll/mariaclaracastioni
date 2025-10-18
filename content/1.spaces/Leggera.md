@@ -30,7 +30,7 @@ description: Leggera is an event scenography practice based on the reuse and
   elegant installations, in an attempt to reduce volume and material waste. As
   well as an encounter between a designer and a scenographer, Leggera is an
   evolving laboratory for creative experimentation.
-credits: |-
-  IN COLLABORATION WITH EMMA CASELLA
-  Ph ©NoaChevalley
+credits: |
+  A PROJECT BY EMMA CASELLA AND MARIA CLARA CASTIONI
+  PH ©NOACHEVALLEY
 ---
