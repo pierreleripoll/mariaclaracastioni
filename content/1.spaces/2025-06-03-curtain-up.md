@@ -2,7 +2,7 @@
 title: Curtain up!
 year: "2025"
 navigation:
-  order: 14
+  order: 13
 icon: /uploads/curtainup-.png
 images:
   - src: /uploads/01.jpeg
@@ -47,11 +47,11 @@ description: >-
 
   From September 5 to 10, 2025, participants explored and mapped a variety of urban spaces, some of which were later crossed and animated by a specially made curtain.
 credits: >-
-  ORGANIZED AND CURATED BY MARIA CLARA CASTIONI
+  A PROJECT BY MARIA CLARA CASTIONI
 
-  WITH ALINE BLANC, MARIA CLARA CASTIONI, ELIA FIDANZA, CRUZ FRANCO NAZAR, LISA VIRGILLITO
+  WITH: ALINE BLANC, MARIA CLARA CASTIONI, ELIA FIDANZA, CRUZ FRANCO NAZAR, LISA VIRGILLITO
 
-  GUESTS : [ASSOCIAZIONE IDRA](https://associazioneidra.ch), [RICCARDO BLUMER](https://www.riccardo-blumer.com), [MARGHERITA PALLI](https://www.margheritapalli.it), [PAV LIVINGROOM](https://pavlivingroom.ch), [TIZIANO SCHÜRCH](https://www.studio-ts.ch)
+  GUESTS: [ASSOCIAZIONE IDRA](https://associazioneidra.ch), [RICCARDO BLUMER](https://www.riccardo-blumer.com), [MARGHERITA PALLI](https://www.margheritapalli.it), [PAV LIVINGROOM](https://pavlivingroom.ch), [TIZIANO SCHÜRCH](https://www.studio-ts.ch)
 
   WITH THE SUPPORT OF CITTÀ DI LUGANO, INFOGIOVANI
 
