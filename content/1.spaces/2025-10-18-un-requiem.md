@@ -13,17 +13,17 @@ images:
     caption: Maria Clara Castioni
   - src: /uploads/1t2a6885-2-grande.jpeg
     caption: Maria Clara Castioni
-  - src: /uploads/1t2a6874-2-grande.jpeg
-    caption: Maria Clara Castioni
-  - src: /uploads/img_3480-grande.jpeg
-    caption: Maria Clara Castioni
-  - src: /uploads/1t2a6856-grande.jpeg
-    caption: Maria Clara Castioni
   - src: /uploads/img_3481-copie-grande.jpeg
     caption: Maria Clara Castioni
   - src: /uploads/mail__niz0544-grande.jpeg
     caption: Heidi Arens
+  - src: /uploads/1t2a6874-2-grande.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/1t2a6856-grande.jpeg
+    caption: Maria Clara Castioni
   - src: /uploads/capture-grande.jpeg
+    caption: Maria Clara Castioni
+  - src: /uploads/img_3480-grande.jpeg
     caption: Maria Clara Castioni
   - src: /uploads/1t2a6881-2-grande.jpeg
     caption: Maria Clara Castioni
