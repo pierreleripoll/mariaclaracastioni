@@ -1,6 +1,0 @@
-User-agent: *
-Disallow: /api/_content
-Disallow: /_nuxt
-Disallow: /admin
-
-Sitemap: https://mariaclaracastioni.ch/sitemap.xml

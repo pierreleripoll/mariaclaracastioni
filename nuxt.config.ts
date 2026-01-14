@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     documentDriven: true,
   },
   robots: {
-    enabled: true,
+    disallow: ["/api/_content", "/_nuxt", "/admin"],
   },
   sourcemap: true,
   nitro: {
@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     name: "Maria Clara Castioni",
     description:
       "Maria Clara is a scenographer and artist based between Geneva and Lugano. This is a website showcasing her work, including her scenographic projects, exhibitions, and words.",
+  },
+  sitemap: {
+    sources: ["/api/__sitemap__/urls"],
   },
   app: {
     head: {
