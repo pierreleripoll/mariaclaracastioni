@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   content: {
     documentDriven: true,
   },
+  robots: {
+    enabled: true,
+  },
   sourcemap: true,
   nitro: {
     compressPublicAssets: true,
