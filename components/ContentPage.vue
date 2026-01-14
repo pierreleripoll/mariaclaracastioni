@@ -47,24 +47,17 @@
           <div
             v-for="(image, index) in images"
             :key="image.caption"
-            class="image-wrapper"
             :data-index="index"
             :path="image.src"
+            class="image-wrapper"
             ref="imageWrappers"
           >
-            <NuxtPicture
+            <ThumbhashImage
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
-              format="avif,webp"
-              :src="image.src"
+              :image="image"
+              format="webp"
               sizes="450px md:600px xl:900px"
-              densities="x1 x2"
               quality="90"
-              loading="lazy"
-              :img-attrs="{
-                class: 'project-image',
-                alt: image.caption,
-                loading: 'lazy',
-              }"
             />
           </div>
         </div>
@@ -260,6 +253,11 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+:deep(picture) {
+  width: 100%;
+  height: 100%;
 }
 
 :deep(p) {

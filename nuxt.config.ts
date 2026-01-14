@@ -1,6 +1,12 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxt/content", "@nuxt/image", "@nuxt/fonts", "@nuxtjs/seo"],
+  modules: [
+    "@nuxt/content",
+    "@nuxt/image",
+    "@nuxt/fonts",
+    "@nuxtjs/seo",
+    "@unlazy/nuxt",
+  ],
   content: {
     documentDriven: true,
   },
