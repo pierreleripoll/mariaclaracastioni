@@ -1,6 +1,6 @@
 ---
 title: Vingt ans
-year: '2023'
+year: "2023"
 navigation:
   order: 17
 icon: /uploads/Vingt ans.png
@@ -33,14 +33,16 @@ images:
     ratio: 0.66640625
     thumbhash: ISkKDQCLWXSX9mi4mVe4mJmFL/b3
     thumbhashRatio: 0.7142857142857143
-  - src: /uploads/08_img_8136-grande.jpeg
+  - src: /uploads/08_img_8136.jpg
     caption: Vingt ans 2023
     width: 960
     height: 1280
     ratio: 0.75
     thumbhash: ThgKFQRteHB4t4dod4lXZ4lgiQiX
     thumbhashRatio: 0.7142857142857143
-description: 'Scenography and costumes for the performance Vingt ans et le monde by Mathilde Monnier. The display adapts to the particularities of non-theatrical spaces, where the audience can wander throughout the show.'
+description: Scenography and costumes for the performance Vingt ans et le monde
+  by Mathilde Monnier. The display adapts to the particularities of
+  non-theatrical spaces, where the audience can wander throughout the show.
 credits: |
   DIRECTION, CHOREOGRAPHY: MATHILDE MONNIER 
   ASSISTANT: MARTIN REINARTZ 
@@ -51,4 +53,3 @@ credits: |
   LA MANUFACTURE, LAUSANNE 
   PH ©ALINEPALEY
 ---
-
