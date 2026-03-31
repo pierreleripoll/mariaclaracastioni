@@ -1,6 +1,6 @@
 ---
 title: UN REQUIEM
-year: '2025'
+year: "2025"
 navigation:
   order: 14
 icon: /uploads/un-requiem.png
@@ -82,13 +82,16 @@ images:
     ratio: 0.66640625
     thumbhash: 4gcSBQBtiH+Hl4Z3h4eIeBeWnzT1
     thumbhashRatio: 0.7142857142857143
-description: "Scenography for *Un requiem alpestre*, a\_musical performance conceived by Daniele Pintaudi and directed by Olivia Seigne. A reflection on loss, fear, and mourning — but also on life, brotherhood, and hope. Three characters, blending music and song, lead a farewell ceremony through the Alpine landscapes of the German author Georg Büchner."
+description: Set design for *Un requiem alpestre*, a musical performance
+  conceived by Daniele Pintaudi and directed by Olivia Seigne. A reflection on
+  loss, fear, and mourning — but also on life, brotherhood, and hope. Three
+  characters, blending music and song, lead a farewell ceremony through the
+  Alpine landscapes of the German author Georg Büchner.
 credits: |
   A PROJECT BY DANIELE PINTAUDI 
   DIRECTION: OLIVIA SEIGNE
   WITH: VALENTIN FAIVRE, THOMAS JEKER, DANIELE PINTAUDI
-  SCENOGRAPHY: MARIA CLARA CASTIONI 
+  SET DESIGN: MARIA CLARA CASTIONI 
   CENTRE DE CULTURE ABC, LA CHAUX-DE-FONDS
   PH ©MARIACLARACASTIONI / ©HEIDIARENS
 ---
-
