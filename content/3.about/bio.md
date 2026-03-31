@@ -1,7 +1,7 @@
 ---
 title: Bio
 description: >-
-  Maria Clara is a scenographer and artist based between Geneva and Lugano. \
+  Maria Clara is an artist and set designer based between Geneva and Lugano. \
 
   In her research and practice, she explores the tension between intentional and accidental events, focusing on how this dialogue generates unexpected spatial narratives, both in reality as well as in fiction. In particular, she investigates the link between space and words, finding in language an indirect way to create places of imagery.\
 
