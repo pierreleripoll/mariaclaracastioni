@@ -1,7 +1,8 @@
 ---
 title: Press
 credits: >-
-  RSI – Cult+[\
+  [RSI –
+  Cult+](https://www.rsi.ch/play/tv/cult/video/maria-clara-castioni-?urn=urn:rsi:video:3284030)[\
 
   RSI - Cultura, 09.2025](https://www.rsi.ch/cultura/arte/Curtain-Up--3106811.html) \
 
