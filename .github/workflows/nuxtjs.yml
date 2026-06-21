@@ -32,6 +32,10 @@ jobs:
       # Install dependencies
       - run: npm install
 
+      # Regenerate the inlined icon manifest so a changed/added icon is always
+      # picked up, even if it wasn't regenerated locally before pushing.
+      - run: npm run update-icons
+
       # Generate the static site
       - run: |
           NUXT_APP_BASE_URL=/mariaclaracastioni  npx nuxt generate
