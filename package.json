@@ -4,8 +4,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "node scripts/updateImageDimensions.mjs && nuxt generate",
+    "generate": "node scripts/resizeImages.mjs && node scripts/updateImageDimensions.mjs && nuxt generate",
     "preview": "nuxt preview",
+    "resize-images": "node scripts/resizeImages.mjs",
     "update-images": "node scripts/updateImageDimensions.mjs"
   },
   "dependencies": {
@@ -14,7 +15,6 @@
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/seo": "^2.0.0-rc.23",
     "@nuxtjs/sitemap": "^6.1.1",
-    "@unlazy/nuxt": "^1.0.0",
     "axios": "^1.7.2",
     "express": "^4.19.2",
     "gray-matter": "^4.0.3",

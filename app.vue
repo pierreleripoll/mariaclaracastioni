@@ -31,10 +31,10 @@ const { page, layout } = useContent();
 const { contentHead } = useRuntimeConfig().public.content;
 
 const { data: wordsContent } = await useAsyncData("words", () =>
-  queryContent("words").find()
+  queryContent("words").only(["icon", "_path", "title"]).find()
 );
 const { data: spacesContent } = await useAsyncData("spaces", () =>
-  queryContent("spaces").find()
+  queryContent("spaces").only(["icon", "_path", "title"]).find()
 );
 
 const projects = computed(() =>

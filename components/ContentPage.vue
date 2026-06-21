@@ -55,9 +55,10 @@
             <ThumbhashImage
               :class="['project-image', { 'is-hidden': idxImage !== index }]"
               :image="image"
+              :priority="index === 0"
               format="webp"
               sizes="450px md:600px xl:900px"
-              quality="90"
+              quality="80"
             />
           </div>
         </div>

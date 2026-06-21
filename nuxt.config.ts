@@ -5,15 +5,26 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/fonts",
     "@nuxtjs/seo",
-    "@unlazy/nuxt",
   ],
   content: {
     documentDriven: true,
   },
+  image: {
+    quality: 80,
+    densities: [1],
+    format: ["webp"],
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+    },
+  },
   robots: {
     disallow: ["/api/_content", "/_nuxt", "/admin"],
   },
-  sourcemap: true,
+  sourcemap: { server: true, client: false },
   nitro: {
     compressPublicAssets: true,
     prerender: {
