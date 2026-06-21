@@ -9,15 +9,7 @@
     @mouseleave="onMouseLeave"
     @transitionend="onTransitionEnd"
   >
-    <NuxtPicture
-      format="avif,webp,png"
-      v-if="props.icon"
-      :src="props.icon"
-      sizes="70px sm:100px"
-      :width="width"
-      densities="x1 x2"
-      :alt="`${title} Icon`"
-    />
+    <img v-if="iconData" :src="iconData.src" :alt="`${title} Icon`" />
     <div v-else>
       <span>
         {{ title }}
@@ -28,6 +20,7 @@
 
 <script setup lang="ts">
 import { createNoise2D } from "simplex-noise";
+import iconManifest from "~/assets/icons.generated.json";
 
 interface Props {
   icon?: string;
@@ -45,6 +38,14 @@ const hoveredProject = useState<string | undefined>(
 );
 
 const iconRef = ref<HTMLElement | null>(null);
+
+const icons = iconManifest as Record<
+  string,
+  { src: string; w: number; h: number }
+>;
+const iconData = computed(() =>
+  props.icon ? icons[props.icon] : undefined
+);
 
 const category = computed(() => props.path.split("/")[1]);
 const route = useRoute();
@@ -84,10 +85,14 @@ const x = ref(0);
 const y = ref(0);
 
 const style = computed(() => {
+  const sizeVars = iconData.value
+    ? `--icon-w: ${iconData.value.w}px; --icon-h: ${iconData.value.h}px; `
+    : "";
   if (windowWidth.value === 0 || windowHeight.value === 0) {
-    return "opacity: 0;"; // or some default style
+    return sizeVars + "opacity: 0;"; // or some default style
   } else
     return (
+      sizeVars +
       `transform: translate(${x.value - windowWidth.value / 2}px, ${
         y.value - windowHeight.value / 2
       }px) translate(-50%, -50%); ` +
@@ -183,10 +188,8 @@ onMounted(() => {
 
 .project-icon {
   position: absolute;
-  width: 100px;
-  max-height: 145px;
-  min-height: 100px;
-  height: auto;
+  width: calc(var(--icon-w, 100px) * var(--icon-scale, 1));
+  height: calc(var(--icon-h, 141px) * var(--icon-scale, 1));
   top: 50vh;
   left: 50vw;
   display: flex;
@@ -209,14 +212,14 @@ onMounted(() => {
   ) !important;
 }
 
-.project-icon > picture > img {
+.project-icon > img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 .project-icon > div {
   width: 100%;
-  height: 141px;
+  height: 100%;
   border: 1px solid black;
   background-color: white;
   margin: auto;
@@ -237,19 +240,11 @@ onMounted(() => {
 
 @media screen and (max-width: 600px) {
   .project-icon {
-    width: 70px;
-    max-height: 130px;
+    --icon-scale: 0.7;
   }
   .project-icon.selected {
     transform: translate(calc(-50vw + 0.5rem), 50dvh)
       translateY(calc(-100% - 2rem)) !important;
-  }
-
-  .project-icon > div {
-    height: 99px;
-    border: 1px solid black;
-    background-color: white;
-    margin: auto;
   }
 
   .project-icon > div > span {
