@@ -61,25 +61,40 @@ async function resizeOne(filePath, file) {
   return saved;
 }
 
-async function run() {
-  const files = await fs.readdir(uploadsDir);
+// Recursively walk a directory, resizing every eligible image. Many of the
+// heaviest masters live in per-project subfolders (leggera/, geniusloci/,
+// vingtans/, ...), so a flat readdir of the top level would silently skip them.
+async function walk(dir) {
   let totalSaved = 0;
   let count = 0;
 
-  for (const file of files) {
-    const filePath = path.join(uploadsDir, file);
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
     try {
-      const stat = await fs.stat(filePath);
-      if (!stat.isFile()) continue;
-      const saved = await resizeOne(filePath, file);
+      if (entry.isDirectory()) {
+        const sub = await walk(fullPath);
+        totalSaved += sub.totalSaved;
+        count += sub.count;
+        continue;
+      }
+      if (!entry.isFile()) continue;
+      // Pass the path relative to uploadsDir as the display label.
+      const saved = await resizeOne(fullPath, path.relative(uploadsDir, fullPath));
       if (saved > 0) {
         totalSaved += saved;
         count++;
       }
     } catch (err) {
-      console.error(`Error processing ${file}: ${err.message}`);
+      console.error(`Error processing ${entry.name}: ${err.message}`);
     }
   }
+
+  return { totalSaved, count };
+}
+
+async function run() {
+  const { totalSaved, count } = await walk(uploadsDir);
 
   console.log(
     `\nDone. Resized ${count} image(s), saved ${fmt(totalSaved)} total.`

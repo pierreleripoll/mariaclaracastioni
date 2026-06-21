@@ -25,7 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { title } from "process";
 import Navbar from "./components/Navbar.vue";
 const { page, layout } = useContent();
 const { contentHead } = useRuntimeConfig().public.content;
@@ -35,6 +34,15 @@ const { data: wordsContent } = await useAsyncData("words", () =>
 );
 const { data: spacesContent } = await useAsyncData("spaces", () =>
   queryContent("spaces").only(["icon", "_path", "title"]).find()
+);
+
+// Fetch the inlined-icon manifest once for the whole app (served as a static
+// JSON file, not bundled into the JS). IconProject reads the cached result via
+// useNuxtData("icon-manifest") instead of importing it as a module.
+await useAsyncData("icon-manifest", () =>
+  $fetch<Record<string, { src: string; w: number; h: number }>>(
+    "/icons.generated.json"
+  )
 );
 
 const projects = computed(() =>

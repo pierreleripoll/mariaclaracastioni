@@ -16,16 +16,13 @@
     "@nuxt/image": "^1.7.0",
     "@nuxtjs/seo": "^2.0.0-rc.23",
     "@nuxtjs/sitemap": "^6.1.1",
-    "axios": "^1.7.2",
-    "express": "^4.19.2",
-    "gray-matter": "^4.0.3",
-    "listhen": "^1.7.2",
     "nuxt": "^3.13.2",
-    "sharp": "^0.33.5",
     "simplex-noise": "^4.0.3",
     "thumbhash": "^0.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8"
+    "@types/node": "^20.14.8",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.33.5"
   }
 }

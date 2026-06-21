@@ -9,7 +9,10 @@ const contentDirs = [
   path.resolve("content/3.about"),
 ];
 
-const outFile = path.resolve("assets/icons.generated.json");
+// Written to public/ so it is served as a standalone, cacheable static asset
+// fetched once at runtime — rather than imported as a JS module, which would
+// bundle ~115 KB of base64 data-URIs into the client chunk and parse it as JS.
+const outFile = path.resolve("public/icons.generated.json");
 
 // Icons are sized by a blend between two strategies (both preserve each icon's
 // aspect ratio — they only change its scale). Transparent padding is trimmed

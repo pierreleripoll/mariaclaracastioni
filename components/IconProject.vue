@@ -20,7 +20,6 @@
 
 <script setup lang="ts">
 import { createNoise2D } from "simplex-noise";
-import iconManifest from "~/assets/icons.generated.json";
 
 interface Props {
   icon?: string;
@@ -39,12 +38,13 @@ const hoveredProject = useState<string | undefined>(
 
 const iconRef = ref<HTMLElement | null>(null);
 
-const icons = iconManifest as Record<
-  string,
-  { src: string; w: number; h: number }
->;
+// The manifest is fetched once in app.vue; read it from the Nuxt data cache
+// (no extra request, no JS-bundled JSON).
+const { data: iconManifest } = useNuxtData<
+  Record<string, { src: string; w: number; h: number }>
+>("icon-manifest");
 const iconData = computed(() =>
-  props.icon ? icons[props.icon] : undefined
+  props.icon ? iconManifest.value?.[props.icon] : undefined
 );
 
 const category = computed(() => props.path.split("/")[1]);
@@ -102,45 +102,61 @@ const style = computed(() => {
     );
 });
 
-const moveIcon = () => {
-  const noise = createNoise2D();
-  let time = Math.random() * 1000;
-  const speed = 0.0008;
+const noise = createNoise2D();
+let time = Math.random() * 1000;
+const speed = 0.0008;
 
-  // Random offsets to ensure different paths
-  const randomOffsetX = Math.random() * 1000;
-  const randomOffsetY = Math.random() * 1000;
+// Random offsets to ensure different paths
+const randomOffsetX = Math.random() * 1000;
+const randomOffsetY = Math.random() * 1000;
 
-  const updatePosition = () => {
-    if (
-      !selected.value &&
-      hoveredProject.value !== props.path &&
-      !needsTransformTransitionEffect.value &&
-      visible.value
-    ) {
-      time += speed;
+let rafId: number | null = null;
 
-      x.value =
-        windowWidth.value / 2 + amplitudeX.value * noise(time, randomOffsetX);
-      y.value =
-        windowHeight.value / 2 + amplitudeY.value * noise(time, randomOffsetY);
+const updatePosition = () => {
+  time += speed;
 
-      // Ensure the icon stays within bounds
-      x.value = Math.max(
-        padding,
-        Math.min(x.value, windowWidth.value - padding)
-      );
-      y.value = Math.max(
-        padding,
-        Math.min(y.value, windowHeight.value - padding)
-      );
-    }
+  x.value =
+    windowWidth.value / 2 + amplitudeX.value * noise(time, randomOffsetX);
+  y.value =
+    windowHeight.value / 2 + amplitudeY.value * noise(time, randomOffsetY);
 
-    requestAnimationFrame(updatePosition);
-  };
+  // Ensure the icon stays within bounds
+  x.value = Math.max(padding, Math.min(x.value, windowWidth.value - padding));
+  y.value = Math.max(padding, Math.min(y.value, windowHeight.value - padding));
 
-  updatePosition();
+  rafId = requestAnimationFrame(updatePosition);
 };
+
+const startMoving = () => {
+  if (rafId === null) rafId = requestAnimationFrame(updatePosition);
+};
+
+const stopMoving = () => {
+  if (rafId !== null) {
+    cancelAnimationFrame(rafId);
+    rafId = null;
+  }
+};
+
+// Only animate icons that are actually on screen and free to wander. Hidden
+// (off-route) icons, the selected one, and the hovered one go fully idle —
+// no rAF loop running — which avoids N always-on loops across all projects.
+const shouldAnimate = computed(
+  () =>
+    visible.value &&
+    !selected.value &&
+    hoveredProject.value !== props.path &&
+    !needsTransformTransitionEffect.value
+);
+
+watch(
+  shouldAnimate,
+  (animate) => {
+    if (animate) startMoving();
+    else stopMoving();
+  },
+  { flush: "post" }
+);
 
 const resize = () => {
   const w = document.documentElement.clientWidth || 0;
@@ -176,8 +192,13 @@ onMounted(() => {
   windowWidth.value = window.innerWidth;
   windowHeight.value = window.innerHeight;
   resize();
-  moveIcon();
+  if (shouldAnimate.value) startMoving();
   window.addEventListener("resize", resize);
+});
+
+onBeforeUnmount(() => {
+  stopMoving();
+  window.removeEventListener("resize", resize);
 });
 </script>
 <style>
