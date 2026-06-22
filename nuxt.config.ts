@@ -24,6 +24,10 @@ export default defineNuxtConfig({
   robots: {
     disallow: ["/api/_content", "/_nuxt", "/admin"],
   },
+  // The site uses a single static og:image meta tag (set in app.vue), not
+  // satori/chromium-rendered dynamic OG images. Disable the og-image module so
+  // we don't pull its renderer, which breaks against unenv 2.x's runtime paths.
+  ogImage: { enabled: false },
   sourcemap: { server: true, client: false },
   nitro: {
     compressPublicAssets: true,
