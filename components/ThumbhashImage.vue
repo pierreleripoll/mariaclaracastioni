@@ -8,7 +8,7 @@
     rectangle. While the photo paints in progressively the blur shows through the
     transparent <img>; the opaque photo then covers it once loaded.
   -->
-  <div class="thumbhash-image">
+  <div class="thumbhash-image" :style="{ aspectRatio: boxAspectRatio }">
     <!--
       The placeholder sits behind the photo permanently. Because its ratio
       matches the photo exactly, the opaque image fully covers it once loaded —
@@ -93,6 +93,19 @@ const props = defineProps({
 
 const alt = computed(() => {
   return props.image.caption || props.image.alt || "Image";
+});
+
+// Both image layers are absolutely positioned, so the box has no intrinsic
+// content height. We give it an aspect-ratio from the real image dimensions:
+// when the parent has a definite height (desktop, 60vh), the explicit
+// height: 100% wins and this is ignored; when the parent height is auto
+// (mobile, stacked images), height: 100% resolves to auto and this provides
+// the height — without it the box would collapse to 0 and the image vanishes.
+const boxAspectRatio = computed(() => {
+  if (props.aspectRatio) return String(props.aspectRatio);
+  return props.image.width && props.image.height
+    ? `${props.image.width} / ${props.image.height}`
+    : undefined;
 });
 
 const thumbhash = computed(() => {
