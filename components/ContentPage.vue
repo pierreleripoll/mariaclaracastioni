@@ -31,13 +31,15 @@
 
       <!-- Project Content -->
       <div class="project-content">
-        <div v-if="description" class="project-description">
-          <MDC :value="description" />
-        </div>
-        <div v-if="credits" class="project-credits">
+        <div
+          v-if="descriptionHtml"
+          class="project-description"
+          v-html="descriptionHtml"
+        ></div>
+        <div v-if="creditsHtml" class="project-credits">
           <span v-if="year" class="project-year"> {{ year }} </span>
-          <br v-if="year && credits" />
-          <MDC :value="credits" />
+          <br v-if="year" />
+          <span v-html="creditsHtml"></span>
         </div>
       </div>
 
@@ -98,8 +100,11 @@ if (!(page as any).value && import.meta.server) {
 const idxImage = ref(0);
 const images: Image[] | undefined = page.value?.images;
 const year = page.value?.year;
-const description = page.value?.description || null;
-const credits = page.value?.credits;
+// Markdown for these fields is pre-rendered to HTML at build time (see the
+// content:file:afterParse hook in nuxt.config.ts) so the runtime markdown
+// parser stays out of the client bundle.
+const descriptionHtml = page.value?.descriptionHtml || null;
+const creditsHtml = page.value?.creditsHtml || null;
 const pageTitle = page.value?.title ?? "No title";
 
 const handlePrev = () => {
