@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   // satori/chromium-rendered dynamic OG images. Disable the og-image module so
   // we don't pull its renderer, which breaks against unenv 2.x's runtime paths.
   ogImage: { enabled: false },
-  sourcemap: { server: true, client: false },
+  sourcemap: false,
   nitro: {
     compressPublicAssets: true,
     prerender: {
