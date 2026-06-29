@@ -4,6 +4,9 @@ year: "2026"
 navigation:
   order: 11
 icon: /uploads/vetrina-2.png
+images:
+  - src: /uploads/dsc07177.jpg
+    caption: ©JONATHAN GINZBURG
 description: >-
   *Ti sei seduta dentro una vetrina* is a scenographic, audio, and video
   installation in the shop window at Corso Bello 5, Mendrisio.\
