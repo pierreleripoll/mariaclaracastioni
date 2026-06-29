@@ -1,5 +1,5 @@
 ---
-title: ti sei seduta dentro una vetrina
+title: una vetrina
 year: "2026"
 navigation:
   order: 11
