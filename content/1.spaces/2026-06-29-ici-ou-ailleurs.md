@@ -3,7 +3,7 @@ title: ici ou ailleurs
 year: "2026"
 navigation:
   order: 10
-icon: /uploads/icone.png
+icon: /uploads/aaa.png
 images:
   - src: /uploads/20250618-dsc_0025.jpg
     caption: ©MARIA CLARA CASTIONI
