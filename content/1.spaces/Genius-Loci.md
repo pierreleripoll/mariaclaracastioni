@@ -68,7 +68,6 @@ description: "*Genius loci* is a personal project created for the collective
   The intervention analyses and catalogues these traces, reproducing them almost
   imperceptibly in pencil and gouache drawings on certain walls."
 credits: |-
-  EXHIBITION\
-  *LE GÉNIE DU LIEU*
+  EXHIBITION *LE GÉNIE DU LIEU*
   LA PHARMACIE, LAUSANNE
 ---
