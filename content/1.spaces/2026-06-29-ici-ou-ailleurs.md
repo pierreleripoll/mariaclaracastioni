@@ -11,6 +11,10 @@ images:
     caption: ©MARIA CLARA CASTIONI
   - src: /uploads/003.jpg
     caption: ©MARIA CLARA CASTIONI
+  - src: /uploads/004.jpg
+    caption: ©MARIA CLARA CASTIONI
+  - src: /uploads/005.jpg
+    caption: ©MARIA CLARA CASTIONI
 description: >-
   *Ici ou ailleurs* is a scenography for a public space at Lausanne University
   Hospital (CHUV).\
