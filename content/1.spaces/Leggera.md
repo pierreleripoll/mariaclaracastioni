@@ -76,10 +76,10 @@ images:
     thumbhash: owgGDQCNl8+bCESniId4llN4DzTW
     thumbhashRatio: 0.7142857142857143
 description: Born from the collaboration between a designer and a scenographer,
-  Leggera is a set design experimentation based on the reuse and revaluation of
-  textiles. Ephemeral and sustainable, it proposes simple installations, in an
-  attempt to reduce volume and material waste.
-credits: |
+  *Leggera* is a set design experimentation based on the reuse and revaluation
+  of textiles. Ephemeral and sustainable, it proposes simple installations, in
+  an attempt to reduce volume and material waste.
+credits: |-
   A PROJECT BY EMMA CASELLA AND MARIA CLARA CASTIONI
-  PH ©NOACHEVALLEY
+  PH ©NOA CHEVALLEY
 ---
