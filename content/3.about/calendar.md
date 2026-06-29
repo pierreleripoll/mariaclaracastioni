@@ -5,7 +5,7 @@ credits: >-
 
   [CHRÜSIMÜSI, Bühnen Bern, 18-20-22-23.09.2026](https://buehnenbern.ch/spielplan/programm/chrusimusi/)\
 
-  [CHRÜSIMÜSI, Comédie de Genève, 28-31.10 - 03-08.11.2026](https://www.comedie.ch/fr/programme?subsections=toute_la_saison&genres=80100)\
+  [CHRÜSIMÜSI, Comédie de Genève, 28-31.10 - 03-08.11.2026](https://www.comedie.ch/fr/chrusimusi)\
 
   [CHRÜSIMÜSI, LAC Lugano, 11-12.11.2026]
 
