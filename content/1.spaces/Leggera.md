@@ -1,6 +1,6 @@
 ---
 title: Leggera
-year: '2023'
+year: "2023"
 navigation:
   order: 18
 icon: /uploads/Leggera.png
@@ -75,9 +75,11 @@ images:
     ratio: 0.75
     thumbhash: owgGDQCNl8+bCESniId4llN4DzTW
     thumbhashRatio: 0.7142857142857143
-description: 'Leggera is an event scenography practice based on the reuse and revaluation of textiles. Ephemeral and sustainable, it proposes informal and elegant installations, in an attempt to reduce volume and material waste. As well as an encounter between a designer and a scenographer, Leggera is an evolving laboratory for creative experimentation.'
+description: Born from the collaboration between a designer and a scenographer,
+  Leggera is a set design experimentation based on the reuse and revaluation of
+  textiles. Ephemeral and sustainable, it proposes simple installations, in an
+  attempt to reduce volume and material waste.
 credits: |
   A PROJECT BY EMMA CASELLA AND MARIA CLARA CASTIONI
   PH ©NOACHEVALLEY
 ---
-
