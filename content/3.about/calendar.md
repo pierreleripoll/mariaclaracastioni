@@ -7,9 +7,7 @@ credits: >-
 
   [CHRÜSIMÜSI, Comédie de Genève, 28-31.10 - 03-08.11.2026](https://www.comedie.ch/fr/chrusimusi)\
 
-  [CHRÜSIMÜSI, LAC Lugano, 11-12.11.2026]
-
-  (https://www.luganolac.ch/it/lac/programma/evento~lac~26-27~s~chrusimusi~.html)\
+  [CHRÜSIMÜSI, LAC Lugano, 11-12.11.2026](https://www.luganolac.ch/it/lac/programma/evento~lac~26-27~s~chrusimusi~.html)\
 
   [ART + HÔPITAL, CHUV, Lausanne, 18.06 - 25.10.2026](https://vu.chuv.ch)\
 
