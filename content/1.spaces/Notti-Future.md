@@ -111,9 +111,9 @@ images:
     thumbhash: HAgGBQBFN3WcZjn32SWodwAAAAAA
     thumbhashRatio: 0.7142857142857143
 description: >-
-  Notti Future is a night performance through the parkings of Lugano.
+  *Notti Future* is a night performance through the parkings of Lugano.
 
-  During Biennale Svizzera del Territorio 2024, Notti Future took the audience through several car parks, revealed by the performative interventions of a lot of characters, blurring the line between reality and fiction.
+  During *Biennale Svizzera del Territorio 2024*, Notti Future took the audience through several car parks, revealed by the performative interventions of a lot of characters, blurring the line between reality and fiction.
 credits: >-
   *[Watch the movie here](https://www.youtube.com/watch?v=OmK6kZOL_Fk)*
 
@@ -127,5 +127,5 @@ credits: >-
 
   BIENNALE SVIZZERA DEL TERRITORIO, LUGANO
 
-  PH ©NOACHEVALLEY
+  PH ©NOA CHEVALLEY
 ---
