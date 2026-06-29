@@ -38,7 +38,7 @@ description: >-
   Standing on either side of the shop window, one simultaneously becomes both performer and spectator. The shop window becomes a screen through which to observe and interpret a place and its reality—from outside to inside, and vice versa.
 credits: |-
   A PROJECT BY MARIA CLARA CASTIONI AND YANN HERMENJAT\
-  EXHIBITION \
-  *IL CANE CHE SI MORDE LA CODA*, MENDRISIO\
+  EXHIBITION *IL CANE CHE SI MORDE LA CODA* \
+  AI MOLTI TESORI, MENDRISIO\
   PH ©MARIA CLARA CASTIONI / ©JONATHAN GINZBURG (1,9)
 ---
