@@ -75,23 +75,16 @@ images:
     ratio: 0.75
     thumbhash: BAgGDQBJqHB5h6d3eHmHeClwh0A3
     thumbhashRatio: 0.7142857142857143
-  - src: /uploads/1t2a6881-2-grande.jpeg
-    caption: Maria Clara Castioni
-    width: 853
-    height: 1280
-    ratio: 0.66640625
-    thumbhash: 4gcSBQBtiH+Hl4Z3h4eIeBeWnzT1
-    thumbhashRatio: 0.7142857142857143
 description: Set design for *Un requiem alpestre*, a musical performance
   conceived by Daniele Pintaudi and directed by Olivia Seigne. A reflection on
   loss, fear, and mourning — but also on life, brotherhood, and hope. Three
   characters, blending music and song, lead a farewell ceremony through the
   Alpine landscapes of the German author Georg Büchner.
-credits: |
+credits: |-
   A PROJECT BY DANIELE PINTAUDI 
   DIRECTION: OLIVIA SEIGNE
   WITH: VALENTIN FAIVRE, THOMAS JEKER, DANIELE PINTAUDI
   SET DESIGN: MARIA CLARA CASTIONI 
   CENTRE DE CULTURE ABC, LA CHAUX-DE-FONDS
-  PH ©MARIACLARACASTIONI / ©HEIDIARENS
+  PH ©MARIA CLARA CASTIONI / ©HEIDI ARENS (6)
 ---
