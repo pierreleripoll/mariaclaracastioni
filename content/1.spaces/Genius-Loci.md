@@ -61,13 +61,14 @@ images:
     ratio: 0.66640625
     thumbhash: 8PcFBQBNeX+HZ3iHh3aHeGB/MPYZ
     thumbhashRatio: 0.7142857142857143
-description: Genius loci is a personal project created for the collective
+description: "*Genius loci* is a personal project created for the collective
   exhibition Le génie du lieu, in a former pharmacy that has been transformed
   into an art space. The work interrogates the environment, focusing on the
   irregularities of the architecture and on the traces of the space’s past life.
   The intervention analyses and catalogues these traces, reproducing them almost
-  imperceptibly in pencil and gouache drawings on certain walls.
+  imperceptibly in pencil and gouache drawings on certain walls."
 credits: |-
-  EXHIBITION
+  EXHIBITION\
+  *LE GÉNIE DU LIEU*
   LA PHARMACIE, LAUSANNE
 ---
