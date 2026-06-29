@@ -9,6 +9,8 @@ images:
     caption: ©JONATHAN GINZBURG
   - src: /uploads/2.jpg
     caption: "©MARIA CLARA CASTIONI "
+  - src: /uploads/3.jpg
+    caption: "©MARIA CLARA CASTIONI "
 description: >-
   *Ti sei seduta dentro una vetrina* is a scenographic, audio, and video
   installation in the shop window at Corso Bello 5, Mendrisio.\
