@@ -1,6 +1,6 @@
 ---
 title: Démontage
-year: '2022'
+year: "2022"
 navigation:
   order: 19
 icon: /uploads/Démontage.png
@@ -40,14 +40,17 @@ images:
     ratio: 0.749003984063745
     thumbhash: aAgGDQKad693Rpk4eocmWKBQMCcG
     thumbhashRatio: 0.7142857142857143
-description: 'Démontage is a play about the closure of an amusement park. The performers have stolen one of the leftovers from the park: an old hot dog stand. They take it to their hangar and try to put the last pieces back together. The past of the fiction and the present of the action resonate in the bare space of the theatre.'
-credits: |
+description: "*Démontage* is a play about the closure of an amusement park. The
+  performers have stolen one of the leftovers from the park: an old hot dog
+  stand. They take it to their hangar and try to put the last pieces back
+  together. The past of the fiction and the present of the action resonate in
+  the bare space of the theatre."
+credits: |-
   A PROJECT BY ELÉONORE BONAH AND MARIA CLARA CASTIONI 
   TUTORING: CHRISTIAN GEFFROY SCHLITTLER 
   TEXT: ARTHUR BRÜGGER 
   WITH: RAPHAËL GILLIOZ, LAURE LEHMANN, ELISA MATTHEY 
   LIGHT DESIGN: ÉDOUARD HÜGLI 
   THEATRE LES HALLES, SIERRE 
-  PH ©ALINEPALEY
+  PH ©ALINE PALEY
 ---
-
