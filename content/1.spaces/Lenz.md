@@ -1,6 +1,6 @@
 ---
 title: Lenz
-year: '2023'
+year: "2023"
 navigation:
   order: 16
 icon: /uploads/Lenz.png
@@ -61,12 +61,15 @@ images:
     ratio: 1.5003663003663004
     thumbhash: zvcJBYA5V3iOh4aPhnZ4dLN1YBwH
     thumbhashRatio: 1.4
-description: 'Lenz is a play based on the homonymous novel by Georg Büchner. Lenz is a fugitive. He walks to flee a torn world, at once too big and too small. His lucidity turns to madness, and this madness into disenchantment. The story is told by two women who sheltered Lenz during his delirium, and whose lives were disrupted for a moment. '
-credits: |
+description: "*Lenz* is a play based on the homonymous novel by Georg Büchner.
+  Lenz is a fugitive. He walks to flee a torn world, at once too big and too
+  small. His lucidity turns to madness, and this madness into disenchantment.
+  The story is told by two women who sheltered Lenz during his delirium, and
+  whose lives were disrupted for a moment."
+credits: |-
   A PROJECT BY ELÉONORE BONAH AND MARIA CLARA CASTIONI
   WITH: LUNA DESMEULES + ANNE TISMER 
   LIGHT DESIGN: ÉDOUARD HÜGLI 
   LA MANUFACTURE, LAUSANNE / COMÉDIE DE GENÈVE
-  PH ©NICOLASBRODARD / ©MAGALIDOUGADOS
+  PH ©NICOLAS BRODARD (1,2,3,4,6,7) / ©MAGALI DOUGADOS (8)
 ---
-
