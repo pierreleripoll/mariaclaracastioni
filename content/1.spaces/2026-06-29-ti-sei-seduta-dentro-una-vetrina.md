@@ -7,6 +7,8 @@ icon: /uploads/vetrina-2.png
 images:
   - src: /uploads/dsc07177.jpg
     caption: ©JONATHAN GINZBURG
+  - src: /uploads/2.jpg
+    caption: "©MARIA CLARA CASTIONI "
 description: >-
   *Ti sei seduta dentro una vetrina* is a scenographic, audio, and video
   installation in the shop window at Corso Bello 5, Mendrisio.\
@@ -16,6 +18,7 @@ description: >-
   Standing on either side of the shop window, one simultaneously becomes both performer and spectator. The shop window becomes a screen through which to observe and interpret a place and its reality—from outside to inside, and vice versa.
 credits: |-
   A PROJECT BY MARIA CLARA CASTIONI AND YANN HERMENJAT\
-  EXHIBITION IL CANE CHE SI MORDE LA CODA, MENDRISIO\
+  EXHIBITION \
+  *IL CANE CHE SI MORDE LA CODA*, MENDRISIO\
   PH ©MARIA CLARA CASTIONI / ©JONATHAN GINZBURG
 ---
