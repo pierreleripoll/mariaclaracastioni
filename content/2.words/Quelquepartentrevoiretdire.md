@@ -41,8 +41,10 @@ description: "*Quelque part entre voir et dire* is an essay about the link
   triggering new narrative forms. The project is accompanied by a series of
   videos documenting the transposition of these micro-events on a white wall."
 credits: >-
-  [READ AN
-  EXCERPT](https://www.manufacture.ch/download/docs/jpbydhh2.pdf/Journal%20de%20la%20recherche%20n°5.pdf)\
+  *[READ AN
+  EXCERPT](https://www.manufacture.ch/download/docs/jpbydhh2.pdf/Journal%20de%20la%20recherche%20n°5.pdf)*\
 
-  RESEARCH PROJECT
+  RESEARCH PROJECT\
+
+  LA MANUFACTURE, LAUSANNE
 ---
