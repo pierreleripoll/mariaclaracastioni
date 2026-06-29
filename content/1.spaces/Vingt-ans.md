@@ -40,10 +40,10 @@ images:
     ratio: 0.75
     thumbhash: ThgKFQRteHB4t4dod4lXZ4lgiQiX
     thumbhashRatio: 0.7142857142857143
-description: Set design and costumes for the performance Vingt ans et le monde
+description: Set design and costumes for the performance *Vingt ans et le monde*
   by Mathilde Monnier. The display adapts to the particularities of
   non-theatrical spaces, where the audience can wander throughout the show.
-credits: |
+credits: |-
   DIRECTION, CHOREOGRAPHY: MATHILDE MONNIER 
   ASSISTANT: MARTIN REINARTZ 
   WITH: JESSICA ALLEMANN, ALINA ARSHI, YANN HERMENJAT 
@@ -51,5 +51,5 @@ credits: |
   TEXT : LE POIDS DU MONDE, PETER HANDKE 
   DRAMATURGY: STÉPHANE BOUQUET 
   LA MANUFACTURE, LAUSANNE 
-  PH ©ALINEPALEY
+  PH ©ALINE PALEY
 ---
