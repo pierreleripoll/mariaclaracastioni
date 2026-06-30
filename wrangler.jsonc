@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mariaclaracastioni",
+  "compatibility_date": "2024-08-26",
+  // Static-assets-only Worker (no server code): Nuxt's `npm run generate`
+  // prerenders the whole site — including /_ipx/ images — into .output/public.
+  "assets": {
+    "directory": ".output/public",
+    // Real 404.html exists; serve it for unknown paths (this is NOT an SPA).
+    "not_found_handling": "404-page"
+  }
+}
