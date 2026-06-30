@@ -10,6 +10,16 @@ export default defineNuxtConfig({
     documentDriven: true,
   },
   image: {
+    // Provider is env-driven so the build can pick where images are transformed:
+    //  - unset (local dev / fallback): IPX — sharp transforms at build time.
+    //  - "cloudflare" (production on CF): images become /cdn-cgi/image/ URLs
+    //    transformed on-demand at the edge, so `nuxt generate` no longer bakes
+    //    ~1000 variants. Requires the site served through a Cloudflare-proxied
+    //    zone with Images > Transformations enabled (not available on *.workers.dev).
+    provider: process.env.NUXT_IMAGE_PROVIDER || "ipx",
+    cloudflare: {
+      baseURL: process.env.NUXT_IMAGE_BASE_URL || "https://mariaclaracastioni.ch",
+    },
     quality: 80,
     densities: [1],
     format: ["webp"],
@@ -34,6 +44,8 @@ export default defineNuxtConfig({
     prerender: {
       crawlLinks: true,
       failOnError: false,
+      // Edge-transformed image URLs have no static route; don't crawl them.
+      ignore: ["/cdn-cgi/image"],
     },
   },
   devServer: {
