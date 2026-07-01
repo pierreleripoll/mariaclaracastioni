@@ -112,6 +112,26 @@
               );
             }
 
+            // Only call widgetFor() for fields the entry actually has — About
+            // files have `description` (bio) OR `credits` (others), not both, and
+            // widgetFor() on a missing field throws ("reading 'widget' of undefined").
+            var has = function (name) {
+              return data && data.has ? data.has(name) : false;
+            };
+            var hasDescription = has("description");
+            var hasCredits = has("credits");
+
+            var creditsBlock =
+              hasCredits || year
+                ? h(
+                    "div",
+                    { className: "project-credits" },
+                    year ? h("span", { className: "project-year" }, year) : null,
+                    year ? h("br") : null,
+                    hasCredits ? widgetFor("credits") : null,
+                  )
+                : null;
+
             return h(
               "div",
               { className: "project-container" },
@@ -123,14 +143,10 @@
                 h(
                   "div",
                   { className: "project-content" },
-                  h("div", { className: "project-description" }, widgetFor("description")),
-                  h(
-                    "div",
-                    { className: "project-credits" },
-                    year ? h("span", { className: "project-year" }, year) : null,
-                    year ? h("br") : null,
-                    widgetFor("credits"),
-                  ),
+                  hasDescription
+                    ? h("div", { className: "project-description" }, widgetFor("description"))
+                    : null,
+                  creditsBlock,
                 ),
               ),
             );
