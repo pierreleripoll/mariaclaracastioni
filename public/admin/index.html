@@ -11,45 +11,51 @@
          auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
-    <!-- Custom preview: an APPROXIMATION of components/ContentPage.vue focused on
-         the TEXT within the page's horizontal layout — a single static image on
-         the left for context and the 350px text column (Art Description + Credits)
-         on the right, matching the desktop `.content-wrapper { flex-direction: row }`.
-         The interactive carousel is intentionally dropped; the point is to see text
-         edits in place. For pixel-exact rendering use the "View on live site" link.
+    <!-- Custom preview approximating components/ContentPage.vue. The CSS below is
+         ported from that component (exact fonts, sizes, paddings, zeroed <p>
+         margins, undefined --color-text => black) and mirrors its real 600px
+         responsive breakpoint: since the preview pane is usually < 600px wide, it
+         shows the site's MOBILE layout (title visible, single column, text above
+         image); when the pane is wide it shows the desktop row (title hidden, 350px
+         text column on the right, image left). The interactive carousel is reduced
+         to a single static image; for pixel-exact rendering use "View on live site".
          Sveltia exposes `h` (React.createElement) and `createClass` globally. -->
     <script>
       (function initPreview() {
         var CMS = window.CMS;
-        // Wait until Sveltia and its no-build globals are ready.
         if (!CMS || !CMS.registerPreviewStyle || !window.h || !window.createClass) {
           return void setTimeout(initPreview, 100);
         }
         var h = window.h;
 
-        // --- Preview styling: mirrors ContentPage.vue horizontal layout ----------
         CMS.registerPreviewStyle(
           `
-          :root { --color-text: #111; }
+          * { box-sizing: border-box; }
           body {
             margin: 0;
-            padding: 24px 28px;
-            color: var(--color-text);
+            padding: 1.5rem;
+            color: #000;
             font-family: "Helvetica", Arial, sans-serif;
-            line-height: 1.4;
           }
-          .preview-title { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-          /* Desktop-style horizontal row: image left, text column right.
-             Wraps to a stack when the preview pane is narrow. */
+          /* Site zeroes paragraph margins (:deep(p){margin:0}). */
+          .project-content p { margin: 0; }
+
+          /* Title is hidden on desktop (shown only in the mobile layout), exactly
+             as on the site (.page-title { display: none }). */
+          .page-title { display: none; }
+
+          /* Desktop: image left, 350px text column on the right. row-reverse puts
+             the (DOM-first) text column on the right while keeping text-above-image
+             order for the mobile column layout below. */
           .content-wrapper {
             display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            flex-direction: row-reverse;
             align-items: flex-start;
+            justify-content: flex-end;
             gap: 24px;
           }
           .preview-image-area {
-            flex: 1 1 240px;
+            flex: 1 1 auto;
             min-width: 0;
             display: flex;
             justify-content: center;
@@ -61,32 +67,57 @@
             object-fit: contain;
             display: block;
           }
-          /* The 350px text column, as on the site. */
-          .project-content { flex: 0 1 350px; }
-          .project-description {
-            font-family: "Georgia", "Georgia Light", serif;
-            line-height: 1.2;
+
+          .project-content {
+            width: 350px;
+            flex: 0 0 auto;
+            padding-right: 1em;
+            padding-bottom: 1em;
             white-space: pre-wrap;
             word-break: break-word;
           }
-          .project-credits {
+          .project-content .project-description {
+            font-family: "Georgia Light", serif;
+            line-height: 1.2em;
+          }
+          .project-content .project-credits {
             padding-top: 0.5em;
             font-size: smaller;
-            line-height: 1.2;
+            line-height: 1.2em;
             text-transform: uppercase;
-            white-space: pre-wrap;
           }
           .project-description a, .project-credits a {
-            color: var(--color-text); text-decoration: none; text-transform: uppercase;
+            color: inherit; text-decoration: none; text-transform: uppercase;
           }
           .project-description a:hover, .project-credits a:hover {
             font-style: italic; text-decoration: underline dotted; text-underline-offset: 2px;
+          }
+
+          /* Mirror the site's mobile layout at the same 600px breakpoint. The
+             preview pane is usually narrower than this, so this is what editors see. */
+          @media screen and (max-width: 600px) {
+            .page-title {
+              display: block;
+              text-transform: uppercase;
+              font-size: 1.2rem;
+              margin-bottom: 1.25rem;
+            }
+            .content-wrapper {
+              flex-direction: column;
+              align-items: center;
+            }
+            .project-content {
+              width: auto;
+              max-width: none;
+              padding: 0;
+              font-size: 1.1rem;
+            }
+            .preview-image-area { width: 100%; margin-top: 1.5rem; }
           }
           `,
           { raw: true },
         );
 
-        // --- Preview template: title + [image | text column] ---------------------
         var ProjectPreview = window.createClass({
           render: function () {
             var props = this.props;
@@ -98,7 +129,16 @@
             var year = data.get("year");
             var images = data.get("images");
 
-            // Single static image for layout context (first in the list).
+            // Only call widgetFor() for fields the entry actually has — About files
+            // have `description` (bio) OR `credits` (others), not both, and
+            // widgetFor() on a missing field throws ("reading 'widget' of undefined").
+            var has = function (name) {
+              return data && data.has ? data.has(name) : false;
+            };
+            var hasDescription = has("description");
+            var hasCredits = has("credits");
+
+            // Single static image (first of the list) for layout context.
             var imageArea = null;
             var first = images && images.get ? images.get(0) : null;
             var firstSrc = first && first.get ? first.get("src") : null;
@@ -111,15 +151,6 @@
                 h("img", { className: "project-image", src: url, alt: first.get("caption") || "" }),
               );
             }
-
-            // Only call widgetFor() for fields the entry actually has — About
-            // files have `description` (bio) OR `credits` (others), not both, and
-            // widgetFor() on a missing field throws ("reading 'widget' of undefined").
-            var has = function (name) {
-              return data && data.has ? data.has(name) : false;
-            };
-            var hasDescription = has("description");
-            var hasCredits = has("credits");
 
             var creditsBlock =
               hasCredits || year
@@ -135,11 +166,12 @@
             return h(
               "div",
               { className: "project-container" },
-              h("div", { className: "preview-title" }, title || "Untitled"),
+              h("div", { className: "page-title" }, title || ""),
               h(
                 "div",
                 { className: "content-wrapper" },
-                imageArea,
+                // Text column first in the DOM (matches the site) so it sits above
+                // the image on mobile; row-reverse moves it right on desktop.
                 h(
                   "div",
                   { className: "project-content" },
@@ -148,6 +180,7 @@
                     : null,
                   creditsBlock,
                 ),
+                imageArea,
               ),
             );
           },
@@ -155,20 +188,12 @@
 
         // Register for every collection. Spaces/Words are folder collections
         // (singular names "space"/"word"). About is a files collection — Sveltia
-        // matches by the collection name OR the file name, so register both to be
-        // safe. About entries have no images/year and use `description` (bio) or
-        // `credits` (others); the template renders whichever field exists.
-        [
-          "space",
-          "word",
-          "about",
-          "bio",
-          "calendar",
-          "press",
-          "contact",
-        ].forEach(function (name) {
-          CMS.registerPreviewTemplate(name, ProjectPreview);
-        });
+        // matches by the collection name OR the file name, so register both.
+        ["space", "word", "about", "bio", "calendar", "press", "contact"].forEach(
+          function (name) {
+            CMS.registerPreviewTemplate(name, ProjectPreview);
+          },
+        );
       })();
     </script>
   </body>
