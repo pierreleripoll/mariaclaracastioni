@@ -58,12 +58,26 @@
             font-style: italic; text-decoration: underline dotted; text-underline-offset: 2px;
           }
 
-          /* All images, one after another. */
-          .preview-images { display: flex; flex-direction: column; gap: 1.5rem; }
-          .preview-images figure { margin: 0; }
+          /* All images, one after another — sized like the site: bounded to
+             ~60vh tall, contained, and centered (not full-bleed). */
+          .preview-images {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+          }
+          .preview-images figure {
+            margin: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+          }
           .preview-images img {
             max-width: 100%;
+            max-height: 60vh;
+            width: auto;
             height: auto;
+            object-fit: contain;
             display: block;
           }
           `,
