@@ -11,47 +11,116 @@
          auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
-    <!-- On-brand styling for the preview pane. Sveltia supports registerPreviewStyle
-         (CSS only); it can't yet reproduce the site's Vue layout (carousel/images) —
-         that needs registerPreviewTemplate, not shipped. So this makes the *prose*
-         (description/credits) read like the site; for pixel-exact layout use the
-         "View on live site" link (site_url + preview_path in config.yml). -->
+    <!-- Custom preview: an APPROXIMATION of components/ContentPage.vue (image +
+         Art Description + Credits) so the pane looks like the real page.
+         Caveats: this is a hand-maintained React copy of the Vue layout, so it can
+         drift from the source; the interactive carousel is reduced to a static
+         image stack. For pixel-exact rendering use the "View on live site" link
+         (site_url + preview_path in config.yml), which opens the real page.
+         Sveltia exposes `h` (React.createElement) and `createClass` globally for
+         no-build inline templates. -->
     <script>
-      (function registerPreviewStyle() {
-        if (!window.CMS || !window.CMS.registerPreviewStyle) {
-          return void setTimeout(registerPreviewStyle, 100);
+      (function initPreview() {
+        var CMS = window.CMS;
+        // Wait until Sveltia and its no-build globals are ready.
+        if (!CMS || !CMS.registerPreviewStyle || !window.h || !window.createClass) {
+          return void setTimeout(initPreview, 100);
         }
-        window.CMS.registerPreviewStyle(
+        var h = window.h;
+
+        // --- Preview styling: mirrors ContentPage.vue typography/classes ---------
+        CMS.registerPreviewStyle(
           `
           :root { --color-text: #111; }
           body {
             margin: 0;
             padding: 24px 28px;
-            max-width: 42rem;
             color: var(--color-text);
             font-family: "Helvetica", Arial, sans-serif;
             line-height: 1.4;
+          }
+          .preview-title { font-size: 28px; font-weight: bold; margin-bottom: 16px; }
+          .preview-images { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+          .preview-figure { margin: 0; }
+          .project-image { width: 100%; height: auto; object-fit: contain; display: block; }
+          .preview-figure figcaption {
+            font-size: smaller; text-transform: uppercase; margin-top: 4px; opacity: 0.75;
+          }
+          /* Art description = the site's marquee prose (Georgia serif). */
+          .project-description {
+            font-family: "Georgia", "Georgia Light", serif;
+            line-height: 1.2;
             white-space: pre-wrap;
             word-break: break-word;
           }
-          /* The art description is the site's marquee prose (Georgia serif). */
-          p, li { font-family: "Georgia", "Georgia Light", serif; line-height: 1.2; }
-          h1 { font-size: 28px; font-weight: bold; }
-          h2 { font-size: 20px; font-weight: normal; }
-          a {
-            color: var(--color-text);
-            text-decoration: none;
+          .project-credits {
+            padding-top: 0.5em;
+            font-size: smaller;
+            line-height: 1.2;
             text-transform: uppercase;
+            white-space: pre-wrap;
           }
-          a:hover {
-            font-style: italic;
-            text-decoration: underline dotted;
-            text-underline-offset: 2px;
+          .project-description a, .project-credits a {
+            color: var(--color-text); text-decoration: none; text-transform: uppercase;
           }
-          img { max-width: 100%; height: auto; }
+          .project-description a:hover, .project-credits a:hover {
+            font-style: italic; text-decoration: underline dotted; text-underline-offset: 2px;
+          }
           `,
           { raw: true },
         );
+
+        // --- Preview template: title + images + description + credits ------------
+        var ProjectPreview = window.createClass({
+          render: function () {
+            var props = this.props;
+            var data = props.entry.get("data");
+            var getAsset = props.getAsset;
+            var widgetFor = props.widgetFor;
+
+            var title = data.get("title");
+            var year = data.get("year");
+            var images = data.get("images");
+
+            var figures = [];
+            if (images && images.forEach) {
+              images.forEach(function (img, i) {
+                var src = img.get("src");
+                if (!src) return;
+                var asset = getAsset(src);
+                var url = asset ? asset.url || String(asset) : "";
+                var caption = img.get("caption");
+                figures.push(
+                  h(
+                    "figure",
+                    { className: "preview-figure", key: i },
+                    h("img", { className: "project-image", src: url, alt: caption || "" }),
+                    caption ? h("figcaption", null, caption) : null,
+                  ),
+                );
+              });
+            }
+
+            return h(
+              "div",
+              { className: "project-container" },
+              h("div", { className: "preview-title" }, title || "Untitled"),
+              figures.length ? h("div", { className: "preview-images" }, figures) : null,
+              h("div", { className: "project-description" }, widgetFor("description")),
+              h(
+                "div",
+                { className: "project-credits" },
+                year ? h("span", { className: "project-year" }, year) : null,
+                year ? h("br") : null,
+                widgetFor("credits"),
+              ),
+            );
+          },
+        });
+
+        // Collection names from config.yml (singular): "space" and "word".
+        CMS.registerPreviewTemplate("space", ProjectPreview);
+        CMS.registerPreviewTemplate("word", ProjectPreview);
       })();
     </script>
   </body>
