@@ -137,9 +137,22 @@
           },
         });
 
-        // Collection names from config.yml (singular): "space" and "word".
-        CMS.registerPreviewTemplate("space", ProjectPreview);
-        CMS.registerPreviewTemplate("word", ProjectPreview);
+        // Register for every collection. Spaces/Words are folder collections
+        // (singular names "space"/"word"). About is a files collection — Sveltia
+        // matches by the collection name OR the file name, so register both to be
+        // safe. About entries have no images/year and use `description` (bio) or
+        // `credits` (others); the template renders whichever field exists.
+        [
+          "space",
+          "word",
+          "about",
+          "bio",
+          "calendar",
+          "press",
+          "contact",
+        ].forEach(function (name) {
+          CMS.registerPreviewTemplate(name, ProjectPreview);
+        });
       })();
     </script>
   </body>

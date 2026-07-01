@@ -103,6 +103,7 @@ collections:
       - file: "content/3.about/bio.md"
         label: "Bio"
         name: "bio"
+        preview_path: "about/bio"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "description", widget: "markdown" }
@@ -120,6 +121,7 @@ collections:
       - file: "content/3.about/calendar.md"
         label: "Calendar"
         name: "calendar"
+        preview_path: "about/calendar"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "credits", widget: "markdown" }
@@ -136,6 +138,7 @@ collections:
       - file: "content/3.about/press.md"
         label: "Press"
         name: "press"
+        preview_path: "about/press"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "credits", widget: "markdown" }
@@ -152,6 +155,7 @@ collections:
       - file: "content/3.about/contact.md"
         label: "Contact"
         name: "contact"
+        preview_path: "about/contact"
         fields:
           - { label: "Title", name: "title", widget: "string", required: true }
           - { label: "Description", name: "credits", widget: "markdown" }
