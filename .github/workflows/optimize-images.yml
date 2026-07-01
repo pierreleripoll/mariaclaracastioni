@@ -1,0 +1,56 @@
+name: Optimize images
+
+# When new images land on main (e.g. via the CMS committing full-size masters),
+# downscale them to 2400px and refresh the generated frontmatter (dimensions +
+# thumbhashes) and icon manifest, then commit the results back. This keeps the
+# repo's masters small so the deploy build (Cloudflare/Netlify) never has to
+# re-process images — the slow "optimizing images" step is done here, once.
+#
+# Pushes made with GITHUB_TOKEN do NOT re-trigger workflows, so committing back
+# cannot loop. The deploy provider still rebuilds on the bot commit (fast, since
+# masters are already small) and ships the optimized assets.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "public/uploads/**"
+      - "content/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: optimize-images
+  cancel-in-progress: false
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Downscale masters + refresh metadata + icons
+        run: |
+          node scripts/resizeImages.mjs
+          node scripts/updateImageDimensions.mjs
+          node scripts/generateIconManifest.mjs
+
+      - name: Commit optimized assets if anything changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No image changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/uploads public/icons.generated.json content
+          git commit -m "chore(images): auto-optimize masters + refresh metadata"
+          git push
