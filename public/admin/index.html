@@ -11,14 +11,13 @@
          auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
-    <!-- Custom preview: an APPROXIMATION of components/ContentPage.vue (image +
-         Art Description + Credits) so the pane looks like the real page.
-         Caveats: this is a hand-maintained React copy of the Vue layout, so it can
-         drift from the source; the interactive carousel is reduced to a static
-         image stack. For pixel-exact rendering use the "View on live site" link
-         (site_url + preview_path in config.yml), which opens the real page.
-         Sveltia exposes `h` (React.createElement) and `createClass` globally for
-         no-build inline templates. -->
+    <!-- Custom preview: an APPROXIMATION of components/ContentPage.vue focused on
+         the TEXT within the page's horizontal layout — a single static image on
+         the left for context and the 350px text column (Art Description + Credits)
+         on the right, matching the desktop `.content-wrapper { flex-direction: row }`.
+         The interactive carousel is intentionally dropped; the point is to see text
+         edits in place. For pixel-exact rendering use the "View on live site" link.
+         Sveltia exposes `h` (React.createElement) and `createClass` globally. -->
     <script>
       (function initPreview() {
         var CMS = window.CMS;
@@ -28,7 +27,7 @@
         }
         var h = window.h;
 
-        // --- Preview styling: mirrors ContentPage.vue typography/classes ---------
+        // --- Preview styling: mirrors ContentPage.vue horizontal layout ----------
         CMS.registerPreviewStyle(
           `
           :root { --color-text: #111; }
@@ -39,14 +38,31 @@
             font-family: "Helvetica", Arial, sans-serif;
             line-height: 1.4;
           }
-          .preview-title { font-size: 28px; font-weight: bold; margin-bottom: 16px; }
-          .preview-images { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
-          .preview-figure { margin: 0; }
-          .project-image { width: 100%; height: auto; object-fit: contain; display: block; }
-          .preview-figure figcaption {
-            font-size: smaller; text-transform: uppercase; margin-top: 4px; opacity: 0.75;
+          .preview-title { font-size: 24px; font-weight: bold; margin-bottom: 20px; }
+          /* Desktop-style horizontal row: image left, text column right.
+             Wraps to a stack when the preview pane is narrow. */
+          .content-wrapper {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 24px;
           }
-          /* Art description = the site's marquee prose (Georgia serif). */
+          .preview-image-area {
+            flex: 1 1 240px;
+            min-width: 0;
+            display: flex;
+            justify-content: center;
+          }
+          .preview-image-area img {
+            max-width: 100%;
+            max-height: 70vh;
+            height: auto;
+            object-fit: contain;
+            display: block;
+          }
+          /* The 350px text column, as on the site. */
+          .project-content { flex: 0 1 350px; }
           .project-description {
             font-family: "Georgia", "Georgia Light", serif;
             line-height: 1.2;
@@ -70,7 +86,7 @@
           { raw: true },
         );
 
-        // --- Preview template: title + images + description + credits ------------
+        // --- Preview template: title + [image | text column] ---------------------
         var ProjectPreview = window.createClass({
           render: function () {
             var props = this.props;
@@ -82,37 +98,40 @@
             var year = data.get("year");
             var images = data.get("images");
 
-            var figures = [];
-            if (images && images.forEach) {
-              images.forEach(function (img, i) {
-                var src = img.get("src");
-                if (!src) return;
-                var asset = getAsset(src);
-                var url = asset ? asset.url || String(asset) : "";
-                var caption = img.get("caption");
-                figures.push(
-                  h(
-                    "figure",
-                    { className: "preview-figure", key: i },
-                    h("img", { className: "project-image", src: url, alt: caption || "" }),
-                    caption ? h("figcaption", null, caption) : null,
-                  ),
-                );
-              });
+            // Single static image for layout context (first in the list).
+            var imageArea = null;
+            var first = images && images.get ? images.get(0) : null;
+            var firstSrc = first && first.get ? first.get("src") : null;
+            if (firstSrc) {
+              var asset = getAsset(firstSrc);
+              var url = asset ? asset.url || String(asset) : "";
+              imageArea = h(
+                "div",
+                { className: "preview-image-area" },
+                h("img", { className: "project-image", src: url, alt: first.get("caption") || "" }),
+              );
             }
 
             return h(
               "div",
               { className: "project-container" },
               h("div", { className: "preview-title" }, title || "Untitled"),
-              figures.length ? h("div", { className: "preview-images" }, figures) : null,
-              h("div", { className: "project-description" }, widgetFor("description")),
               h(
                 "div",
-                { className: "project-credits" },
-                year ? h("span", { className: "project-year" }, year) : null,
-                year ? h("br") : null,
-                widgetFor("credits"),
+                { className: "content-wrapper" },
+                imageArea,
+                h(
+                  "div",
+                  { className: "project-content" },
+                  h("div", { className: "project-description" }, widgetFor("description")),
+                  h(
+                    "div",
+                    { className: "project-credits" },
+                    year ? h("span", { className: "project-year" }, year) : null,
+                    year ? h("br") : null,
+                    widgetFor("credits"),
+                  ),
+                ),
               ),
             );
           },
