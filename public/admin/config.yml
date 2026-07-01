@@ -1,8 +1,14 @@
-local_backend: true
-
+# Sveltia CMS — GitHub backend with OAuth via the sveltia-cms-auth Worker.
+# On this `staging` branch, the CMS reads/writes the `staging` branch only, so
+# test edits never touch production (main / Netlify / Decap).
 backend:
-  name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  name: github
+  repo: pierreleripoll/mariaclaracastioni
+  branch: staging
+  # URL of the deployed sveltia-cms-auth Cloudflare Worker (OAuth broker).
+  # CONFIRM this matches the Worker's real *.workers.dev URL after you deploy it,
+  # and use "<this-url>/callback" as the GitHub OAuth App callback URL.
+  base_url: https://sveltia-cms-auth.pierreripoll13-d89.workers.dev
 
 media_folder: public/uploads
 public_folder: /uploads
