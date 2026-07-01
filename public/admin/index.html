@@ -11,14 +11,14 @@
          auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
-    <!-- Custom preview approximating components/ContentPage.vue. The CSS below is
-         ported from that component (exact fonts, sizes, paddings, zeroed <p>
-         margins, undefined --color-text => black) and mirrors its real 600px
-         responsive breakpoint: since the preview pane is usually < 600px wide, it
-         shows the site's MOBILE layout (title visible, single column, text above
-         image); when the pane is wide it shows the desktop row (title hidden, 350px
-         text column on the right, image left). The interactive carousel is reduced
-         to a single static image; for pixel-exact rendering use "View on live site".
+    <!-- Custom preview approximating the full page (app.vue + ContentPage.vue):
+         navbar (MARIA CLARA CASTIONI + Spaces/Words/About), the multi-image
+         carousel, the text column, and the selected project's icon pinned
+         bottom-left. Ported styles: black text, Georgia Light serif, uppercase
+         credits, zeroed <p> margins, real 600px breakpoint (narrow pane => site
+         mobile layout). NOT reproduced: the other projects' icons — on the live
+         site they wander randomly via simplex-noise animation, so there is no
+         fixed layout to match. For the exact page use "View on live site".
          Sveltia exposes `h` (React.createElement) and `createClass` globally. -->
     <script>
       (function initPreview() {
@@ -37,16 +37,30 @@
             color: #000;
             font-family: "Helvetica", Arial, sans-serif;
           }
-          /* Site zeroes paragraph margins (:deep(p){margin:0}). */
           .project-content p { margin: 0; }
 
-          /* Title is hidden on desktop (shown only in the mobile layout), exactly
-             as on the site (.page-title { display: none }). */
-          .page-title { display: none; }
+          /* Page shell — position:relative so the selected icon can pin to it. */
+          .preview-page { position: relative; min-height: 80vh; padding-bottom: 120px; }
 
-          /* Desktop: image left, 350px text column on the right. row-reverse puts
-             the (DOM-first) text column on the right while keeping text-above-image
-             order for the mobile column layout below. */
+          /* Navbar (app.vue + Navbar.vue): uppercase, black, 16px/500. */
+          .preview-navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+          }
+          .preview-navbar .navbar-title { font-size: 16px; font-weight: 500; }
+          .preview-navbar ul {
+            list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0;
+          }
+          .preview-navbar li { font-size: 16px; font-weight: 500; color: #000; }
+          .preview-navbar li.active { text-decoration: underline; text-underline-offset: 2px; }
+
+          /* Desktop: image left, 350px text column right (row-reverse keeps the
+             DOM-first text column above the image on mobile). */
           .content-wrapper {
             display: flex;
             flex-direction: row-reverse;
@@ -54,18 +68,23 @@
             justify-content: flex-end;
             gap: 24px;
           }
+          /* Multi-image carousel -> vertical stack, 60vh each, contain. */
           .preview-image-area {
             flex: 1 1 auto;
             min-width: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
           }
+          .preview-image-area figure { margin: 0; width: 100%; text-align: center; }
           .preview-image-area img {
             max-width: 100%;
-            max-height: 70vh;
+            max-height: 60vh;
             height: auto;
             object-fit: contain;
             display: block;
+            margin: 0 auto;
           }
 
           .project-content {
@@ -93,26 +112,16 @@
             font-style: italic; text-decoration: underline dotted; text-underline-offset: 2px;
           }
 
-          /* Mirror the site's mobile layout at the same 600px breakpoint. The
-             preview pane is usually narrower than this, so this is what editors see. */
+          /* Selected project's icon: pinned bottom-left, as on the live page. */
+          .selected-icon { position: absolute; left: 0; bottom: 0; width: 90px; }
+          .selected-icon img { width: 100%; height: auto; object-fit: contain; display: block; }
+
+          /* Mirror the site's mobile layout at the same 600px breakpoint. */
           @media screen and (max-width: 600px) {
-            .page-title {
-              display: block;
-              text-transform: uppercase;
-              font-size: 1.2rem;
-              margin-bottom: 1.25rem;
-            }
-            .content-wrapper {
-              flex-direction: column;
-              align-items: center;
-            }
-            .project-content {
-              width: auto;
-              max-width: none;
-              padding: 0;
-              font-size: 1.1rem;
-            }
+            .content-wrapper { flex-direction: column; align-items: center; }
+            .project-content { width: auto; max-width: none; padding: 0; font-size: 1.1rem; }
             .preview-image-area { width: 100%; margin-top: 1.5rem; }
+            .selected-icon { width: 64px; }
           }
           `,
           { raw: true },
@@ -121,37 +130,70 @@
         var ProjectPreview = window.createClass({
           render: function () {
             var props = this.props;
-            var data = props.entry.get("data");
+            var entry = props.entry;
+            var data = entry.get("data");
             var getAsset = props.getAsset;
             var widgetFor = props.widgetFor;
 
-            var title = data.get("title");
-            var year = data.get("year");
-            var images = data.get("images");
-
-            // Only call widgetFor() for fields the entry actually has — About files
-            // have `description` (bio) OR `credits` (others), not both, and
-            // widgetFor() on a missing field throws ("reading 'widget' of undefined").
+            var assetUrl = function (path) {
+              if (!path) return "";
+              var a = getAsset(path);
+              return a ? a.url || String(a) : "";
+            };
             var has = function (name) {
               return data && data.has ? data.has(name) : false;
             };
             var hasDescription = has("description");
             var hasCredits = has("credits");
 
-            // Single static image (first of the list) for layout context.
+            var year = data.get("year");
+            var images = data.get("images");
+
+            // --- Navbar (active item from the collection being edited) ----------
+            var collection = entry.get("collection");
+            var active =
+              collection === "space" ? "spaces" : collection === "word" ? "words" : "about";
+            var navItem = function (label, key) {
+              return h("li", { className: active === key ? "active" : "" }, label);
+            };
+            var navbar = h(
+              "nav",
+              { className: "preview-navbar" },
+              h("span", { className: "navbar-title" }, "MARIA CLARA CASTIONI"),
+              h(
+                "ul",
+                null,
+                navItem("Spaces", "spaces"),
+                navItem("Words", "words"),
+                navItem("About", "about"),
+              ),
+            );
+
+            // --- Carousel: every image, stacked (60vh each) ---------------------
             var imageArea = null;
-            var first = images && images.get ? images.get(0) : null;
-            var firstSrc = first && first.get ? first.get("src") : null;
-            if (firstSrc) {
-              var asset = getAsset(firstSrc);
-              var url = asset ? asset.url || String(asset) : "";
-              imageArea = h(
-                "div",
-                { className: "preview-image-area" },
-                h("img", { className: "project-image", src: url, alt: first.get("caption") || "" }),
-              );
+            if (images && images.forEach) {
+              var figures = [];
+              images.forEach(function (img, i) {
+                var src = img && img.get ? img.get("src") : null;
+                if (!src) return;
+                figures.push(
+                  h(
+                    "figure",
+                    { key: i },
+                    h("img", {
+                      className: "project-image",
+                      src: assetUrl(src),
+                      alt: img.get("caption") || "",
+                    }),
+                  ),
+                );
+              });
+              if (figures.length) {
+                imageArea = h("div", { className: "preview-image-area" }, figures);
+              }
             }
 
+            // --- Text column ----------------------------------------------------
             var creditsBlock =
               hasCredits || year
                 ? h(
@@ -162,26 +204,31 @@
                     hasCredits ? widgetFor("credits") : null,
                   )
                 : null;
+            var textColumn = h(
+              "div",
+              { className: "project-content" },
+              hasDescription
+                ? h("div", { className: "project-description" }, widgetFor("description"))
+                : null,
+              creditsBlock,
+            );
+
+            // --- Selected project's icon (pinned bottom-left) -------------------
+            var iconPath = data.get("icon");
+            var selectedIcon = iconPath
+              ? h(
+                  "div",
+                  { className: "selected-icon" },
+                  h("img", { src: assetUrl(iconPath), alt: "" }),
+                )
+              : null;
 
             return h(
               "div",
-              { className: "project-container" },
-              h("div", { className: "page-title" }, title || ""),
-              h(
-                "div",
-                { className: "content-wrapper" },
-                // Text column first in the DOM (matches the site) so it sits above
-                // the image on mobile; row-reverse moves it right on desktop.
-                h(
-                  "div",
-                  { className: "project-content" },
-                  hasDescription
-                    ? h("div", { className: "project-description" }, widgetFor("description"))
-                    : null,
-                  creditsBlock,
-                ),
-                imageArea,
-              ),
+              { className: "preview-page" },
+              navbar,
+              h("div", { className: "content-wrapper" }, textColumn, imageArea),
+              selectedIcon,
             );
           },
         });
