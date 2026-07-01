@@ -11,6 +11,8 @@ name: Optimize images
 # masters are already small) and ships the optimized assets.
 
 on:
+  # Manual trigger from the Actions tab (also handy for a first/one-off run).
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
