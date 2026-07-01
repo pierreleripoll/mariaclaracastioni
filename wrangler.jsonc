@@ -1,6 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "mariaclaracastioni",
+  // Separate Worker from production (`mariaclaracastioni`) so the staging build
+  // can never overwrite prod. This name lives only on the `staging` branch.
+  "name": "mariaclaracastioni-staging",
   "compatibility_date": "2024-08-26",
   // Static-assets-only Worker (no server code): Nuxt's `npm run generate`
   // prerenders the whole site — including /_ipx/ images — into .output/public.
