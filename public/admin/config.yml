@@ -48,6 +48,11 @@ collections:
       - label: "Images"
         name: "images"
         widget: "list"
+        # Collapse each entry into a compact row (thumbnail + caption). Sveltia's
+        # reorder handle lives on the collapsed row, so collapsing makes the
+        # images easy to drag/reorder — the equivalent of Decap's drag cards.
+        collapsed: true
+        summary: "{{fields.caption}}"
         fields:
           - { label: "Image", name: "src", widget: "image" }
           - { label: "Caption", name: "caption", widget: "string" }
@@ -87,6 +92,11 @@ collections:
       - label: "Images"
         name: "images"
         widget: "list"
+        # Collapse each entry into a compact row (thumbnail + caption). Sveltia's
+        # reorder handle lives on the collapsed row, so collapsing makes the
+        # images easy to drag/reorder — the equivalent of Decap's drag cards.
+        collapsed: true
+        summary: "{{fields.caption}}"
         fields:
           - { label: "Image", name: "src", widget: "image" }
           - { label: "Caption", name: "caption", widget: "string" }
