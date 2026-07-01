@@ -10,6 +10,11 @@ backend:
   # and use "<this-url>/callback" as the GitHub OAuth App callback URL.
   base_url: https://sveltia-cms-auth.pierreripoll13-d89.workers.dev
 
+# Base URL for the "View on live site" link shown in the editor. On staging this
+# points at the staging deploy — the pixel-exact preview (real Vue components/CSS)
+# once the build finishes. Per-collection preview_path builds the full URL.
+site_url: https://staging.mariaclaracastioni.ch
+
 media_folder: public/uploads
 public_folder: /uploads
 
@@ -21,6 +26,8 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     format: "frontmatter"
+    # "View on live site" -> /spaces/<slug> on the staging deploy.
+    preview_path: "spaces/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Year", name: "year", widget: "string" }
@@ -58,6 +65,8 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     extension: "md"
     format: "frontmatter"
+    # "View on live site" -> /words/<slug> on the staging deploy.
+    preview_path: "words/{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Year", name: "year", widget: "string" }

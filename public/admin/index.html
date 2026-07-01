@@ -10,5 +10,49 @@
          No stylesheet, no `type="module"`, and no netlify-identity-widget —
          auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
     <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+    <!-- On-brand styling for the preview pane. Sveltia supports registerPreviewStyle
+         (CSS only); it can't yet reproduce the site's Vue layout (carousel/images) —
+         that needs registerPreviewTemplate, not shipped. So this makes the *prose*
+         (description/credits) read like the site; for pixel-exact layout use the
+         "View on live site" link (site_url + preview_path in config.yml). -->
+    <script>
+      (function registerPreviewStyle() {
+        if (!window.CMS || !window.CMS.registerPreviewStyle) {
+          return void setTimeout(registerPreviewStyle, 100);
+        }
+        window.CMS.registerPreviewStyle(
+          `
+          :root { --color-text: #111; }
+          body {
+            margin: 0;
+            padding: 24px 28px;
+            max-width: 42rem;
+            color: var(--color-text);
+            font-family: "Helvetica", Arial, sans-serif;
+            line-height: 1.4;
+            white-space: pre-wrap;
+            word-break: break-word;
+          }
+          /* The art description is the site's marquee prose (Georgia serif). */
+          p, li { font-family: "Georgia", "Georgia Light", serif; line-height: 1.2; }
+          h1 { font-size: 28px; font-weight: bold; }
+          h2 { font-size: 20px; font-weight: normal; }
+          a {
+            color: var(--color-text);
+            text-decoration: none;
+            text-transform: uppercase;
+          }
+          a:hover {
+            font-style: italic;
+            text-decoration: underline dotted;
+            text-underline-offset: 2px;
+          }
+          img { max-width: 100%; height: auto; }
+          `,
+          { raw: true },
+        );
+      })();
+    </script>
   </body>
 </html>
