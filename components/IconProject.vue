@@ -48,10 +48,19 @@ const iconData = computed(() =>
 
 const category = computed(() => props.path.split("/")[1]);
 const route = useRoute();
-const selected = computed(() => route.path === props.path);
+
+// The static host 307-redirects to trailing-slash URLs (e.g. /spaces/leggera/),
+// so at runtime route.path has a trailing slash while the content path
+// (props.path) never does. Compare slash-insensitively, or the selected icon
+// resolves as not-selected/not-visible in production and gets hidden.
+const stripSlash = (p: string) => p.replace(/\/+$/, "") || "/";
+const routePath = computed(() => stripSlash(route.path));
+const selected = computed(() => routePath.value === stripSlash(props.path));
 const visible = computed(
   () =>
-    route.path == "/" || route.path == "/" + category.value || selected.value
+    routePath.value === "/" ||
+    routePath.value === "/" + category.value ||
+    selected.value
 );
 
 // Enable the corner transition only AFTER the icon image has loaded and painted
