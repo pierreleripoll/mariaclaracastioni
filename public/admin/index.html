@@ -8,8 +8,15 @@
   <body>
     <!-- Sveltia CMS: drop-in successor to Decap/Netlify CMS. Reuses config.yml.
          No stylesheet, no `type="module"`, and no netlify-identity-widget —
-         auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml). -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+         auth is GitHub OAuth via the sveltia-cms-auth Worker (see config.yml).
+
+         Version is PINNED: the drag-to-reorder enhancement below reaches into
+         Sveltia's internal editor DOM (`.item-list`/`.item`/`.header` and the
+         header's move buttons). Pinning keeps that contract stable so an
+         upstream markup change can't silently break dragging. When Sveltia
+         ships native list drag-sorting (their source has a "@todo Support drag
+         sorting"), remove the enhancement and unpin. -->
+    <script src="https://unpkg.com/@sveltia/cms@0.169.1/dist/sveltia-cms.js"></script>
 
     <!-- Simple document-style preview: the text content (Art Description +
          Credits) first, then every image stacked one after another. No navbar,
@@ -158,6 +165,197 @@
             CMS.registerPreviewTemplate(name, ProjectPreview);
           },
         );
+      })();
+    </script>
+
+    <!-- Drag-to-reorder for list widgets (e.g. project images).
+         Sveltia has no `registerWidget` API and hasn't shipped native list
+         drag-sorting yet, so we can't replace the list editor. Instead we add a
+         grip handle to each list row and, on drop, click Sveltia's OWN "Move
+         Up"/"Move Down" buttons the right number of times. The reorder therefore
+         goes through Sveltia's real state/serializer and persists exactly like
+         clicking the arrows — we only swap "click arrows N times" for "drag".
+         Purely additive: if the internal DOM ever changes, the grips just don't
+         appear and the arrow buttons still work. -->
+    <style>
+      .sc-drag-handle {
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+        font-size: 14px;
+        line-height: 1;
+        color: var(--sui-secondary-foreground-color, #888);
+        opacity: 0.55;
+        padding: 0 4px;
+        display: inline-flex;
+        align-items: center;
+        align-self: stretch;
+      }
+      .sc-drag-handle:hover { opacity: 1; }
+      .sc-dragging { cursor: grabbing; }
+      .sc-drop-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--sui-primary-accent-color, #0a84ff);
+        pointer-events: none;
+        z-index: 10;
+      }
+    </style>
+    <script>
+      (function initDragReorder() {
+        // The editor renders in the main document (only the preview is iframed),
+        // so we can enhance its DOM directly once the CMS has mounted.
+        if (!window.CMS) return void setTimeout(initDragReorder, 200);
+
+        var raf = window.requestAnimationFrame.bind(window);
+
+        // Two frames is enough for Svelte to flush a state update + re-render
+        // after each simulated button click.
+        function waitFrame() {
+          return new Promise(function (resolve) {
+            raf(function () { raf(resolve); });
+          });
+        }
+
+        function curItems(list) {
+          return Array.prototype.slice.call(
+            list.querySelectorAll(":scope > .item"),
+          );
+        }
+
+        // The header's center cell holds the reorder buttons (up, spacer, down).
+        // Identify them structurally rather than by localized aria-label.
+        function moveButtons(item) {
+          var header = item.querySelector(":scope > .header");
+          if (!header) return null;
+          var center = header.children[1];
+          if (!center) return null;
+          var btns = center.querySelectorAll("button");
+          if (btns.length < 2) return null; // allow_reorder off / simple list
+          return { up: btns[0], down: btns[btns.length - 1] };
+        }
+
+        // Move `item` by `steps` (>0 down, <0 up) by clicking its own arrows.
+        // The item node is stable across Svelte's keyed reorder, so we can keep
+        // clicking the same element's freshly-bound button each step.
+        async function driveReorder(item, steps) {
+          var down = steps > 0;
+          var n = Math.abs(steps);
+          for (var i = 0; i < n; i++) {
+            var b = moveButtons(item);
+            if (!b) break;
+            var btn = down ? b.down : b.up;
+            if (!btn || btn.disabled) break;
+            btn.click();
+            await waitFrame();
+          }
+        }
+
+        function computeTarget(items, y) {
+          for (var i = 0; i < items.length; i++) {
+            var r = items[i].getBoundingClientRect();
+            if (y < r.top + r.height / 2) return i;
+          }
+          return items.length;
+        }
+
+        function positionLine(list, line, items, ti) {
+          var top = 0;
+          if (ti < items.length) {
+            top = items[ti].offsetTop;
+          } else if (items.length) {
+            var last = items[items.length - 1];
+            top = last.offsetTop + last.offsetHeight;
+          }
+          line.style.top = top + "px";
+        }
+
+        function startDrag(e, list, item) {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          var startIndex = curItems(list).indexOf(item);
+          if (startIndex < 0) return;
+
+          list.style.position = "relative";
+          item.style.opacity = "0.4";
+          document.body.classList.add("sc-dragging");
+
+          var line = document.createElement("div");
+          line.className = "sc-drop-line";
+          list.appendChild(line);
+
+          var targetIndex = startIndex;
+          positionLine(list, line, curItems(list), targetIndex);
+
+          var grip = e.currentTarget;
+          try { grip.setPointerCapture(e.pointerId); } catch (_) {}
+
+          function onMove(ev) {
+            var items = curItems(list);
+            targetIndex = computeTarget(items, ev.clientY);
+            positionLine(list, line, items, targetIndex);
+          }
+
+          function onUp(ev) {
+            grip.removeEventListener("pointermove", onMove);
+            grip.removeEventListener("pointerup", onUp);
+            grip.removeEventListener("pointercancel", onUp);
+            try { grip.releasePointerCapture(ev.pointerId); } catch (_) {}
+
+            item.style.opacity = "";
+            document.body.classList.remove("sc-dragging");
+            if (line.parentNode) line.parentNode.removeChild(line);
+            list.style.position = "";
+
+            var si = curItems(list).indexOf(item);
+            // Insertion index -> final index (dropping below its own slot shifts).
+            var finalIndex = targetIndex > si ? targetIndex - 1 : targetIndex;
+            var steps = finalIndex - si;
+            if (si >= 0 && steps !== 0) driveReorder(item, steps);
+          }
+
+          grip.addEventListener("pointermove", onMove);
+          grip.addEventListener("pointerup", onUp);
+          grip.addEventListener("pointercancel", onUp);
+        }
+
+        // Give every reorderable list row a grip (idempotent).
+        function enhance() {
+          document.querySelectorAll(".item-list").forEach(function (list) {
+            list.querySelectorAll(":scope > .item").forEach(function (item) {
+              if (!moveButtons(item)) return; // not reorderable -> no grip
+              var header = item.querySelector(":scope > .header");
+              var firstCell = header && header.children[0];
+              if (!firstCell) return;
+              if (firstCell.querySelector(":scope > .sc-drag-handle")) return;
+              var grip = document.createElement("span");
+              grip.className = "sc-drag-handle";
+              grip.title = "Drag to reorder";
+              grip.textContent = "⠿"; // ⠿ braille grip
+              grip.addEventListener("pointerdown", function (e) {
+                startDrag(e, list, item);
+              });
+              firstCell.insertBefore(grip, firstCell.firstChild);
+            });
+          });
+        }
+
+        // Editor DOM comes and goes as entries open/close; keep grips in sync.
+        var scheduled = false;
+        var observer = new MutationObserver(function () {
+          if (scheduled) return;
+          scheduled = true;
+          raf(function () {
+            scheduled = false;
+            enhance();
+          });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+        enhance();
       })();
     </script>
   </body>
