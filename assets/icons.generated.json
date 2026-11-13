@@ -1,0 +1,67 @@
+{
+  "/uploads/curtainup-.png": {
+    "src": "/icons/curtainup.webp",
+    "w": 96,
+    "h": 87
+  },
+  "/uploads/un-requiem.png": {
+    "src": "/icons/un-requiem.webp",
+    "w": 91,
+    "h": 100
+  },
+  "/uploads/déplier.png": {
+    "src": "/icons/deplier.webp",
+    "w": 90,
+    "h": 100
+  },
+  "/uploads/icone.png": {
+    "src": "/icons/icone.webp",
+    "w": 91,
+    "h": 100
+  },
+  "/uploads/vetrina-2.png": {
+    "src": "/icons/vetrina-2.webp",
+    "w": 102,
+    "h": 75
+  },
+  "/uploads/Démontage.png": {
+    "src": "/icons/demontage.webp",
+    "w": 109,
+    "h": 62
+  },
+  "/uploads/Genius loci.png": {
+    "src": "/icons/genius-loci.webp",
+    "w": 85,
+    "h": 120
+  },
+  "/uploads/Leggera.png": {
+    "src": "/icons/leggera.webp",
+    "w": 47,
+    "h": 150
+  },
+  "/uploads/Lenz.png": {
+    "src": "/icons/lenz.webp",
+    "w": 33,
+    "h": 176
+  },
+  "/uploads/notti-futuree.png": {
+    "src": "/icons/notti-futuree.webp",
+    "w": 92,
+    "h": 95
+  },
+  "/uploads/Vingt ans.png": {
+    "src": "/icons/vingt-ans.webp",
+    "w": 63,
+    "h": 134
+  },
+  "/uploads/D'une dérive.png": {
+    "src": "/icons/d-une-derive.webp",
+    "w": 86,
+    "h": 118
+  },
+  "/uploads/Quelque part entre voir et dire.png": {
+    "src": "/icons/quelque-part-entre-voir-et-dire.webp",
+    "w": 56,
+    "h": 138
+  }
+}

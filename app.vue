@@ -36,22 +36,6 @@ const { data: spacesContent } = await useAsyncData("spaces", () =>
   queryContent("spaces").only(["icon", "_path", "title"]).find()
 );
 
-// Fetch the inlined-icon manifest once for the whole app (served as a static
-// JSON file, not bundled into the JS). IconProject reads the cached result via
-// useNuxtData("icon-manifest") instead of importing it as a module.
-// Client-only and non-blocking: files in public/ are served by Nitro's static
-// middleware, which the internal server-side $fetch cannot resolve (it would
-// hang the SSR render). The icons only render client-side anyway, so we skip
-// the fetch on the server and let it resolve in the browser.
-useAsyncData(
-  "icon-manifest",
-  () =>
-    $fetch<Record<string, { src: string; w: number; h: number }>>(
-      "/icons.generated.json"
-    ),
-  { server: false }
-);
-
 const projects = computed(() =>
   [...(spacesContent.value ?? []), ...(wordsContent.value ?? [])]
     .map((d) => ({
