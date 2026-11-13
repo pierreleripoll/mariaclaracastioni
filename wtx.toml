@@ -1,0 +1,73 @@
+# wtx: every branch gets its own worktree, ports, tmux session and agent.
+# Reference for every key: https://github.com/EPFL-ENAC/wtx/blob/main/docs/schema.md
+schema_version = 1
+
+[repo]
+name = "mariaclaracastioni"
+base_branch = "main"
+# The single source for the push guard, the completion and the deny rules.
+protected_branches = ["main", "staging"]
+land = "merge"
+
+# One offset per worktree, one port per family at that offset.
+[ports]
+
+[[ports.family]]
+name = "frontend"
+main = 3000   # what the main checkout keeps
+
+# Gitignored files a fresh worktree needs. Never overwritten.
+[seed]
+symlink = [".ipx-cache"]
+
+[deps]
+
+[[deps.step]]
+if_missing = "node_modules"
+cwd = "."
+run = "npm ci"
+
+# The agent pane fills the left half, the rest stack on the right.
+[panes]
+
+[[panes.pane]]
+name = "agent"
+role = "agent"
+
+[[panes.pane]]
+name = "frontend"
+role = "server"
+cmd = "npm run dev"
+log = true   # mirrored to .wt-logs/, the agent reads it
+
+[[panes.pane]]
+name = "shell"
+role = "shell"
+
+[agent]
+tool = "claude"
+llm = "opus"
+subagent_model = "sonnet"
+auto_compact_window = 200000
+explore_agent_model = "haiku"
+
+# Plan on one model, implement on another. A brief starts on
+# plan_model in plan mode. With Claude, accepting the plan carries
+# the same conversation on to build_model, at the effort the plan
+# asked for. With opencode the agent switch does it, and the
+# effort routing does not apply.
+[agent.orchestration]
+enabled = true
+plan_model = "fable"
+plan_effort = "high"
+build_model = "opus"
+build_effort = "xhigh"
+
+# Added to the baseline wtx ships. A repo can tighten, never loosen.
+[permissions]
+allow = ["Bash(npm run build)", "Bash(npm run generate)", "Bash(npm run update-images)", "Bash(npm run update-icons)", "Bash(wtx curl *)"]
+deny = ["Bash(wrangler deploy*)", "Bash(npx wrangler deploy*)", "Bash(npm exec wrangler deploy*)", "Bash(wrangler secret*)", "Bash(npx wrangler secret*)", "Bash(npm exec wrangler secret*)"]
+
+# Run by `wtx land --local` and by a local merge.
+[checks]
+test = ["npm run generate"]
