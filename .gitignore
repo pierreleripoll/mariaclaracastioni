@@ -8,3 +8,14 @@ node_modules
 .env
 dist
 .ipx-cache
+
+# wtx: per-worktree files, local to one checkout
+.env.worktree
+.wt-logs/
+PROMPT.md
+PROMPT.sent.md
+.claude/settings.local.json
+.claude/agents/Explore.md
+.claude/rules/wtx.md
+.claude/worktrees/
+opencode.json

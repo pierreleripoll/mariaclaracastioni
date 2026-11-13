@@ -39,3 +39,24 @@ There is no test suite, linter, or typecheck script configured. `npm run generat
 - Content collection dirs use numeric prefixes (`1.`, `2.`, `3.`) — these control display order; keep them when adding files.
 - Project images live in `public/uploads/`.
 - After adding/changing any project images, always run `npm run update-images` (or `npm run generate`) so dimensions and thumbhashes are regenerated before deploy.
+
+## Dev servers and worktrees
+
+Every branch has its own git worktree, tmux session and agent. The session is
+`mariaclaracastioni/<branch>` and its panes are `agent`, `frontend`, `shell`.
+
+- Ports are per worktree and live in `.env.worktree`, which every pane exports.
+  Never hardcode a port, read `FRONTEND_PORT` from the environment.
+- The dev server already runs in its own pane. Do not start it again. Read
+  `.wt-logs/frontend.log` to see what it is doing, the sandbox cannot reach the
+  tmux socket.
+- `wtx curl frontend [path] [curl args]` is how you reach it. It fills in this
+  worktree's port and never prompts: `wtx curl frontend /spaces`. Plain curl runs
+  in the sandbox and cannot reach a local port.
+- Kill only your own servers. A `pkill -f nuxt` kills every other worktree's
+  dev server too.
+- Work on this branch only. Never push `main` and `staging`. When the work is
+  ready, say so and a human runs `wtx land <branch>` from the main checkout. It
+  merges into local `main` (no push) after `npm run generate` passes.
+- A pre-push hook enforces this. If it refuses a push, that is the design, not a
+  bug to work around.

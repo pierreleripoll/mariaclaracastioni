@@ -50,7 +50,8 @@ export default defineNuxtConfig({
   },
   devServer: {
     host: "0.0.0.0", // Listen on all network interfaces
-    port: 3000, // Ensure this matches your desired port
+    // Each wtx worktree gets its own port in FRONTEND_PORT. The main checkout keeps 3000.
+    port: Number(process.env.FRONTEND_PORT) || 3000,
   },
   site: {
     url: "https://mariaclaracastioni.ch/",
