@@ -8,7 +8,18 @@
     @mouseover="onMouseEnter"
     @mouseleave="onMouseLeave"
   >
-    <img v-if="iconData" :src="iconData.src" :alt="`${title} Icon`" />
+    <img
+      v-if="iconData && !imgFailed"
+      ref="imgRef"
+      :src="iconData.src"
+      :width="iconData.w"
+      :height="iconData.h"
+      :alt="`${title} Icon`"
+      :class="{ loaded: imgLoaded }"
+      decoding="async"
+      @load="imgLoaded = true"
+      @error="imgFailed = true"
+    />
     <div v-else>
       <span>
         {{ title }}
@@ -19,6 +30,7 @@
 
 <script setup lang="ts">
 import { createNoise2D } from "simplex-noise";
+import iconManifestJson from "~/assets/icons.generated.json";
 
 interface Props {
   icon?: string;
@@ -37,14 +49,21 @@ const hoveredProject = useState<string | undefined>(
 
 const iconRef = ref<HTMLElement | null>(null);
 
-// The manifest is fetched once in app.vue; read it from the Nuxt data cache
-// (no extra request, no JS-bundled JSON).
-const { data: iconManifest } = useNuxtData<
-  Record<string, { src: string; w: number; h: number }>
->("icon-manifest");
+// Small build-time manifest (URL + display size of each icon, see
+// scripts/generateIconManifest.mjs). It is bundled, so the <img> is already in
+// the server HTML and the browser downloads the icon right away.
+const iconManifest: Record<string, { src: string; w: number; h: number }> =
+  iconManifestJson;
 const iconData = computed(() =>
-  props.icon ? iconManifest.value?.[props.icon] : undefined
+  props.icon ? iconManifest[props.icon] : undefined
 );
+
+// The image stays transparent until it has loaded, then fades in (CSS). It can
+// load before hydration, when the @load listener is not there yet, so we also
+// check it on mount. If it fails, we show the title box instead.
+const imgRef = ref<HTMLImageElement | null>(null);
+const imgLoaded = ref(false);
+const imgFailed = ref(false);
 
 const category = computed(() => props.path.split("/")[1]);
 const route = useRoute();
@@ -63,24 +82,11 @@ const visible = computed(
     selected.value
 );
 
-// Enable the corner transition only AFTER the icon image has loaded and painted
-// (the `ready` class gates the `transform` transition in CSS). The icon-manifest
-// is fetched client-side, so on a direct hit / hard reload the icon first paints
-// as the text fallback and then swaps to <img> — a swap that shifts its pinned
-// position and size. Holding the transition off until past that swap means a
-// directly-accessed project shows its icon already in place (no drift), while
-// client-side navigation (image already cached) still animates into the corner.
+// Enable the corner transition only after the first paint on the client (the
+// `ready` class gates the `transform` transition in CSS). On a direct hit /
+// hard reload the selected icon then shows already in place (no drift), while
+// client-side navigation still animates it into the corner.
 const animationsReady = ref(false);
-watch(
-  iconData,
-  (data) => {
-    if (!data || animationsReady.value || !import.meta.client) return;
-    requestAnimationFrame(() =>
-      requestAnimationFrame(() => (animationsReady.value = true))
-    );
-  },
-  { immediate: true }
-);
 
 const classList = computed(
   () =>
@@ -198,6 +204,15 @@ function onMouseLeave() {
 }
 
 onMounted(() => {
+  const img = imgRef.value;
+  if (img?.complete) {
+    if (img.naturalWidth > 0) imgLoaded.value = true;
+    else imgFailed.value = true;
+  }
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => (animationsReady.value = true))
+  );
+
   windowWidth.value = window.innerWidth;
   windowHeight.value = window.innerHeight;
   resize();
@@ -234,9 +249,9 @@ onBeforeUnmount(() => {
   z-index: 100;
 }
 
-/* Animate into the corner only once the icon image has painted (`ready`). On a
-   direct hit / hard reload this is added a frame after the fallback->image swap,
-   so the icon appears already in place instead of drifting. */
+/* Animate into the corner only after the first client paint (`ready`). On a
+   direct hit / hard reload the icon appears already in place instead of
+   drifting. */
 .project-icon.selected.ready {
   transition: filter 0.2s, transform 1s ease-in-out;
 }
@@ -252,6 +267,12 @@ onBeforeUnmount(() => {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  /* Nothing shows until the image is loaded, then a light fade in. */
+  opacity: 0;
+  transition: opacity 0.1s ease-out;
+}
+.project-icon > img.loaded {
+  opacity: 1;
 }
 .project-icon > div {
   width: 100%;

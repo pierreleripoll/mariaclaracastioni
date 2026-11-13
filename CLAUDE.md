@@ -28,6 +28,8 @@ There is no test suite, linter, or typecheck script configured. `npm run generat
 
 - **Image rendering.** `components/ThumbhashImage.vue` wraps `<UnLazyImage>` (`@unlazy/nuxt`) — it shows the thumbhash placeholder, then lazy-loads responsive `webp`/`jpeg` `<source>` srcsets generated through `useImage()` (`@nuxt/image`). Pass an `image` object (the frontmatter shape) plus `sizes`/`quality`.
 
+- **Project icons.** `scripts/generateIconManifest.mjs` (`npm run update-icons`, also part of `npm run generate`) trims and resizes each project `icon` into `public/icons/<slug>.webp`, and writes `assets/icons.generated.json` (URL + display size). `components/IconProject.vue` imports this small manifest, so the `<img>` tags are in the server HTML and the icons download before the JS runs. Each icon stays transparent until it has loaded, then fades in. Do not edit these generated files by hand.
+
 - **IPX caching.** `server/middleware/ipxCache.ts` intercepts `/_ipx/` requests and persists transformed images to `.ipx-cache/` on disk, serving from cache on subsequent hits. This is a custom layer on top of `@nuxt/image`'s IPX provider.
 
 - **Global shell.** `app.vue` is the root: it renders the `Navbar` + project icons (built by querying all `spaces` and `words` content), wraps `<NuxtPage>` in `<NuxtLayout>`, and sets all SEO/head metadata. It also wires Umami analytics and a Netlify Identity hook that redirects logged-in users to `/admin/` (Netlify CMS).

@@ -9,10 +9,23 @@ const contentDirs = [
   path.resolve("content/3.about"),
 ];
 
-// Written to public/ so it is served as a standalone, cacheable static asset
-// fetched once at runtime — rather than imported as a JS module, which would
-// bundle ~115 KB of base64 data-URIs into the client chunk and parse it as JS.
-const outFile = path.resolve("public/icons.generated.json");
+// Each icon is written as its own small WebP file in public/icons/. The
+// manifest only keeps the URL and the display size (about 1 KB), so it is
+// imported as a JS module and is there at SSR time. The <img> tags are then in
+// the HTML, and the browser starts to download the icons before any JS runs.
+const iconsDir = path.resolve("public/icons");
+const outFile = path.resolve("assets/icons.generated.json");
+
+// "/uploads/D'une dérive.png" -> "d-une-derive"
+function slugify(src) {
+  return path
+    .basename(src, path.extname(src))
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 // Icons are sized by a blend between two strategies (both preserve each icon's
 // aspect ratio — they only change its scale). Transparent padding is trimmed
@@ -60,6 +73,12 @@ async function collectIconPaths() {
 async function generateIconManifest() {
   const iconPaths = await collectIconPaths();
   const manifest = {};
+  const usedNames = new Set();
+
+  // The folder only holds generated files: start clean so removed icons go away.
+  await fs.rm(iconsDir, { recursive: true, force: true });
+  await fs.mkdir(iconsDir, { recursive: true });
+  await fs.mkdir(path.dirname(outFile), { recursive: true });
 
   for (const icon of iconPaths) {
     try {
@@ -85,15 +104,16 @@ async function generateIconManifest() {
         .webp({ quality: WEBP_QUALITY })
         .toBuffer({ resolveWithObject: true });
 
+      let name = slugify(icon) || "icon";
+      for (let i = 2; usedNames.has(name); i++) name = `${slugify(icon)}-${i}`;
+      usedNames.add(name);
+      await fs.writeFile(path.join(iconsDir, `${name}.webp`), out.data);
+
       const w = Math.round(out.info.width / DENSITY);
       const h = Math.round(out.info.height / DENSITY);
-      manifest[icon] = {
-        src: `data:image/webp;base64,${out.data.toString("base64")}`,
-        w,
-        h,
-      };
+      manifest[icon] = { src: `/icons/${name}.webp`, w, h };
       console.log(
-        `Inlined ${icon} → ${w}×${h} (${(out.data.length / 1024).toFixed(1)} KB)`
+        `Wrote ${icon} → icons/${name}.webp ${w}×${h} (${(out.data.length / 1024).toFixed(1)} KB)`
       );
     } catch (err) {
       console.error(`Skipping icon ${icon}: ${err.message}`);
