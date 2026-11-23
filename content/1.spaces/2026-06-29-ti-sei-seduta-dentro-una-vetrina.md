@@ -93,9 +93,7 @@ description: >-
   *Ti sei seduta dentro una vetrina* is a scenographic, audio, and video
   installation in the shop window at Corso Bello 5, Mendrisio.\
 
-  A shop window is like a miniature theatre: a defined space that contains a fictional universe. This project proposes a device that invites viewers to dwell on the fictional potential of reality.\
-
-  Standing on either side of the shop window, one simultaneously becomes both performer and spectator. The shop window becomes a screen through which to observe and interpret a place and its reality—from outside to inside, and vice versa.
+  A shop window is like a miniature theatre: a defined space that contains a fictional universe. This project proposes a device that questions the fictional potential of reality and the role of perspective in shaping what we see and perceive. The audience is invited to sit inside the shop window and observe the street while listening to a sound piece that describes the outside from an intimate perspective. The shop window becomes a space where the roles of performer and spectator constantly shift, raising questions about the power dynamics between those who look and those who are looked at.
 credits: |-
   A PROJECT BY MARIA CLARA CASTIONI\
   AND YANN HERMENJAT\
