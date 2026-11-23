@@ -3,17 +3,17 @@ title: Calendar
 credits: >-
   Next:\
 
-  [CHRÜSIMÜSI, Bühnen Bern, 18-20-22-23.09.2026](https://buehnenbern.ch/spielplan/programm/chrusimusi/)\
-
-  [CHRÜSIMÜSI, Comédie de Genève, 28-31.10 - 03-08.11.2026](https://www.comedie.ch/fr/chrusimusi)\
-
-  [CHRÜSIMÜSI, LAC Lugano, 11-12.11.2026](https://www.luganolac.ch/it/lac/programma/evento~lac~26-27~s~chrusimusi~.html)\
-
-  [ART + HÔPITAL, CHUV, Lausanne, 18.06 - 25.10.2026](https://vu.chuv.ch)\
+  [CHRÜSIMÜSI, Bühnen Bern](https://buehnenbern.ch/spielplan/programm/chrusimusi/)\
 
   \
 
-  Past:
+  Past:\
+
+  [CHRÜSIMÜSI, Comédie de Genève, 28-31.10 - 03-08.11.2026](https://www.comedie.ch/fr/chrusimusi)
+
+  [CHRÜSIMÜSI, LAC Lugano, 11-12.11.2026](https://www.luganolac.ch/it/lac/programma/evento~lac~26-27~s~chrusimusi~.html)
+
+  [ART + HÔPITAL, CHUV, Lausanne, 18.06 - 25.10.2026](https://www.artchuv.ch/fr/expositions/exposition/vu_expo_49/art-hopital-1-1)
 
   CURTAIN UP!, Lugano, 05.09 - 11.09.2025 \
 
