@@ -1,8 +1,30 @@
 ---
 title: Press
 credits: >-
-  [RSI – Cult+,
-  11.2025](https://www.rsi.ch/play/tv/cult/video/maria-clara-castioni-?urn=urn:rsi:video:3284030)\
+  [Le Temps,
+  11.2026](https://www.letemps.ch/culture/scenes/a-la-comedie-de-geneve-la-nouvelle-vie-de-l-autrice-baloise-adelheid-duvanel-irresistible-dans-le-spleen?srsltid=AYCX9vLpuLTZnojQ_XBj6UJppGvtpeH63YTOj4dxOI_qnaa3_hSlWWyK)\
+
+  [L'Osservatore, 11.2026](https://www.osservatore.ch/chrusimusi-la-fragile-grammatica-dellincontro_113253.html)\
+
+  [Cult News, 11.2026](https://cult.news/scenes/theatre/chrusimusi-le-capharnaum-hypersensible-deleonore-bonah-et-maria-clara-castioni-a-la-comedie-de-geneve/)\
+
+  [360° magazine, 11.2026](https://360.ch/culture/scene/90154-chrusimusi-quand-les-corps-racontent-les-vies-qui-debordent-si-peu/)\
+
+  [Coups d’Oeil, 11.2026 ](https://coupsdoeil.fr/2026/11/eleonore-bonah-maria-clara-castioni-chrusimusi-adelheid-duvanel-entretien/)\
+
+  [RTS - info culture, 10.2026](https://www.rts.ch/info/culture/spectacles/2026/article/chrusimusi-l-ecrivaine-adelheid-duvanel-adaptee-au-theatre-a-geneve-29398676.html)\
+
+  [RTS - Vertigo, 10.2026](https://www.rts.ch/audio-podcast/2026/audio/qu-est-ce-que-c-est-ca-veut-dire-quoi-chrusimusi-29398109.html)\
+
+  [RSI - Rete Due Alphaville, 10.2026](https://www.rsi.ch/rete-due/programmi/cultura/alphaville/Focus-giovani--4117918.html)\
+
+  [leprogramme.ch, 10.2026](https://leprogramme.ch/article/a-l-ecoute-des-vies-en-marge)\
+
+  [BKa, 09.2026](https://www.bka.ch/magazin/article/sturz-ins-chruesimuesi)\
+
+  [SRF - Tagesschau, 09.2026](https://www.srf.ch/play/tv/tagesschau/video/theater-buehnen-bern-zeigt-chruesimuesi?urn=urn:srf:video:481ae26c-c87d-407f-8cb8-16c822a2e3a5)\
+
+  [RSI – Cult+, 11.2025](https://www.rsi.ch/play/tv/cult/video/maria-clara-castioni-?urn=urn:rsi:video:3284030)\
 
   [RSI - Cultura, 09.2025](https://www.rsi.ch/cultura/arte/Curtain-Up--3106811.html)\
 
