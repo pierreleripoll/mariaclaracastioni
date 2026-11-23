@@ -1,6 +1,6 @@
 ---
 title: ici ou ailleurs
-year: "2026"
+year: '2026'
 navigation:
   order: 10
 icon: /uploads/icone.png
@@ -20,7 +20,12 @@ images:
     thumbhash: MggKDQBvWJd4SIc4hnZoZ8BnC7m2
     thumbhashRatio: 0.7142857142857143
   - src: /uploads/55522_26_ddir_com_exposition_bien_vu_espace_chuv_113-hdr.jpg
-    caption: "APICHAT GANGUILLET "
+    caption: 'APICHAT GANGUILLET '
+    width: 2400
+    height: 1600
+    ratio: 1.5
+    thumbhash: qggKDYAHeDp6d3eHioiHhbeGT5r2
+    thumbhashRatio: 1.4
   - src: /uploads/003.jpg
     caption: ©MARIA CLARA CASTIONI
     width: 2400
@@ -77,17 +82,16 @@ images:
     ratio: 0.6666666666666666
     thumbhash: KggOFQJqeHCIeIh4eIiHeJePifiI
     thumbhashRatio: 0.7142857142857143
-  - caption: "APICHAT GANGUILLET "
+  - caption: 'APICHAT GANGUILLET '
     src: /uploads/55522_26_ddir_com_exposition_bien_vu_espace_chuv_79.jpg
-description: >-
-  *Ici ou ailleurs* is a scenography for a public space at Lausanne University
-  Hospital (CHUV).\
-
+    width: 2400
+    height: 1600
+    ratio: 1.5
+    thumbhash: ZAgKDYAKVoqJd4iBiHiIh7BnTr32
+    thumbhashRatio: 1.4
+description: |-
+  *Ici ou ailleurs* is a scenography for a public space at Lausanne University Hospital (CHUV).\
   Through a multiplicity of forms, a vast curtain conceals and reveals spaces that are both real and fictional. Printed on wallpaper, the curtain is stripped of its materiality and reimagined as a symbolic threshold, continually redefining and transforming the surface of the hospital wall.
-credits: |-
-  SCENOGRAPHY, CONCEPT AND CO-CURATION: MARIA CLARA CASTIONI\
-  PROJECT LEAD, CO-CURATION: AGATHE NAITO, ROSALIE VASEY \
-  EXHIBITION *ART + HÔPITAL*\
-  CHUV, LAUSANNE\
-  PH ©MARIA CLARA CASTIONI / ©APICHAT GANGUILLET (3,12)
+credits: "SCENOGRAPHY, CONCEPT AND CO-CURATION: MARIA CLARA CASTIONI\\\nPROJECT LEAD, CO-CURATION: AGATHE NAITO, ROSALIE VASEY\_\\\nEXHIBITION *ART + HÔPITAL*\\\nCHUV, LAUSANNE\\\nPH ©MARIA CLARA CASTIONI / ©APICHAT GANGUILLET (3,12)"
 ---
+
