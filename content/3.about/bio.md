@@ -9,7 +9,7 @@ description: >-
 
   She holds degrees in Art and Theatre History from Alma Mater Studiorum – University of Bologna, Interior Architecture from HEAD – Genève, and Scenography from La Manufacture, Lausanne.\
 
-  As a set designer, she has collaborated with Mathilde Monnier, Virgile Dagneaux, and Daniele Pintaudi. She has also worked as a teaching assistant at HEAD – Genève.
+  As a set designer, she has collaborated with Mathilde Monnier, Virgile Dagneaux, and Daniele Pintaudi.
 navigation:
   order: 0
 ---
