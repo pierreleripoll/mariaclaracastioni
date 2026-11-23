@@ -67,9 +67,11 @@ description: "*Lenz* is a play based on the homonymous novel by Georg Büchner.
   The story is told by two women who sheltered Lenz during his delirium, and
   whose lives were disrupted for a moment."
 credits: |-
-  A PROJECT BY ELÉONORE BONAH AND MARIA CLARA CASTIONI
+  A PROJECT BY MARIA CLARA CASTIONI\
+  AND ELÉONORE BONAH
   WITH: LUNA DESMEULES + ANNE TISMER 
   LIGHT DESIGN: ÉDOUARD HÜGLI 
   LA MANUFACTURE, LAUSANNE / COMÉDIE DE GENÈVE
-  PH ©NICOLAS BRODARD (1,2,3,4,6,7) / ©MAGALI DOUGADOS (8)
+  PH ©NICOLAS BRODARD (1,2,3,4,6,7) / ©MAGALI DOUGADOS (8)\
+  *[TRAILER](https://vimeo.com/1029937202)*
 ---
