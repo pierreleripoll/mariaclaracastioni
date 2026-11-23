@@ -73,5 +73,5 @@ credits: |-
   LIGHT DESIGN: ÉDOUARD HÜGLI 
   LA MANUFACTURE, LAUSANNE / COMÉDIE DE GENÈVE
   PH ©NICOLAS BRODARD (1,2,3,4,6,7) / ©MAGALI DOUGADOS (8)\
-  *[TRAILER](https://vimeo.com/1029937202)*
+  *[TEASER](https://vimeo.com/1029937202)*
 ---
